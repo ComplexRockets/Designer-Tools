@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XmlLayout xmlns="http://www.w3schools.com" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:SchemaLocation="..\..\..\ModTools\UI\XmlLayout.xsd">
+    <Include path="Ui/Xml/Design/DesignStyles.xml" />
+    <Include path="Ui/Xml/Styles.xml" />
+
+    <Defaults>
+    </Defaults>
+
+    <Panel id="flyout-DesignerTools" class="panel flyout" width="350" active="false">
+        <Panel class="flyout-header">
+            <TextMeshPro text="DESIGNER TOOLS" id="flyout-title"/>
+            <Image name="Flyout.PartProperties.Close" class="flyout-close-button audio-btn-back" />
+        </Panel>
+        <Panel class="flyout-content no-image">
+            <VerticalScrollView class="no-image">
+                <VerticalLayout class="no-image" childForceExpandHeight="false" pivot="0 1" contentSizeFitter="vertical" rectAlignment="UpperCenter" childAlignment="UpperCenter" padding="20 20 20 50" spacing="10">
+                    <Panel class="property-row row">
+                        <Button class="btn btn-primary" width="200" onClick="OnViewToolButtonClicked();">
+                            <TextMeshPro text="View Tools" />
+                        </Button>
+                    </Panel>
+                </VerticalLayout>
+            </VerticalScrollView>
+        </Panel>
+    </Panel>
+</XmlLayout>

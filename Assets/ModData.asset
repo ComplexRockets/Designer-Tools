@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1366777262, guid: c37b925f2b4978342b2e0b83a8fa404a, type: 3}
+  m_Name: ModData
+  m_EditorClassIdentifier: 
+  _assemblies:
+  - Designer Tools.dll
+  _author: Aram - Complex Rockets
+  _description: "Designer Tools will simplify your SimpleRockets building experience
+    with tons of new tools. \nRead the mod page for more information or help.\n\nAdded
+    Tools:\nView Tools\n\t- 0rthographic view\n\t- Reference image selector\n\nMultiple
+    Part tools\n\t- Multiple part selector (by holding tab)\n\t- Multiple part painter\n\t-
+    Multiple part property edit (not yet released)\n\t- Align Parts (not yet released)\n\t-
+    Distribute Parts (not yet released)\n\nOther Tools\n\t- DeltaV calculator Tool
+    (not yet released)\n\t- Circular / Linear pattern (not yet released)"
+  _loadPriority: 1000
+  _name: Designer Tools
+  _otherAssets: []
+  _prefabs: []
+  _steamDescription: 
+  _steamLanguage: English
+  _steamPreviewPath: 
+  _steamTags: 
+  _steamTitle: 
+  _steamVisibility: 0
+  _versionMajor: 0
+  _versionMinor: 1
+  _partCategories: []
+  _parts: []
+  _partStyleExtensions: []
+  _partTextureStyles: []
+  _persistentObjects:
+  - {fileID: 136889964996939161, guid: aa4022bfb57f84d3c9fbd42c9df56d89, type: 3}
+  _uiResourceDatabases:
+  - {fileID: 11400000, guid: bcbfd309ef6254553a83b6c1bb98b677, type: 2}
