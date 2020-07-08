@@ -23,6 +23,7 @@ using UnityEngine.UI;
 namespace Assets.Scripts.Ui.Designer {
     public class DesignerToolsUI : MonoBehaviour {
         private FlyoutScript Flyout = new FlyoutScript ();
+        private DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
         private IXmlLayoutController _controller;
         private static ViewToolsUI _ViewToolsUI;
         private XmlLayout _XmlLayout;
@@ -45,13 +46,18 @@ namespace Assets.Scripts.Ui.Designer {
             }
         }
 
+        private void OnSaveRefImagesButtonClicked () {
+            Mod.Instance.OnSaveRefImages ();
+        }
+
         public void Close () {
             _XmlLayout.Hide (() => Destroy (this.gameObject), true);
             if (_ViewToolsUI != null && !_ViewToolsUI.ViewToolPanelPinned) _ViewToolsUI.Close ();
         }
 
         public ViewToolsUI GetViewToolsUI () {
-            return _ViewToolsUI;
+            if (_ViewToolsUI != null) return _ViewToolsUI;
+            return null;
         }
     }
 }

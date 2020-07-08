@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<XmlLayout xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:SchemaLocation="..\..\..\ModTools\UI\XmlLayout.xsd">
-    <Include path="Ui/Xml/Design/DesignStyles.xml" />
-    <Include path="Ui/Xml/Styles.xml" />
-    <Include path="DesignerTools.xml" />
-</XmlLayout>

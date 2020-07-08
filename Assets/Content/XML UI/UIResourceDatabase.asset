@@ -20,8 +20,6 @@ MonoBehaviour:
   entries:
   - path: DesignerTools/Designer/DesignerTools
     resource: {fileID: 4900000, guid: 22a50f946ea2247fcb12914a297256be, type: 3}
-  - path: DesignerTools/Designer/ViewTool
-    resource: {fileID: 4900000, guid: 775532a9bc5ec45289d9385211f8b1f2, type: 3}
   - path: DesignerTools/Designer/ViewTools
     resource: {fileID: 4900000, guid: 4c4439f4d3c2e42e1afe61649289ac11, type: 3}
   - path: DesignerTools/Designer/XmlLayout

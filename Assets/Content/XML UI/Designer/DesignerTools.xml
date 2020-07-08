@@ -20,6 +20,11 @@
                             <TextMeshPro text="View Tools" />
                         </Button>
                     </Panel>
+                    <Panel class="property-row row">
+                        <Button class="btn" width="200" onClick="OnSaveRefImagesButtonClicked();">
+                            <TextMeshPro text="Save Reference Images" />
+                        </Button>
+                    </Panel>
                 </VerticalLayout>
             </VerticalScrollView>
         </Panel>

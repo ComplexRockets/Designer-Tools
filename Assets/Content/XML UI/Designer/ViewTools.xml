@@ -13,7 +13,7 @@
         <!-- Header Panel-->
         <Panel class="inspector-header" rectAlignment="UpperLeft" width="1000" height="30" border="border">
             <TextMeshPro class="text-sm" color="labeltext" text="Orthographic View" rectAlignment="MiddleLeft" offsetXY="-430 0"/>
-            <Toggle class="audio-btn-click" rectAlignment="MiddleLeft" offsetXY="140 0" width="40" isOn="false" height="20" colors="TransparentPanel|labeltext|Primary|labeltext" onClick="OnOrthoToggleButtonClicked" />
+            <Toggle class="audio-btn-click" id="OrthoToggle" rectAlignment="MiddleLeft" offsetXY="140 0" width="40" isOn="false" height="20" colors="TransparentPanel|labeltext|Primary|labeltext" onClick="OnOrthoToggleButtonClicked" />
 
             <TextMeshPro class="inspector-panel" color="Primary" text="VIEW TOOLS"/>
 
@@ -67,75 +67,75 @@
 
         <!-- Image Panel-->
         <Panel rectAlignment="UpperLeft" width="150" height="220" offsetXY="150 -30">
-            <VerticalLayout padding="6">
-                <Button class="btn" id="SelectFront" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" onClick="OnSelectImageButtonClicked(this);" active="true">
+            <VerticalLayout padding="6" childForceExpandHeight="false">
+                <Button class="btn" id="SelectFront" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" preferredheight="34" onClick="OnSelectImageButtonClicked(this);" active="true">
                     <TextMeshPro text="Select Image"/>
                 </Button>
 
                 <HorizontalLayout id="EditModeSettingsFront" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" width="34" onClick="OnMoveImageButtonClicked(Front)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="34" width="34" onClick="OnRotateImageButtonClicked(Front)" />
-                    <Image class="delete-button audio-btn-click" preferredheight="34" width="34" onClick="OnCloseEditMode(Front);">
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Front)" />
+                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Front)" />
+                    <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Front);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <Button class="btn" id="SelectBack" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" onClick="OnSelectImageButtonClicked(this);" active="true">
+                <Button class="btn" id="SelectBack" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" preferredheight="34" onClick="OnSelectImageButtonClicked(this);" active="true">
                     <TextMeshPro text="Select Image"/>
                 </Button>
 
                 <HorizontalLayout id="EditModeSettingsBack" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" rectAlignment="MiddleLeft" preferredheight="34" width="34" onClick="OnMoveImageButtonClicked(Back)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="34" width="34" onClick="OnRotateImageButtonClicked(Back)" />
-                    <Image class="delete-button audio-btn-click" preferredheight="34" width="34" rectAlignment="MiddleRight" onClick="OnCloseEditMode(Back);">
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Back)" />
+                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Back)" />
+                    <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Back);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <Button class="btn" id="SelectTop" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" onClick="OnSelectImageButtonClicked(this);" active="true">
+                <Button class="btn" id="SelectTop" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" preferredheight="34" onClick="OnSelectImageButtonClicked(this);" active="true">
                     <TextMeshPro text="Select Image"/>
                 </Button>
 
                 <HorizontalLayout id="EditModeSettingsTop" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" rectAlignment="MiddleLeft" preferredheight="34" width="34" onClick="OnMoveImageButtonClicked(Top)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="34" width="34" onClick="OnRotateImageButtonClicked(Top)" />
-                    <Image class="delete-button audio-btn-click" preferredheight="34" width="34" rectAlignment="MiddleRight" onClick="OnCloseEditMode(Top);">
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Top)" />
+                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Top)" />
+                    <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Top);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <Button class="btn" id="SelectBottom" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" onClick="OnSelectImageButtonClicked(this);" active="true">
+                <Button class="btn" id="SelectBottom" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" preferredheight="34" onClick="OnSelectImageButtonClicked(this);" active="true">
                     <TextMeshPro text="Select Image"/>
                 </Button>
 
                 <HorizontalLayout id="EditModeSettingsBottom" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" rectAlignment="MiddleLeft" preferredheight="34" width="34" onClick="OnMoveImageButtonClicked(Bottom)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="34" width="34" onClick="OnRotateImageButtonClicked(Bottom)" />
-                    <Image class="delete-button audio-btn-click" preferredheight="34" width="34" rectAlignment="MiddleRight" onClick="OnCloseEditMode(Bottom);">
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Bottom)" />
+                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Bottom)" />
+                    <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Bottom);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <Button class="btn" id="SelectLeft" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" onClick="OnSelectImageButtonClicked(this);" active="true">
+                <Button class="btn" id="SelectLeft" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" preferredheight="34" onClick="OnSelectImageButtonClicked(this);" active="true">
                     <TextMeshPro text="Select Image"/>
                 </Button>
 
                 <HorizontalLayout id="EditModeSettingsLeft" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" rectAlignment="MiddleLeft" preferredheight="34" width="34" onClick="OnMoveImageButtonClicked(LeftLeft)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="34" width="34" onClick="OnRotateImageButtonClicked(Left)" />
-                    <Image class="delete-button audio-btn-click" preferredheight="34" width="34" rectAlignment="MiddleRight" onClick="OnCloseEditMode(Left);">
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(LeftLeft)" />
+                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Left)" />
+                    <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Left);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <Button class="btn" id="SelectRight" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" onClick="OnSelectImageButtonClicked(this);" active="true">
+                <Button class="btn" id="SelectRight" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" preferredheight="34" onClick="OnSelectImageButtonClicked(this);" active="true">
                     <TextMeshPro text="Select Image"/>
                 </Button>
 
                 <HorizontalLayout id="EditModeSettingsRight" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" rectAlignment="MiddleLeft" preferredheight="34" width="34" onClick="OnMoveImageButtonClicked(Right)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredwidth="34" preferredheight="34" onClick="OnRotateImageButtonClicked(Right)" />
-                    <Image class="delete-button audio-btn-click" preferredheight="34" width="34" rectAlignment="MiddleRight" onClick="OnCloseEditMode(Right);">
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Right)" />
+                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Right)" />
+                    <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Right);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
@@ -144,8 +144,8 @@
 
         <!-- Settings Panel-->
         <Panel rectAlignment="UpperLeft" width="700" height="220" offsetXY="300 -30">
-            <VerticalLayout spacing="5" padding="5">
-                <TextMeshPro text="No Image Selected" id="FrontNoImageSelected" color="labeltext" active="true"/>
+            <VerticalLayout spacing="5" padding="5" childForceExpandHeight="false">
+                <TextMeshPro text="No Image Selected" id="FrontNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="FrontSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Front/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
@@ -161,12 +161,12 @@
                     <InputField class="DT" id="Front/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
                     <Button id="ToggleFront" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" onClick="OnToggleImageClicked(this)" />
-                    <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteFront" onClick="OnDeleteImageClicked(Front);">
+                    <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteFront" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnDeleteImageClicked(Front);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <TextMeshPro text="No Image Selected" id="BackNoImageSelected" color="labeltext" active="true"/>
+                <TextMeshPro text="No Image Selected" id="BackNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="BackSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Back/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
@@ -181,13 +181,13 @@
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Back/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
-                    <Button id="ToggleBack" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" onClick="OnToggleImageClicked(this)" />
+                    <Button id="ToggleBack" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteBack" onClick="OnDeleteImageClicked(Back);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <TextMeshPro text="No Image Selected" id="TopNoImageSelected" color="labeltext" active="true"/>
+                <TextMeshPro text="No Image Selected" id="TopNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="TopSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Top/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
@@ -202,13 +202,13 @@
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Top/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
-                    <Button id="ToggleTop" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" onClick="OnToggleImageClicked(this)" />
+                    <Button id="ToggleTop" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteTop" onClick="OnDeleteImageClicked(Top);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <TextMeshPro text="No Image Selected" id="BottomNoImageSelected" color="labeltext" active="true"/>
+                <TextMeshPro text="No Image Selected" id="BottomNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="BottomSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Bottom/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
@@ -223,13 +223,13 @@
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Bottom/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
-                    <Button id="ToggleBottom" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" onClick="OnToggleImageClicked(this)" />
+                    <Button id="ToggleBottom" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteBottom" onClick="OnDeleteImageClicked(Bottom);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <TextMeshPro text="No Image Selected" id="LeftNoImageSelected" color="labeltext" active="true"/>
+                <TextMeshPro text="No Image Selected" id="LeftNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="LeftSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Left/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
@@ -244,13 +244,13 @@
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Left/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
-                    <Button id="ToggleLeft" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" onClick="OnToggleImageClicked(this)" />
+                    <Button id="ToggleLeft" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteLeft" onClick="OnDeleteImageClicked(Left);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
 
-                <TextMeshPro text="No Image Selected" id="RightNoImageSelected" color="labeltext" active="true"/>
+                <TextMeshPro text="No Image Selected" id="RightNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="RightSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Right/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
@@ -265,12 +265,11 @@
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
                     <InputField class="DT" id="Right/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
-                    <Button id="ToggleRight" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" onClick="OnToggleImageClicked(this)" />
+                    <Button id="ToggleRight" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteRight" onClick="OnDeleteImageClicked(Right);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
                 </HorizontalLayout>
-
             </VerticalLayout>
         </Panel>
     </Panel>
@@ -300,9 +299,10 @@
         <!-- Preview -->
         <Panel width="700" height="450" offsetXY="0 -30" rectAlignment="UpperRight" border="border">
             <Image id="PreviewImage" image="" />
-            <Button class="btn submit" onClick="OnImageConfirm();" rectAlignment="LowerRight">
+            <Button class="btn submit" id="ImageConfirmButton" onClick="OnImageConfirm();" rectAlignment="LowerRight">
                 <TextMeshPro class="text-sm" text="Select Image" alignment="Center" color="labeltext"/>
             </Button>
+            <TextMeshPro color="labeltext" text="Image Preview Not Implemented Yet"/>
         </Panel>
     </Panel>
 </XmlLayout>

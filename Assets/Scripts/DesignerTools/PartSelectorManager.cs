@@ -45,7 +45,7 @@ namespace Assets.Scripts.DesignerTools {
         }
         public void OnSceneLoaded (object sender, SceneEventArgs e) {
             if (e.Scene == "Design") {
-                Debug.Log (e.Scene + " Loaded");
+                Debug.Log (e.Scene + " Loaded (PartSelectorManager.cs)");
                 _Designer.SelectedPartChanged += OnSelectedPartChanged;
             }
 

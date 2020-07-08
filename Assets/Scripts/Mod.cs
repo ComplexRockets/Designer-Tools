@@ -4,6 +4,7 @@ namespace Assets.Scripts {
     using System.Text;
     using System;
     using Assets.Scripts.Craft.Parts.Modifiers.Fuselage;
+    using Assets.Scripts.Design;
     using Assets.Scripts.DesignerTools;
     using Assets.Scripts.Tools;
     using ModApi.Common;
@@ -21,6 +22,9 @@ namespace Assets.Scripts {
     /// </summary>
     public class Mod : ModApi.Mods.GameMod {
         private PartSelectorManager _PartSelectorManager = new PartSelectorManager ();
+        private DataManager _DataManager = new DataManager ();
+        private DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
+        private ViewToolsUI _ViewToolsUI => Ui.Designer.DesignerToolsUIController._DesignerToolsUI?.GetViewToolsUI ();
         public List<ReferenceImage> ReferenceImages = new List<ReferenceImage> ();
         public string RefImagePath = Application.persistentDataPath + "/UserData/DesignerTools/ReferenceImages/";
 
@@ -38,11 +42,44 @@ namespace Assets.Scripts {
         protected override void OnModInitialized () {
             base.OnModInitialized ();
             Ui.Designer.DesignerToolsUIController.Initialize ();
+            _DataManager.initialise ();
+
             System.IO.Directory.CreateDirectory (RefImagePath);
+            Game.Instance.SceneManager.SceneLoaded += OnSceneLoaded;
+            Game.Instance.SceneManager.SceneUnloading += OnSceneUnloading;
         }
 
         public void OnViewPanelClosed (List<ReferenceImage> referenceImages) {
             ReferenceImages = referenceImages;
+        }
+
+        public void OnSceneLoaded (object sender, SceneEventArgs e) {
+            if (e.Scene == "Design") {
+                Debug.Log (e.Scene + " Loaded (mod.cs)");
+                _Designer.CraftLoaded += OnCraftLoaded;
+            }
+        }
+
+        public void OnSceneUnloading (object sender, SceneEventArgs e) {
+            if (e.Scene == "Design") {
+                Debug.Log (e.Scene + " Unloading (mod.cs)");
+                _Designer.CraftLoaded -= OnCraftLoaded;
+                _DataManager.SaveXml ();
+            }
+        }
+
+        public void OnCraftLoaded () {
+            List<ReferenceImage> Images = _DataManager.LoadImages (_Designer.CraftScript.Data.Name);
+
+            if (Images != null) ReferenceImages = Images;
+            else ReferenceImages = new List<ReferenceImage> ();
+
+            if (_ViewToolsUI != null) _ViewToolsUI.UpdateReferenceImages (ReferenceImages);
+        }
+
+        public void OnSaveRefImages () {
+            if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;
+            _DataManager.SaveImages (_Designer.CraftScript.Data.Name, ReferenceImages);
         }
     }
 }

@@ -5,8 +5,10 @@
     using System.Threading.Tasks;
     using System.Xml.Linq;
     using System;
+    using Assets.Scripts.Design;
     using DesignerTools;
     using ModApi.Common;
+    using ModApi.Design;
     using ModApi.Ui;
     using TMPro;
     using UI.Xml;
@@ -15,9 +17,8 @@
 
     public static class DesignerToolsUIController {
         private const string _buttonId = "DesignerTools-button";
-
-        private static DesignerToolsUI _DesignerToolsUI;
-        public static DesignerToolsUI DesignerToolsUI => _DesignerToolsUI;
+        public static DesignerToolsUI _DesignerToolsUI;
+        private static DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
 
         public static void Initialize () {
             var userInterface = Game.Instance.UserInterface;
@@ -50,10 +51,6 @@
                 var button = xmlLayoutController.XmlLayout.GetElementById (_buttonId);
                 button.AddOnClickEvent (OnButtonClicked);
             });
-
-            foreach (IFlyout flyout in Game.Instance.Designer.DesignerUi.Flyouts.All) {
-                flyout.Opened += OnOtherFlyoutOpened;
-            }
         }
 
         private static void OnButtonClicked () {
@@ -63,25 +60,7 @@
             } else {
                 var ui = Game.Instance.UserInterface;
                 _DesignerToolsUI = ui.BuildUserInterfaceFromResource<DesignerToolsUI> ("DesignerTools/Designer/DesignerTools", (script, controller) => script.OnLayoutRebuilt (controller));
-
-                Debug.Log ("Flyouts: ");
-                Debug.Log ("Asset.Scripts count: " + Assets.Scripts.Game.Instance.Designer.DesignerUi.Flyouts.All.Count);
-                Debug.Log ("ModApi.Common count: " + ModApi.Common.Game.Instance.Designer.DesignerUi.Flyouts.All.Count);
-
-                foreach (IFlyout flyout in Game.Instance.Designer.DesignerUi.Flyouts.All) {
-                    Debug.Log (flyout.Title);
-                    if (flyout.IsOpen) {
-                        Debug.Log ("Closing Flyout: " + flyout.Title);
-                        flyout.Close (true);
-                    }
-                }
             }
-        }
-
-        public static void OnOtherFlyoutOpened (IFlyout flyout) {
-            Debug.Log ("Other flyout openned");
-            _DesignerToolsUI.Close ();
-            _DesignerToolsUI = null;
         }
     }
 }
