@@ -57,6 +57,7 @@ namespace Assets.Scripts {
             if (e.Scene == "Design") {
                 Debug.Log (e.Scene + " Loaded (mod.cs)");
                 _Designer.CraftLoaded += OnCraftLoaded;
+                //_Designer.BeforeCraftUnloaded += OnCraftUnloading;
             }
         }
 
@@ -76,6 +77,14 @@ namespace Assets.Scripts {
 
             if (_ViewToolsUI != null) _ViewToolsUI.UpdateReferenceImages (ReferenceImages);
         }
+
+        // public void OnCraftUnloading () {
+        //     if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;
+        //     foreach (ReferenceImage image in ReferenceImages) {
+        //         image.Destroy();
+        //         ReferenceImages.Remove(image);
+        //     }
+        // }
 
         public void OnSaveRefImages () {
             if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;

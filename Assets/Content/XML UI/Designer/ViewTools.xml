@@ -121,7 +121,7 @@
                 </Button>
 
                 <HorizontalLayout id="EditModeSettingsLeft" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(LeftLeft)" />
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Left)" />
                     <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Left)" />
                     <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Left);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
