@@ -80,13 +80,13 @@
                 } else if (View == "Back") {
                     _ParentGameObject.transform.localRotation = Quaternion.Euler (90f, 270f, 90f);
                 } else if (View == "Top") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
+                    _ParentGameObject.transform.localRotation = Quaternion.Euler (0f, -90f, 0f);
                 } else if (View == "Bottom") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (180f, 0f, 180f);
+                    _ParentGameObject.transform.localRotation = Quaternion.Euler (180f, 90f, 0f);
                 } else if (View == "Left") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (90f + 0f, 0f, 90f);
+                    _ParentGameObject.transform.localRotation = Quaternion.Euler (90f, 0f, 90f);
                 } else if (View == "Right") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (90f + 0f, 0f, -90f);
+                    _ParentGameObject.transform.localRotation = Quaternion.Euler (90f, 0f, -90f);
                 }
 
                 UpdateImage (image);
