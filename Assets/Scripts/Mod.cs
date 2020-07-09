@@ -40,11 +40,11 @@ namespace Assets.Scripts {
         public static Mod Instance { get; } = GetModInstance<Mod> ();
 
         protected override void OnModInitialized () {
+            System.IO.Directory.CreateDirectory (RefImagePath);
             base.OnModInitialized ();
             Ui.Designer.DesignerToolsUIController.Initialize ();
             _DataManager.initialise ();
 
-            System.IO.Directory.CreateDirectory (RefImagePath);
             Game.Instance.SceneManager.SceneLoaded += OnSceneLoaded;
             Game.Instance.SceneManager.SceneUnloading += OnSceneUnloading;
         }
@@ -89,6 +89,7 @@ namespace Assets.Scripts {
         public void OnSaveRefImages () {
             if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;
             _DataManager.SaveImages (_Designer.CraftScript.Data.Name, ReferenceImages);
+            _DataManager.SaveXml ();
         }
     }
 }
