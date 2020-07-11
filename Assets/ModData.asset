@@ -39,6 +39,7 @@ MonoBehaviour:
   _partStyleExtensions: []
   _partTextureStyles: []
   _persistentObjects:
+  - {fileID: 2204906191568106485, guid: 636e257f5270c4fb4884a71f12aee767, type: 3}
   - {fileID: 136889964996939161, guid: aa4022bfb57f84d3c9fbd42c9df56d89, type: 3}
   _uiResourceDatabases:
   - {fileID: 11400000, guid: bcbfd309ef6254553a83b6c1bb98b677, type: 2}

@@ -68,6 +68,7 @@ namespace Assets.Scripts.DesignerTools {
                 XmlElement OrthoToggle = _XmlLayout.GetElementById ("OrthoToggle");
                 OrthoToggle.SetAttribute ("isOn", "true");
                 OrthoToggle.ApplyAttributes ();
+                _ZoomPanel.SetActive (true);
                 OrthoViewActive = true;
             }
 
@@ -339,7 +340,7 @@ namespace Assets.Scripts.DesignerTools {
         }
         private void OnZoomPlusButtonClicked () {
             OrthoSize--;
-            if (OrthoSize < 0) OrthoSize = 0;
+            if (OrthoSize <= 0) OrthoSize = 0.1f;
             DesignerCamera.orthographicSize = OrthoSize;
         }
 

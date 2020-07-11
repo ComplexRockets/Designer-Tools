@@ -165,6 +165,10 @@
                 ApplyChanges ();
             }
 
+            public void UpdateOrigin (Vector3 Origin) {
+                _ParentGameObject.transform.position = Origin;
+            }
+
             public void ApplyChanges () {
                 Quaternion temp = _ImageGameObject.transform.localRotation;
 
@@ -184,7 +188,7 @@
                 _EditModeOn = editmode;
 
                 if (editmode) ViewToolsUI.SetReferencePart (true);
-                else {ViewToolsUI.SetReferencePart (false); OnMoveImage (); OnRotateImage ();}
+                else { ViewToolsUI.SetReferencePart (false); OnMoveImage (); OnRotateImage (); }
             }
 
             public void OnMoveImage () {

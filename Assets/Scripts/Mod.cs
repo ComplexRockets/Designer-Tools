@@ -21,11 +21,11 @@ namespace Assets.Scripts {
     /// A singleton object representing this mod that is instantiated and initialize when the mod is loaded.
     /// </summary>
     public class Mod : ModApi.Mods.GameMod {
-        private PartSelectorManager _PartSelectorManager = new PartSelectorManager ();
         private DataManager _DataManager = new DataManager ();
         private DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
         private ViewToolsUI _ViewToolsUI => Ui.Designer.DesignerToolsUIController._DesignerToolsUI?.GetViewToolsUI ();
         public List<ReferenceImage> ReferenceImages = new List<ReferenceImage> ();
+        private Vector3 _Origin = new Vector3 ();
         public string RefImagePath = Application.persistentDataPath + "/UserData/DesignerTools/ReferenceImages/";
 
         /// <summary>
@@ -47,6 +47,16 @@ namespace Assets.Scripts {
 
             Game.Instance.SceneManager.SceneLoaded += OnSceneLoaded;
             Game.Instance.SceneManager.SceneUnloading += OnSceneUnloading;
+        }
+
+        public void DesignerUpdate () {
+            if (_Designer.CraftScript.RootPart.Transform.position != _Origin) {
+                _Origin = _Designer.CraftScript.RootPart.Transform.position;
+                if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;
+                foreach (ReferenceImage image in ReferenceImages) {
+                    image.UpdateOrigin (_Origin);
+                }
+            }
         }
 
         public void OnViewPanelClosed (List<ReferenceImage> referenceImages) {
@@ -71,6 +81,15 @@ namespace Assets.Scripts {
 
         public void OnCraftLoaded () {
             List<ReferenceImage> Images = _DataManager.LoadImages (_Designer.CraftScript.Data.Name);
+
+            if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;
+            if (ReferenceImages != null) {
+                lock (ReferenceImages) {
+                    foreach (ReferenceImage image in ReferenceImages) {
+                        image.Destroy ();
+                    }
+                }
+            }
 
             if (Images != null) ReferenceImages = Images;
             else ReferenceImages = new List<ReferenceImage> ();

@@ -41,22 +41,21 @@ namespace Assets.Scripts.DesignerTools {
         private bool IgnoreNextPartSelectionEvent = false;
         protected virtual void Start () {
             Game.Instance.SceneManager.SceneLoaded += OnSceneLoaded;
-
         }
         public void OnSceneLoaded (object sender, SceneEventArgs e) {
             if (e.Scene == "Design") {
                 Debug.Log (e.Scene + " Loaded (PartSelectorManager.cs)");
                 _Designer.SelectedPartChanged += OnSelectedPartChanged;
             }
-
         }
 
         protected virtual void Update () {
             if (!Game.InDesignerScene) return;
 
             try {
-                if (Input.GetKeyDown (KeyCode.Tab)) TabPressed = true;
-                else if (Input.GetKeyUp (KeyCode.Tab)) TabPressed = false;
+                if (Input.GetKeyDown (KeyCode.Tab)) {
+                    TabPressed = true;
+                } else if (Input.GetKeyUp (KeyCode.Tab)) TabPressed = false;
             } catch (EntryPointNotFoundException e) { Debug.Log ("Error on Tab Check: " + e); }
 
             try { if (_SelectedParts.Count > 0) UpdatePartHighlight (); } catch (EntryPointNotFoundException e) { Debug.Log ("Error on UpdatePartHighlight: " + e); }
@@ -74,7 +73,7 @@ namespace Assets.Scripts.DesignerTools {
         }
 
         public void OnSelectedPartChanged (IPartScript OldPart, IPartScript NewPart) {
-            Debug.Log("Selected Part Changed: " + NewPart?.Data.PartType.Id);
+            Debug.Log ("Selected Part Changed: " + NewPart?.Data.PartType.Id);
             if (!IgnoreNextPartSelectionEvent) {
                 if (NewPart != null && _Designer.AllowPartSelection == true) {
                     if (OldPart != null && !_SelectedParts.Contains (OldPart)) _SelectedParts.Add (OldPart);
