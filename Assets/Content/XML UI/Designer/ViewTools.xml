@@ -73,8 +73,14 @@
                 </Button>
 
                 <HorizontalLayout id="EditModeSettingsFront" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
-                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Front)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Front)" />
+                    <!--<Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Front)" />-->
+                    <!--<Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Front)" />-->
+                    <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Front);">
+                        <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
+                    </Image>
+                    <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Front);">
+                        <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
+                    </Image>
                     <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Front);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
@@ -86,7 +92,7 @@
 
                 <HorizontalLayout id="EditModeSettingsBack" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
                     <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Back)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Back)" />
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Back)" />
                     <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Back);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
@@ -98,7 +104,7 @@
 
                 <HorizontalLayout id="EditModeSettingsTop" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
                     <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Top)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Top)" />
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Top)" />
                     <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Top);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
@@ -110,7 +116,7 @@
 
                 <HorizontalLayout id="EditModeSettingsBottom" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
                     <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Bottom)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Bottom)" />
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Bottom)" />
                     <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Bottom);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
@@ -122,7 +128,7 @@
 
                 <HorizontalLayout id="EditModeSettingsLeft" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
                     <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Left)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Left)" />
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Left)" />
                     <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Left);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>
@@ -134,7 +140,7 @@
 
                 <HorizontalLayout id="EditModeSettingsRight" height="34" active="false" childForceExpandWidth="false" childForceExpandHeight="false">
                     <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonMovePartTool" preferredheight="34" preferredwidth="34" onClick="OnMoveImageButtonClicked(Right)" />
-                    <Button lass="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Right)" />
+                    <Button class="icon-button" sprite="Ui/Sprites/Design/IconButtonRotateTool" preferredheight="28" preferredwidth="28" onClick="OnRotateImageButtonClicked(Right)" />
                     <Image class="delete-button audio-btn-click" preferredheight="34" preferredwidth="34" onClick="OnCloseEditMode(Right);">
                         <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
                     </Image>

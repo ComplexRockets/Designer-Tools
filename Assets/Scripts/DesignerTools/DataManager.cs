@@ -10,7 +10,7 @@ using Assets.Scripts;
 using UnityEngine;
 
 namespace Assets.Scripts.DesignerTools {
-    public class DataManager : MonoBehaviour {
+    public class DataManager {
         private XmlSerializer _XmlSerializer;
         private FileStream _FileStream;
         public CraftImagesDataBase ImageDB;

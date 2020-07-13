@@ -19,7 +19,6 @@
         public class DesignerToolsLoop : MonoBehaviour {
 
             private Mod _Mod = Mod.Instance;
-            public DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
 
             protected virtual void Update () {
                 if (Game.InDesignerScene) {

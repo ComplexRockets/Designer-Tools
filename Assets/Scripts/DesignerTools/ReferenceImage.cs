@@ -88,6 +88,7 @@
                 } else if (View == "Right") {
                     _ParentGameObject.transform.localRotation = Quaternion.Euler (90f, 0f, -90f);
                 }
+                _ParentGameObject.transform.position = _Designer.CraftScript.RootPart.Transform.position;
 
                 UpdateImage (image);
             }

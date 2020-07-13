@@ -7,6 +7,7 @@ namespace Assets.Scripts {
     using Assets.Scripts.Design;
     using Assets.Scripts.DesignerTools;
     using Assets.Scripts.Tools;
+    using Assets.Scripts.Ui.Designer;
     using ModApi.Common;
     using ModApi.Craft.Parts;
     using ModApi.Design;
@@ -23,8 +24,10 @@ namespace Assets.Scripts {
     public class Mod : ModApi.Mods.GameMod {
         private DataManager _DataManager = new DataManager ();
         private DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
-        private ViewToolsUI _ViewToolsUI => Ui.Designer.DesignerToolsUIController._DesignerToolsUI?.GetViewToolsUI ();
+        private DesignerToolsUI _DesignerToolsUI => Ui.Designer.DesignerToolsUIController._DesignerToolsUI;
+        public ViewToolsUI ViewToolsUI;
         public List<ReferenceImage> ReferenceImages = new List<ReferenceImage> ();
+        private Vector3 RootPosition => _Designer.CraftScript.RootPart.Transform.position;
         private Vector3 _Origin = new Vector3 ();
         public string RefImagePath = Application.persistentDataPath + "/UserData/DesignerTools/ReferenceImages/";
 
@@ -50,9 +53,9 @@ namespace Assets.Scripts {
         }
 
         public void DesignerUpdate () {
-            if (_Designer.CraftScript.RootPart.Transform.position != _Origin) {
-                _Origin = _Designer.CraftScript.RootPart.Transform.position;
-                if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;
+            if (RootPosition != null && RootPosition != _Origin) {
+                _Origin = RootPosition;
+                if (ViewToolsUI != null) ReferenceImages = ViewToolsUI.ReferenceImages;
                 foreach (ReferenceImage image in ReferenceImages) {
                     image.UpdateOrigin (_Origin);
                 }
@@ -61,13 +64,13 @@ namespace Assets.Scripts {
 
         public void OnViewPanelClosed (List<ReferenceImage> referenceImages) {
             ReferenceImages = referenceImages;
+            ViewToolsUI = null;
         }
 
         public void OnSceneLoaded (object sender, SceneEventArgs e) {
             if (e.Scene == "Design") {
                 Debug.Log (e.Scene + " Loaded (mod.cs)");
                 _Designer.CraftLoaded += OnCraftLoaded;
-                //_Designer.BeforeCraftUnloaded += OnCraftUnloading;
             }
         }
 
@@ -75,14 +78,13 @@ namespace Assets.Scripts {
             if (e.Scene == "Design") {
                 Debug.Log (e.Scene + " Unloading (mod.cs)");
                 _Designer.CraftLoaded -= OnCraftLoaded;
-                _DataManager.SaveXml ();
             }
         }
 
         public void OnCraftLoaded () {
             List<ReferenceImage> Images = _DataManager.LoadImages (_Designer.CraftScript.Data.Name);
 
-            if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;
+            if (ViewToolsUI != null) ReferenceImages = ViewToolsUI.ReferenceImages;
             if (ReferenceImages != null) {
                 lock (ReferenceImages) {
                     foreach (ReferenceImage image in ReferenceImages) {
@@ -94,19 +96,11 @@ namespace Assets.Scripts {
             if (Images != null) ReferenceImages = Images;
             else ReferenceImages = new List<ReferenceImage> ();
 
-            if (_ViewToolsUI != null) _ViewToolsUI.UpdateReferenceImages (ReferenceImages);
+            if (ViewToolsUI != null) ViewToolsUI.UpdateReferenceImages (ReferenceImages);
         }
 
-        // public void OnCraftUnloading () {
-        //     if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;
-        //     foreach (ReferenceImage image in ReferenceImages) {
-        //         image.Destroy();
-        //         ReferenceImages.Remove(image);
-        //     }
-        // }
-
         public void OnSaveRefImages () {
-            if (_ViewToolsUI != null) ReferenceImages = _ViewToolsUI.ReferenceImages;
+            if (ViewToolsUI != null) ReferenceImages = ViewToolsUI.ReferenceImages;
             _DataManager.SaveImages (_Designer.CraftScript.Data.Name, ReferenceImages);
             _DataManager.SaveXml ();
         }

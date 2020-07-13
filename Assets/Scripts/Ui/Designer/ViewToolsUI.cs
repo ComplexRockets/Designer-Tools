@@ -55,6 +55,7 @@ namespace Assets.Scripts.DesignerTools {
         public void OnLayoutRebuilt (IXmlLayoutController xmlLayoutController) {
             OrthoSize = DesignerCamera.orthographicSize;
             _MouseDrag = new MouseDrag (_Designer.GizmoCamera);
+            Mod.Instance.ViewToolsUI = this;
 
             _controller = xmlLayoutController;
             _XmlLayout = (XmlLayout) _controller.XmlLayout;
@@ -204,7 +205,7 @@ namespace Assets.Scripts.DesignerTools {
             if (_Path == null) _Path = (Application.persistentDataPath + "/mods/DesignerTools/ReferenceImages/");
 
             XmlElement OldImage = new XmlElement ();
-            try { OldImage = _XmlLayout.GetElementById ("Image" + SelectedImage.name); } catch (Exception e) { Debug.Log ("Error on get Old Image Button: " + e); }
+            try { OldImage = _XmlLayout.GetElementById ("Image" + SelectedImage.name); } catch { }
             XmlElement Preview = _XmlLayout.GetElementById ("PreviewImage");
             Preview.SetAttribute ("image", _Path + image.id.Remove (0, 5));
             Preview.ApplyAttributes ();

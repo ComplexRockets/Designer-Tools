@@ -44,7 +44,7 @@ namespace Assets.Scripts.DesignerTools {
         }
         public void OnSceneLoaded (object sender, SceneEventArgs e) {
             if (e.Scene == "Design") {
-                Debug.Log (e.Scene + " Loaded (PartSelectorManager.cs)");
+                //Debug.Log (e.Scene + " Loaded (PartSelectorManager.cs)");
                 _Designer.SelectedPartChanged += OnSelectedPartChanged;
             }
         }
@@ -73,7 +73,7 @@ namespace Assets.Scripts.DesignerTools {
         }
 
         public void OnSelectedPartChanged (IPartScript OldPart, IPartScript NewPart) {
-            Debug.Log ("Selected Part Changed: " + NewPart?.Data.PartType.Id);
+            //Debug.Log ("Selected Part Changed: " + NewPart?.Data.PartType.Id);
             if (!IgnoreNextPartSelectionEvent) {
                 if (NewPart != null && _Designer.AllowPartSelection == true) {
                     if (OldPart != null && !_SelectedParts.Contains (OldPart)) _SelectedParts.Add (OldPart);
@@ -82,10 +82,10 @@ namespace Assets.Scripts.DesignerTools {
                         if (!_SelectedParts.Contains (NewPart)) {
                             if (_SelectedPartsAreSame && _SelectedParts.Count > 0 && NewPart.Data.PartType.Id != _SelectedParts.Last ().Data.PartType.Id) _SelectedPartsAreSame = false;
                             _SelectedParts.Add (NewPart);
-                            Debug.Log ("Added Part to selection: " + NewPart);
+                            //Debug.Log ("Added Part to selection: " + NewPart);
                         } else {
                             _SelectedParts.Remove (NewPart);
-                            Debug.Log ("Removed Part from selection: " + NewPart);
+                            //Debug.Log ("Removed Part from selection: " + NewPart);
                             if (!_SelectedPartsAreSame) {
                                 _SelectedPartsAreSame = true;
                                 foreach (IPartScript part in _SelectedParts) {
@@ -106,7 +106,7 @@ namespace Assets.Scripts.DesignerTools {
 
                         _SelectedParts = new List<IPartScript> ();
                         _SelectedPartsAreSame = true;
-                        Debug.Log ("Deselected All Parts");
+                        //Debug.Log ("Deselected All Parts");
                     }
                 }
             } else IgnoreNextPartSelectionEvent = false;
