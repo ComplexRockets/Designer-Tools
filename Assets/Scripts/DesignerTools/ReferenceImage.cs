@@ -157,8 +157,8 @@
             public void UpdateValue (string setting, float value) {
                 if (setting == null) { Debug.LogError ("setting Null Error in UpdateValue"); return; }
 
-                if (setting == "OffsetX") _OffsetX = value;
-                else if (setting == "OffsetY") _OffsetY = value;
+                if (setting == "OffsetX") _OffsetX = -value;
+                else if (setting == "OffsetY") _OffsetY = -value;
                 else if (setting == "Rotation") _Rotation = value;
                 else if (setting == "Scale") _Scale = value;
                 else if (setting == "Opacity") _Opacity = value;

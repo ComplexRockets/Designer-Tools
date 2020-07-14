@@ -9,6 +9,7 @@
     using DesignerTools;
     using ModApi.Common;
     using ModApi.Design;
+    using ModApi.Ui.Inspector;
     using ModApi.Ui;
     using TMPro;
     using UI.Xml;
@@ -19,6 +20,7 @@
         private const string _buttonId = "DesignerTools-button";
         public static DesignerToolsUI _DesignerToolsUI;
         private static DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
+        private static XmlElement FlyoutButton;
 
         public static void Initialize () {
             var userInterface = Game.Instance.UserInterface;
@@ -49,17 +51,42 @@
 
             request.AddOnLayoutRebuiltAction (xmlLayoutController => {
                 var button = xmlLayoutController.XmlLayout.GetElementById (_buttonId);
+                FlyoutButton = (XmlElement) button;
                 button.AddOnClickEvent (OnButtonClicked);
             });
+        }
+
+        public static void OnDesignerLoaded () {
+            IFlyouts _Flyouts = Game.Instance.Designer.DesignerUi.Flyouts;
+            _Flyouts.ActivationGroups.Opened += OnOtherFlyoutOpened;
+            _Flyouts.CraftParts.Opened += OnOtherFlyoutOpened;
+            _Flyouts.LoadCraft.Opened += OnOtherFlyoutOpened;
+            _Flyouts.Menu.Opened += OnOtherFlyoutOpened;
+            _Flyouts.PartConnections.Opened += OnOtherFlyoutOpened;
+            _Flyouts.PartList.Opened += OnOtherFlyoutOpened;
+            _Flyouts.PartProperties.Opened += OnOtherFlyoutOpened;
+            _Flyouts.StagingEditor.Opened += OnOtherFlyoutOpened;
+            _Flyouts.Symmetry.Opened += OnOtherFlyoutOpened;
+            _Flyouts.Tools.Opened += OnOtherFlyoutOpened;
+        }
+
+        public static void OnOtherFlyoutOpened (IFlyout flyout) {
+            if (_DesignerToolsUI != null) {
+                _DesignerToolsUI.Close ();
+                _DesignerToolsUI = null;
+            }
         }
 
         private static void OnButtonClicked () {
             if (_DesignerToolsUI != null) {
                 _DesignerToolsUI.Close ();
                 _DesignerToolsUI = null;
+                FlyoutButton.SetAndApplyAttribute ("colors", "Button|ButtonHover|ButtonPressed|ButtonDisabled");
             } else {
                 var ui = Game.Instance.UserInterface;
                 _DesignerToolsUI = ui.BuildUserInterfaceFromResource<DesignerToolsUI> ("DesignerTools/Designer/DesignerTools", (script, controller) => script.OnLayoutRebuilt (controller));
+                _Designer.DesignerUi.CloseFlyout (_Designer.DesignerUi.SelectedFlyout);
+                FlyoutButton.SetAndApplyAttribute ("colors", "ButtonPressed|ButtonHover|ButtonPressed|ButtonDisabled");
             }
         }
     }

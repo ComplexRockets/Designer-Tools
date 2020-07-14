@@ -50,6 +50,10 @@ namespace Assets.Scripts.Ui.Designer {
             Mod.Instance.OnSaveRefImages ();
         }
 
+        public void OnFlyoutCloseButtonClicked () {
+            Close ();
+        }
+
         public void Close () {
             _XmlLayout.Hide (() => Destroy (this.gameObject), true);
             if (_ViewToolsUI != null && !_ViewToolsUI.ViewToolPanelPinned) _ViewToolsUI.Close ();

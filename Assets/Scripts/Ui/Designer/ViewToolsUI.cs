@@ -63,12 +63,11 @@ namespace Assets.Scripts.DesignerTools {
             _ImageSelector = _XmlLayout.GetElementById ("ImageSelector");
             _ViewToolsPin = _XmlLayout.GetElementById ("ViewToolsPin");
             _ImageConfirmButton = _XmlLayout.GetElementById ("ImageConfirmButton");
-            _XmlLayout.GetElementById ("FolderPathText").SetAttribute ("text", "Folder location : " + _Path);
+            _XmlLayout.GetElementById ("FolderPathText").SetAndApplyAttribute ("text", "Folder location : " + _Path);
 
             if (DesignerCamera.orthographic == true) {
                 XmlElement OrthoToggle = _XmlLayout.GetElementById ("OrthoToggle");
-                OrthoToggle.SetAttribute ("isOn", "true");
-                OrthoToggle.ApplyAttributes ();
+                OrthoToggle.SetAndApplyAttribute ("isOn", "true");
                 _ZoomPanel.SetActive (true);
                 OrthoViewActive = true;
             }
@@ -104,8 +103,7 @@ namespace Assets.Scripts.DesignerTools {
 
                 if (!image.Active) {
                     XmlElement ToggleButton = _XmlLayout.GetElementById ("Toggle" + image.View);
-                    ToggleButton.SetAttribute ("color", "Button");
-                    ToggleButton.ApplyAttributes ();
+                    ToggleButton.SetAndApplyAttribute ("color", "Button");
                 }
 
                 _XmlLayout.GetElementById (image.View + "Settings").SetActive (true);
@@ -207,17 +205,14 @@ namespace Assets.Scripts.DesignerTools {
             XmlElement OldImage = new XmlElement ();
             try { OldImage = _XmlLayout.GetElementById ("Image" + SelectedImage.name); } catch { }
             XmlElement Preview = _XmlLayout.GetElementById ("PreviewImage");
-            Preview.SetAttribute ("image", _Path + image.id.Remove (0, 5));
-            Preview.ApplyAttributes ();
+            Preview.SetAndApplyAttribute ("image", _Path + image.id.Remove (0, 5));
 
             SelectedImage = new Texture2D (0, 0);
             SelectedImage.LoadImage (File.ReadAllBytes (_Path + image.id.Remove (0, 5)));
             SelectedImage.name = image.id.Remove (0, 5);
 
-            image.SetAttribute ("colors", "ButtonPressed|ButtonHover|ButtonHover|ButtonDisabled");
-            image.ApplyAttributes ();
-            try { OldImage.SetAttribute ("colors", "Button|ButtonHover|ButtonHover|ButtonDisabled"); } catch { }
-            try { OldImage.ApplyAttributes (); } catch { }
+            image.SetAndApplyAttribute ("colors", "ButtonPressed|ButtonHover|ButtonHover|ButtonDisabled");
+            try { OldImage.SetAndApplyAttribute ("colors", "Button|ButtonHover|ButtonHover|ButtonDisabled"); } catch { }
             _ImageConfirmButton.SetActive (true);
         }
 
@@ -285,9 +280,8 @@ namespace Assets.Scripts.DesignerTools {
             ReferenceImage refimage = GetReferenceImage (view);
             refimage?.Toggle ();
             refimage?.EditMode (false);
-            if (refimage.Active) image.SetAttribute ("color", "White");
-            else image.SetAttribute ("color", "Button");
-            image.ApplyAttributes ();
+            if (refimage.Active) image.SetAndApplyAttribute ("color", "White");
+            else image.SetAndApplyAttribute ("color", "Button");
         }
 
         private void OnRefImageSettingChanged (XmlElement inputfield) {
@@ -315,9 +309,8 @@ namespace Assets.Scripts.DesignerTools {
 
         private void OnPin (XmlElement Panel) {
             ViewToolPanelPinned = !ViewToolPanelPinned;
-            if (ViewToolPanelPinned) _ViewToolsPin.SetAttribute ("color", "Primary");
-            else _ViewToolsPin.SetAttribute ("color", "labeltext");
-            _ViewToolsPin.ApplyAttributes ();
+            if (ViewToolPanelPinned) _ViewToolsPin.SetAndApplyAttribute ("color", "Primary");
+            else _ViewToolsPin.SetAndApplyAttribute ("color", "labeltext");
         }
 
         private void OnClose (XmlElement panel) {

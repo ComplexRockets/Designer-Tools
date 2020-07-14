@@ -44,7 +44,7 @@ namespace Assets.Scripts.DesignerTools {
         }
         public void OnSceneLoaded (object sender, SceneEventArgs e) {
             if (e.Scene == "Design") {
-                //Debug.Log (e.Scene + " Loaded (PartSelectorManager.cs)");
+                Debug.Log (e.Scene + " Loaded (PartSelectorManager.cs)");
                 _Designer.SelectedPartChanged += OnSelectedPartChanged;
             }
         }
@@ -53,22 +53,24 @@ namespace Assets.Scripts.DesignerTools {
             if (!Game.InDesignerScene) return;
 
             try {
-                if (Input.GetKeyDown (KeyCode.Tab)) {
-                    TabPressed = true;
-                } else if (Input.GetKeyUp (KeyCode.Tab)) TabPressed = false;
+                if (Input.GetKeyDown (KeyCode.Tab)) TabPressed = true;
+                else if (Input.GetKeyUp (KeyCode.Tab)) TabPressed = false;
             } catch (EntryPointNotFoundException e) { Debug.Log ("Error on Tab Check: " + e); }
 
             try { if (_SelectedParts.Count > 0) UpdatePartHighlight (); } catch (EntryPointNotFoundException e) { Debug.Log ("Error on UpdatePartHighlight: " + e); }
-            try { if (Input.GetMouseButtonDown (0) && _Designer.PaintTool.Active) OnPartPainted (GetPart (Input.mousePosition)); } catch (EntryPointNotFoundException e) { Debug.Log ("Error on OnPartPainted: " + e); }
+            try { if (Input.GetMouseButtonDown (0) && _Designer.PaintTool.Active) OnPartPainted (GetPart (Input.mousePosition)); } catch (Exception e) { Debug.Log ("Error on OnPartPainted: " + e); }
         }
 
         private void UpdatePartHighlight () {
-            IPartHighlighter partHighlighter = _SelectedParts.First ().CraftScript.PartHighlighter;
             ThemeData _themeData = _SelectedParts.First ().Data.ThemeData;
+            IPartHighlighter partHighlighter = _SelectedParts.First ().CraftScript.PartHighlighter;
+            partHighlighter.HighlightColor = _themeData.Theme.PartStateColors.Selected;
 
             foreach (IPartScript part in _SelectedParts) {
-                partHighlighter.HighlightColor = _themeData.Theme.PartStateColors.Selected;
                 partHighlighter.AddPartHighlight (part);
+                foreach (IPartScript SymmetricPart in Symmetry.EnumerateSymmetricPartScripts (part)) {
+                    partHighlighter.AddPartHighlight (SymmetricPart);
+                }
             }
         }
 
@@ -76,9 +78,8 @@ namespace Assets.Scripts.DesignerTools {
             //Debug.Log ("Selected Part Changed: " + NewPart?.Data.PartType.Id);
             if (!IgnoreNextPartSelectionEvent) {
                 if (NewPart != null && _Designer.AllowPartSelection == true) {
-                    if (OldPart != null && !_SelectedParts.Contains (OldPart)) _SelectedParts.Add (OldPart);
-
                     if (TabPressed) {
+                        if (OldPart != null && !_SelectedParts.Contains (OldPart)) _SelectedParts.Add (OldPart);
                         if (!_SelectedParts.Contains (NewPart)) {
                             if (_SelectedPartsAreSame && _SelectedParts.Count > 0 && NewPart.Data.PartType.Id != _SelectedParts.Last ().Data.PartType.Id) _SelectedPartsAreSame = false;
                             _SelectedParts.Add (NewPart);
@@ -93,15 +94,22 @@ namespace Assets.Scripts.DesignerTools {
                                 }
                             }
                         }
-                        if (!_SelectedPartsAreSame) _Designer.DeselectPart ();
-                        else _Designer.SelectPart (_SelectedParts.Last (), null, false);
-                        IgnoreNextPartSelectionEvent = true;
+                        if (!_SelectedPartsAreSame) {
+                            _Designer.DeselectPart ();
+                            IgnoreNextPartSelectionEvent = true;
+                        } else if (_Designer.SelectedPart != _SelectedParts.Last ()) {
+                            _Designer.SelectPart (_SelectedParts.Last (), null, false);
+                            IgnoreNextPartSelectionEvent = true;
+                        }
 
                     } else if (_SelectedParts.Count > 0) {
                         IPartHighlighter partHighlighter = _SelectedParts.First ().CraftScript.PartHighlighter;
 
                         foreach (IPartScript part in _SelectedParts) {
                             partHighlighter.RemovePartHighlight (part);
+                            foreach (IPartScript SymmetricPart in Symmetry.EnumerateSymmetricPartScripts (part)) {
+                                partHighlighter.RemovePartHighlight (SymmetricPart);
+                            }
                         }
 
                         _SelectedParts = new List<IPartScript> ();

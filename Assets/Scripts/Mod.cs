@@ -15,6 +15,7 @@ namespace Assets.Scripts {
     using ModApi.GameLoop;
     using ModApi.Mods;
     using ModApi.Scenes.Events;
+    using ModApi.Ui;
     using ModApi;
     using UnityEngine;
 
@@ -29,7 +30,7 @@ namespace Assets.Scripts {
         public List<ReferenceImage> ReferenceImages = new List<ReferenceImage> ();
         private Vector3 RootPosition => _Designer.CraftScript.RootPart.Transform.position;
         private Vector3 _Origin = new Vector3 ();
-        public string RefImagePath = Application.persistentDataPath + "/UserData/DesignerTools/ReferenceImages/";
+        public string RefImagePath;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="Mod"/> class from being created.
@@ -43,7 +44,9 @@ namespace Assets.Scripts {
         public static Mod Instance { get; } = GetModInstance<Mod> ();
 
         protected override void OnModInitialized () {
+            RefImagePath = Application.persistentDataPath + "/UserData/DesignerTools/ReferenceImages/";
             System.IO.Directory.CreateDirectory (RefImagePath);
+
             base.OnModInitialized ();
             Ui.Designer.DesignerToolsUIController.Initialize ();
             _DataManager.initialise ();
@@ -53,7 +56,7 @@ namespace Assets.Scripts {
         }
 
         public void DesignerUpdate () {
-            if (RootPosition != null && RootPosition != _Origin) {
+            if (_Designer.CraftScript != null && RootPosition != _Origin) {
                 _Origin = RootPosition;
                 if (ViewToolsUI != null) ReferenceImages = ViewToolsUI.ReferenceImages;
                 foreach (ReferenceImage image in ReferenceImages) {
@@ -71,6 +74,7 @@ namespace Assets.Scripts {
             if (e.Scene == "Design") {
                 Debug.Log (e.Scene + " Loaded (mod.cs)");
                 _Designer.CraftLoaded += OnCraftLoaded;
+                DesignerToolsUIController.OnDesignerLoaded ();
             }
         }
 
