@@ -34,7 +34,7 @@
                         </Button>
                     </Panel>
 
-                    <!-- Align Tools-->
+                    <!-- Align Tools
                     <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="10"/>
                     <Panel class="header">
                         <TextMeshPro class="header-text" text="ALIGN TOOLS" />
@@ -42,10 +42,10 @@
                     <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="5">
                         <Image internalId="image" height="1" color="#2E353E" />
                     </Panel>
-                    <!--<Panel class="property-row row">
+                    <Panel class="property-row row">
                         <TextMeshPro class="label" text="Affect Connected" rectAlignment="MiddleLeft" />
                         <Toggle rectAlignment="MiddleRight" />
-                    </Panel>-->
+                    </Panel>
                     <Panel class="property-row row">
                         <TextMeshPro class="label" text="Align Parts" alignment="left"/>
                         <HorizontalLayout childForceExpandWidth="false" spacing="5" width="340" rectAlignment="MiddleRight" childAlignment="MiddleRight">
@@ -59,8 +59,7 @@
                                 <TextMeshPro text="Z" />
                             </Button>
                         </HorizontalLayout>
-                    </Panel>
-
+                    </Panel> -->
                 </VerticalLayout>
             </VerticalScrollView>
         </Panel>
