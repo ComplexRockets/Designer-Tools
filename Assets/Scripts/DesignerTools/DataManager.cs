@@ -16,7 +16,7 @@ namespace Assets.Scripts.DesignerTools {
         public CraftImagesDataBase ImageDB;
 
         public void initialise () {
-            Debug.Log ("DataManagerInitialised");
+            //Debug.Log ("DataManagerInitialised");
             string path = Mod.Instance.RefImagePath + "/ReferenceImagesData.xml";
             _XmlSerializer = new XmlSerializer (typeof (CraftImagesDataBase));
 
@@ -64,7 +64,7 @@ namespace Assets.Scripts.DesignerTools {
         }
 
         public List<ReferenceImage> LoadImages (string craftID) {
-            Debug.Log ("LoadingImages...");
+            //Debug.Log ("LoadingImages...");
             CraftImagesData images = GetImages (craftID);
             if (images != null) {
                 List<ReferenceImage> ReferenceImages = new List<ReferenceImage> ();
@@ -82,11 +82,11 @@ namespace Assets.Scripts.DesignerTools {
                         ReferenceImages.Last ().UpdateValue ("Opacity", image.Opacity);
                         if (ReferenceImages.Last ().Active != image.Active) ReferenceImages.Last ().Toggle ();
 
-                    } catch (Exception e) { Debug.Log ("Image Error: " + e); }
+                    } catch (Exception e) { Debug.LogError ("Image Error: " + e); }
                 }
                 return ReferenceImages;
             }
-            Debug.Log ("Images null");
+            //Debug.Log ("Images null");
             return null;
         }
 
@@ -94,7 +94,7 @@ namespace Assets.Scripts.DesignerTools {
             _FileStream = new FileStream (Mod.Instance.RefImagePath + "/ReferenceImagesData.xml", FileMode.Create);
             _XmlSerializer.Serialize (_FileStream, ImageDB);
             _FileStream.Close ();
-            Debug.Log ("XmlSaved");
+            //Debug.Log ("XmlSaved");
         }
     }
 

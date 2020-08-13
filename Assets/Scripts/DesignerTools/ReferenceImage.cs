@@ -54,6 +54,7 @@
                 ViewToolsUI = viewToolsUI;
 
                 _ParentGameObject = new GameObject ();
+                _ParentGameObject.transform.parent = _Designer.CraftScript?.RootPart.Transform;
                 _GizmoGameObject = new GameObject ();
                 _GizmoGameObject.transform.parent = _ParentGameObject.transform;
 
@@ -75,20 +76,25 @@
                 //_XAxisGizmo.name = "XAxisGizmo";
                 //_YAxisGizmo.name = "YAxisGizmo";
 
+                Quaternion ParentRot = _ParentGameObject.transform.parent.rotation;
+                _ParentGameObject.transform.parent.rotation = _Designer.ActiveCraftConfiguration.Type == ModApi.Craft.CrafConfigurationType.Plane ? Quaternion.Euler (90f, 0f, 0f) : Quaternion.identity;
+
                 if (View == "Front") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (90f, -90f, -90f);
+                    _ParentGameObject.transform.rotation = Quaternion.Euler (90f, -90f, -90f);
                 } else if (View == "Back") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (90f, 270f, 90f);
+                    _ParentGameObject.transform.rotation = Quaternion.Euler (90f, 270f, 90f);
                 } else if (View == "Top") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (0f, -90f, 0f);
+                    _ParentGameObject.transform.rotation = Quaternion.Euler (0f, -90f, 0f);
                 } else if (View == "Bottom") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (180f, 90f, 0f);
+                    _ParentGameObject.transform.rotation = Quaternion.Euler (180f, 90f, 0f);
                 } else if (View == "Left") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (90f, 0f, 90f);
+                    _ParentGameObject.transform.rotation = Quaternion.Euler (90f, 0f, 90f);
                 } else if (View == "Right") {
-                    _ParentGameObject.transform.localRotation = Quaternion.Euler (90f, 0f, -90f);
+                    _ParentGameObject.transform.rotation = Quaternion.Euler (90f, 0f, -90f);
                 }
-                _ParentGameObject.transform.position = _Designer.CraftScript.RootPart.Transform.position;
+                _ParentGameObject.transform.parent.rotation = ParentRot;
+                //_ParentGameObject.transform.position = (Vector3) _Designer.CraftScript?.RootPart.Transform.position;
+                _ParentGameObject.transform.localPosition = new Vector3 ();
 
                 UpdateImage (image);
             }
@@ -119,7 +125,9 @@
                     }
                 } else if (_RotateModeOn) {
 
-                }
+                } else return;
+
+                ViewToolsUI?.OnUIValueChanged (this);
             }
 
             public void OnMouseEnd () {
@@ -138,6 +146,8 @@
                 } else if (_RotateModeOn) {
 
                 }
+
+                ViewToolsUI?.OnUIValueChanged (this);
             }
 
             public void UpdateImage (Texture2D image) {
@@ -157,8 +167,8 @@
             public void UpdateValue (string setting, float value) {
                 if (setting == null) { Debug.LogError ("setting Null Error in UpdateValue"); return; }
 
-                if (setting == "OffsetX") _OffsetX = -value;
-                else if (setting == "OffsetY") _OffsetY = -value;
+                if (setting == "OffsetX") _OffsetX = value;
+                else if (setting == "OffsetY") _OffsetY = value;
                 else if (setting == "Rotation") _Rotation = value;
                 else if (setting == "Scale") _Scale = value;
                 else if (setting == "Opacity") _Opacity = value;
@@ -167,7 +177,8 @@
             }
 
             public void UpdateOrigin (Vector3 Origin) {
-                _ParentGameObject.transform.position = Origin;
+                //_ParentGameObject.transform.position = Origin;
+                //ApplyChanges ();
             }
 
             public void ApplyChanges () {
@@ -176,8 +187,11 @@
                 _Image.transform.localScale = new Vector3 (_Scale * (Image.width / 1000f), 1f, _Scale * (Image.height / 1000f));
                 _ImageGameObject.transform.localRotation = _GizmoGameObject.transform.localRotation = Quaternion.Euler (temp.eulerAngles.x, _Rotation, temp.eulerAngles.z);
                 _ImageGameObject.transform.localPosition = _GizmoGameObject.transform.localPosition = new Vector3 (_OffsetX, 0f, _OffsetY);
+                _Image.transform.localPosition = _XAxisGizmo.transform.localPosition = _YAxisGizmo.transform.localPosition = new Vector3 ();
 
                 _Renderer.material.color = new Color (1f, 1f, 1f, _Opacity);
+
+                ViewToolsUI?.OnUIValueChanged (this);
             }
 
             public void Toggle () {
@@ -188,28 +202,35 @@
             public void EditMode (bool editmode) {
                 _EditModeOn = editmode;
 
-                if (editmode) ViewToolsUI.SetReferencePart (true);
-                else { ViewToolsUI.SetReferencePart (false); OnMoveImage (); OnRotateImage (); }
+                if (editmode) //_Designer.FuselageShapeTool.Activate (); 
+                    ViewToolsUI.SetReferencePart (true);
+                else { //_Designer.FuselageShapeTool.Deactivate (); OnMoveImage (); OnRotateImage (); 
+                    ViewToolsUI.SetReferencePart (false);
+                    OnMoveImage ();
+                    OnRotateImage ();
+                }
             }
 
             public void OnMoveImage () {
                 if (_EditModeOn) {
-                    _RotateModeOn = _MoveModeOn;
                     _MoveModeOn = !_MoveModeOn;
+                    if (_MoveModeOn) _RotateModeOn = false;
 
                     _XAxisGizmo.AdjustmentGizmoScript.SetVisibility (_MoveModeOn);
                     _YAxisGizmo.AdjustmentGizmoScript.SetVisibility (_MoveModeOn);
                 } else {
                     _XAxisGizmo.AdjustmentGizmoScript.SetVisibility (false);
                     _YAxisGizmo.AdjustmentGizmoScript.SetVisibility (false);
+                    _MoveModeOn = false;
                 }
             }
 
             public void OnRotateImage () {
                 if (_EditModeOn) {
-                    _MoveModeOn = _RotateModeOn;
                     _RotateModeOn = !_RotateModeOn;
-
+                    if (_RotateModeOn) _MoveModeOn = false;
+                } else {
+                    _RotateModeOn = false;
                 }
             }
 

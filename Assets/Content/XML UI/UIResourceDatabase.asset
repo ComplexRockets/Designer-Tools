@@ -18,6 +18,8 @@ MonoBehaviour:
   - Content/XML UI
   AutomaticallyRemoveEntries: 1
   entries:
+  - path: DesignerTools/Designer/ColorPickerButton
+    resource: {fileID: 4900000, guid: 90afde8e7d8ca45feb784c73d70d5c1f, type: 3}
   - path: DesignerTools/Designer/DesignerTools
     resource: {fileID: 4900000, guid: 22a50f946ea2247fcb12914a297256be, type: 3}
   - path: DesignerTools/Designer/ViewTools

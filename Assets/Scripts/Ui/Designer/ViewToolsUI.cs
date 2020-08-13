@@ -54,7 +54,7 @@ namespace Assets.Scripts.DesignerTools {
 
         public void OnLayoutRebuilt (IXmlLayoutController xmlLayoutController) {
             OrthoSize = DesignerCamera.orthographicSize;
-            _MouseDrag = new MouseDrag (_Designer.GizmoCamera);
+            //_MouseDrag = new MouseDrag (_Designer.GizmoCamera);
             Mod.Instance.ViewToolsUI = this;
 
             _controller = xmlLayoutController;
@@ -72,7 +72,7 @@ namespace Assets.Scripts.DesignerTools {
                 OrthoViewActive = true;
             }
 
-            UpdateReferenceImages (Mod.Instance.ReferenceImages);
+            UpdateReferenceImages (Mod.Instance._ReferenceImages);
 
             _DesignerParts = Game.Instance.CachedDesignerParts;
             foreach (DesignerPart part in _DesignerParts.Parts) {
@@ -90,7 +90,7 @@ namespace Assets.Scripts.DesignerTools {
             }
         }
 
-        public void UpdateReferenceImages (List<ReferenceImage> Images) {
+        public void UpdateReferenceImages (List<ReferenceImage> Images) { 
             foreach (ReferenceImage image in _ReferenceImages) {
                 image.Destroy ();
             }
@@ -118,6 +118,15 @@ namespace Assets.Scripts.DesignerTools {
             }
             Mod.Instance.OnViewPanelClosed (_ReferenceImages);
             _XmlLayout.Hide (() => Destroy (this.gameObject), true);
+        }
+
+        public void OnUIValueChanged (ReferenceImage image) {
+            String prefix = image.View + "-";
+            _XmlLayout.GetElementById<InputField> (prefix + "OffsetX")?.SetTextWithoutNotify ((image.OffsetX).ToString ());
+            _XmlLayout.GetElementById<InputField> (prefix + "OffsetY")?.SetTextWithoutNotify ((image.OffsetY).ToString ());
+            _XmlLayout.GetElementById<InputField> (prefix + "Rotation")?.SetTextWithoutNotify (image.Rotation.ToString ());
+            _XmlLayout.GetElementById<InputField> (prefix + "Scale")?.SetTextWithoutNotify (image.Scale.ToString ());
+            _XmlLayout.GetElementById<InputField> (prefix + "Opacity")?.SetTextWithoutNotify (image.Opacity.ToString ());
         }
 
         protected virtual void Update () {
@@ -160,18 +169,8 @@ namespace Assets.Scripts.DesignerTools {
             _Designer.AllowPartSelection = !editmode;
         }
 
-        private void OnViewButtonClicked (XmlElement button) {
-            DesignerCameraViewDirection designerCameraViewDirection = DesignerCameraViewDirection.None;
-            DesignerCameraScript designerCameraScript = Game.Instance.Designer.DesignerCamera as DesignerCameraScript;
-
-            if (button.id.Contains ("Front")) designerCameraViewDirection = DesignerCameraViewDirection.Front;
-            else if (button.id.Contains ("Back")) designerCameraViewDirection = DesignerCameraViewDirection.Back;
-            else if (button.id.Contains ("Top")) designerCameraViewDirection = DesignerCameraViewDirection.Top;
-            else if (button.id.Contains ("Bottom")) designerCameraViewDirection = DesignerCameraViewDirection.Bottom;
-            else if (button.id.Contains ("Left")) designerCameraViewDirection = DesignerCameraViewDirection.Left;
-            else if (button.id.Contains ("Right")) designerCameraViewDirection = DesignerCameraViewDirection.Right;
-
-            designerCameraScript.SetViewDirection (designerCameraViewDirection);
+        private void OnViewButtonClicked (String view) {
+            Mod.Instance.SetCameraTo (view);
         }
 
         private void OnSelectImageButtonClicked (XmlElement button) {
@@ -285,7 +284,7 @@ namespace Assets.Scripts.DesignerTools {
         }
 
         private void OnRefImageSettingChanged (XmlElement inputfield) {
-            String[] id = inputfield.id.Split ('/');
+            String[] id = inputfield.id.Split ('-');
             string view = id.First ();
             string setting = id.Last ();
             float value = float.Parse (inputfield.GetValue ());
@@ -339,10 +338,7 @@ namespace Assets.Scripts.DesignerTools {
         }
 
         private ReferenceImage GetReferenceImage (string view) {
-            foreach (ReferenceImage image in _ReferenceImages) {
-                if (image.View == view) return image;
-            }
-            return null;
+            return ReferenceImages.Find (image => image.View == view);
         }
     }
 }

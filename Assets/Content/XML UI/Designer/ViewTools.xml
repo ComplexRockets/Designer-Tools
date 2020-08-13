@@ -38,27 +38,27 @@
         <Panel rectAlignment="UpperLeft" width="150" height="220" offsetXY="0 -30">
             <VerticalLayout class="inspector-panel" padding="6">
 
-                <Button class="btn" id="FrontView" onClick="OnViewButtonClicked(this);">
+                <Button class="btn" id="FrontView" onClick="OnViewButtonClicked(Front);">
                     <TextMeshPro text="Front" alignment="left" offsetXY="10 0"/>
                 </Button>
 
-                <Button class="btn" id="BackView" onClick="OnViewButtonClicked(this);">
+                <Button class="btn" id="BackView" onClick="OnViewButtonClicked(Back);">
                     <TextMeshPro text="Back" alignment="left" offsetXY="10 0"/>
                 </Button>
 
-                <Button class="btn" id="TopView" onClick="OnViewButtonClicked(this);">
+                <Button class="btn" id="TopView" onClick="OnViewButtonClicked(Top);">
                     <TextMeshPro text="Top" alignment="left" offsetXY="10 0"/>
                 </Button>
 
-                <Button class="btn" id="BottomView" onClick="OnViewButtonClicked(this);">
+                <Button class="btn" id="BottomView" onClick="OnViewButtonClicked(Bottom);">
                     <TextMeshPro text="Bottom" alignment="left" offsetXY="10 0"/>
                 </Button>
 
-                <Button class="btn" id="LeftView" onClick="OnViewButtonClicked(this);">
+                <Button class="btn" id="LeftView" onClick="OnViewButtonClicked(Left);">
                     <TextMeshPro text="Left" alignment="left" offsetXY="10 0"/>
                 </Button>
 
-                <Button class="btn" id="RightView" onClick="OnViewButtonClicked(this);">
+                <Button class="btn" id="RightView" onClick="OnViewButtonClicked(Right);">
                     <TextMeshPro text="Right" alignment="left" offsetXY="10 0"/>
                 </Button>
 
@@ -166,17 +166,17 @@
                 <TextMeshPro text="No Image Selected" id="FrontNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="FrontSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Front/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
-                    <InputField class="DT" id="Front/OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Front-OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Front-OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Rotation" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Front/Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Front-Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Scale" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Front/Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
+                    <InputField class="DT" id="Front-Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
 
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Front/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
+                    <InputField class="DT" id="Front-Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
                     <Button id="ToggleFront" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteFront" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnDeleteImageClicked(Front);">
@@ -187,17 +187,17 @@
                 <TextMeshPro text="No Image Selected" id="BackNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="BackSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Back/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
-                    <InputField class="DT" id="Back/OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Back-OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Back-OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Rotation" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Back/Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Back-Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Scale" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Back/Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
+                    <InputField class="DT" id="Back-Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
 
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Back/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
+                    <InputField class="DT" id="Back-Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
                     <Button id="ToggleBack" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteBack" onClick="OnDeleteImageClicked(Back);">
@@ -208,17 +208,17 @@
                 <TextMeshPro text="No Image Selected" id="TopNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="TopSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Top/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
-                    <InputField class="DT" id="Top/OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Top-OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Top-OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Rotation" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Top/Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Top-Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Scale" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Top/Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
+                    <InputField class="DT" id="Top-Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
 
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Top/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
+                    <InputField class="DT" id="Top-Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
                     <Button id="ToggleTop" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteTop" onClick="OnDeleteImageClicked(Top);">
@@ -229,17 +229,17 @@
                 <TextMeshPro text="No Image Selected" id="BottomNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="BottomSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Bottom/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
-                    <InputField class="DT" id="Bottom/OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Bottom-OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Bottom-OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Rotation" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Bottom/Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Bottom-Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Scale" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Bottom/Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
+                    <InputField class="DT" id="Bottom-Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
 
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Bottom/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
+                    <InputField class="DT" id="Bottom-Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
                     <Button id="ToggleBottom" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteBottom" onClick="OnDeleteImageClicked(Bottom);">
@@ -250,17 +250,17 @@
                 <TextMeshPro text="No Image Selected" id="LeftNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="LeftSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Left/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
-                    <InputField class="DT" id="Left/OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Left-OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Left-OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Rotation" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Left/Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Left-Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Scale" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Left/Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
+                    <InputField class="DT" id="Left-Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
 
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Left/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
+                    <InputField class="DT" id="Left-Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
                     <Button id="ToggleLeft" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteLeft" onClick="OnDeleteImageClicked(Left);">
@@ -271,17 +271,17 @@
                 <TextMeshPro text="No Image Selected" id="RightNoImageSelected" preferredheight="34" color="labeltext" active="true"/>
                 <HorizontalLayout spacing="3" childForceExpandWidth="false" childForceExpandHeight="false" id="RightSettings" active="false">
                     <TextMeshPro text="Offset" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Right/OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
-                    <InputField class="DT" id="Right/OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Right-OffsetX" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
+                    <InputField class="DT" id="Right-OffsetY" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0</InputField>
 
                     <TextMeshPro text="Rotation" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Right/Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this;">0</InputField>
+                    <InputField class="DT" id="Right-Rotation" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this;">0</InputField>
 
                     <TextMeshPro text="Scale" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Right/Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
+                    <InputField class="DT" id="Right-Scale" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">1</InputField>
 
                     <TextMeshPro text="Opacity" color="labeltext" preferredwidth="80" preferredheight="34" alignment="right"/>
-                    <InputField class="DT" id="Right/Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
+                    <InputField class="DT" id="Right-Opacity" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" onEndEdit="OnRefImageSettingChanged(this);">0.3</InputField>
 
                     <Button id="ToggleRight" class="icon-button" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover" onClick="OnToggleImageClicked(this)" />
                     <Image class="delete-button audio-btn-click" preferredwidth="34" preferredheight="34" id="deleteRight" onClick="OnDeleteImageClicked(Right);">

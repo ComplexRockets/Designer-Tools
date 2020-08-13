@@ -22,7 +22,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Ui.Designer {
     public class DesignerToolsUI : MonoBehaviour {
-        private FlyoutScript Flyout = new FlyoutScript ();
+        public FlyoutScript Flyout = new FlyoutScript ();
         private DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
         private IXmlLayoutController _controller;
         private static ViewToolsUI _ViewToolsUI;
@@ -48,6 +48,10 @@ namespace Assets.Scripts.Ui.Designer {
 
         private void OnSaveRefImagesButtonClicked () {
             Mod.Instance.OnSaveRefImages ();
+        }
+
+        private void OnAlignPartsButtonClicked () {
+            Mod.Instance.PartTools.OnAlignPart ();
         }
 
         public void OnFlyoutCloseButtonClicked () {

@@ -24,8 +24,11 @@ MonoBehaviour:
     (not yet released)\n\t- Circular / Linear pattern (not yet released)"
   _loadPriority: 1000
   _name: Designer Tools
-  _otherAssets: []
-  _prefabs: []
+  _otherAssets:
+  - {fileID: 2100000, guid: e51c9f450fd9b41e0aafde29d5578d91, type: 2}
+  - {fileID: 2800000, guid: 2d787068a15f54f6dab4f94fa379bf15, type: 3}
+  _prefabs:
+  - {fileID: 7431289796511757761, guid: 22ca36f2fb9154312a3998797af17fbe, type: 3}
   _steamDescription: 
   _steamLanguage: English
   _steamPreviewPath: 
@@ -40,6 +43,5 @@ MonoBehaviour:
   _partTextureStyles: []
   _persistentObjects:
   - {fileID: 2204906191568106485, guid: 636e257f5270c4fb4884a71f12aee767, type: 3}
-  - {fileID: 136889964996939161, guid: aa4022bfb57f84d3c9fbd42c9df56d89, type: 3}
   _uiResourceDatabases:
   - {fileID: 11400000, guid: bcbfd309ef6254553a83b6c1bb98b677, type: 2}
