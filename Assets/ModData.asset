@@ -17,11 +17,12 @@ MonoBehaviour:
   _author: Aram - Complex Rockets
   _description: "Designer Tools will simplify your SimpleRockets building experience
     with tons of new tools. \nRead the mod page for more information or help.\n\nAdded
-    Tools:\nView Tools\n\t- 0rthographic view\n\t- Reference image selector\n\nMultiple
-    Part tools\n\t- Multiple part selector (by holding tab)\n\t- Multiple part painter\n\t-
-    Multiple part property edit (not yet released)\n\t- Align Parts (not yet released)\n\t-
-    Distribute Parts (not yet released)\n\nOther Tools\n\t- DeltaV calculator Tool
-    (not yet released)\n\t- Circular / Linear pattern (not yet released)"
+    Tools:\nView Tools\n\t- 0rthographic view\n\t- Reference image selector\n\t-
+    ViewCube\n\nMultiple Part tools\n\t- Multiple part selector (by holding tab)\n\t-
+    Multiple part painter\n\t- Multiple part property edit (not yet released)\n\t-
+    Align Parts (not yet released)\n\t- Distribute Parts (not yet released)\n\nOther
+    Tools\n\t- DeltaV calculator Tool (not yet released)\n\t- Circular / Linear pattern
+    (not yet released)"
   _loadPriority: 1000
   _name: Designer Tools
   _otherAssets:
@@ -36,7 +37,7 @@ MonoBehaviour:
   _steamTitle: 
   _steamVisibility: 0
   _versionMajor: 0
-  _versionMinor: 1
+  _versionMinor: 2
   _partCategories: []
   _parts: []
   _partStyleExtensions: []

@@ -50,8 +50,8 @@ namespace Assets.Scripts.Ui.Designer {
             Mod.Instance.OnSaveRefImages ();
         }
 
-        private void OnAlignPartsButtonClicked () {
-            Mod.Instance.PartTools.OnAlignPart ();
+        private void OnAlignPartsButtonClicked (char axis) {
+            Mod.Instance.PartTools.OnAlignPart (axis);
         }
 
         public void OnFlyoutCloseButtonClicked () {

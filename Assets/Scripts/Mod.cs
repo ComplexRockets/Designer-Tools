@@ -154,8 +154,9 @@ namespace Assets.Scripts {
                 if (ReferenceImages.Count > 0) {
                     _DataManager.SaveImages (Designer.CraftScript.Data.Name, ReferenceImages);
                     _DataManager.SaveXml ();
-                } else Designer.DesignerUi.ShowMessage ("No Image To Save");
-            } else Designer.DesignerUi.ShowMessage ("Remember to save your craft first, saving images for craft `New` is not allowed");
+                    Designer.DesignerUi.ShowMessage ("Images Saved");
+                } else Designer.DesignerUi.ShowMessage ("<color=#b33e46> Saving Failed : No Image To Save");
+            } else Designer.DesignerUi.ShowMessage ("<color=#b33e46> Saving Failed :  Remember to save your craft first, saving images for craft 'New' is not allowed");
         }
 
         public void OnColorPickerButtonClicked () {
@@ -164,25 +165,31 @@ namespace Assets.Scripts {
 
         public bool OnClick (ClickEventArgs e) {
             RaycastHit hit;
+            bool rightClick = false;
+            bool leftClick = false;
+            if (UnityEngine.Input.GetMouseButtonDown (0)) leftClick = true;
+            else if (UnityEngine.Input.GetMouseButtonDown (1)) rightClick = true;
+
             if (Physics.Raycast (e.Ray, out hit)) {
                 //Debug.Log ("Hit: " + target + " parent: " + hit.transform.parent?.name);
 
                 if (hit.transform.parent?.name == "ViewCube(Clone)") {
                     String target = hit.transform.name;
-                    if (UnityEngine.Input.GetMouseButtonDown (0)) {
+                    if (leftClick) {
                         //Debug.Log ("ViewCube clicked: " + target);
                         SetCameraTo (target.Remove (target.Length - 9));
-                    } else if (UnityEngine.Input.GetMouseButtonDown (1)) {
+                    } else if (rightClick) {
                         ReferenceImages.Find (image => image.View == target.Remove (target.Length - 9))?.Toggle ();
                     }
                 } else if (hit.transform.parent?.parent?.name == "ViewCube(Clone)") {
                     String target = hit.transform.parent.name.Remove (0, 2);
-                    if (UnityEngine.Input.GetMouseButtonDown (0)) {
+                    if (leftClick) {
                         //Debug.Log ("ViewCube clicked: " + target);
                         SetCameraTo (target);
                     }
                 }
             }
+            if (rightClick) PartTools?.OnRightClic ();
             return false;
         }
 
