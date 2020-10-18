@@ -33,54 +33,23 @@
 
     namespace Assets.Scripts.DesignerTools {
         public class PartStateChange {
-            public String Type;
+            public XName modifer;
+            public XName atribute;
+            public String oldAttribute;
+            public String newAttribute;
+            bool isDeltaChange = false;
+            Vector3 delta;
 
-            public String TransformType;
-            public Vector3 PositionDelta = new Vector3 ();
-            private Vector3 _PositionA = new Vector3 ();
-            private Vector3 _PositionB = new Vector3 ();
-            public float RotationAngle = 0f;
-            private Quaternion _RotationA = new Quaternion ();
-            private Quaternion _RotationB = new Quaternion ();
+            public PartStateChange (XAttribute _oldAtribute, XAttribute _newAtribute, bool allowDeltaChange) {
+                modifer = _newAtribute.Parent.Name;
+                oldAttribute = _oldAtribute.Value;
+                newAttribute = _newAtribute.Value;
+                atribute = _newAtribute.Name;
 
-            public String PropertyType;
-            public String Modifier;
-            public String Property;
-            public String SValue;
-            public float FValue;
-
-            public PartStateChange (Vector3 posA, Vector3 PosB) {
-                Type = "Transform";
-                TransformType = "Position";
-                _PositionA = posA;
-                _PositionB = PosB;
-
-                PositionDelta = PosB - posA;
-            }
-
-            public PartStateChange (Quaternion rotA, Quaternion rotB) {
-                Type = "Transform";
-                TransformType = "Rotation";
-                _RotationA = rotA;
-                _RotationB = rotB;
-
-                RotationAngle = Quaternion.Angle (rotA, rotB);
-            }
-
-            public PartStateChange (String modifier, String property, String Value) {
-                Type = "Modifier";
-                PropertyType = "String";
-                Modifier = modifier;
-                Property = property;
-                SValue = Value;
-            }
-
-            public PartStateChange (String modifier, String property, float Value) {
-                Type = "Modifier";
-                PropertyType = "Float";
-                Modifier = modifier;
-                Property = property;
-                FValue = Value;
+                if (allowDeltaChange && modifer == "Part" && (atribute == "Transform" || atribute == "Rotation")) {
+                    isDeltaChange = true;
+                    //Delta = Old.Value - New.Value;
+                }
             }
         }
     }

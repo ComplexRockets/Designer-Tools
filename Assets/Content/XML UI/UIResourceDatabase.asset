@@ -22,6 +22,8 @@ MonoBehaviour:
     resource: {fileID: 4900000, guid: 90afde8e7d8ca45feb784c73d70d5c1f, type: 3}
   - path: DesignerTools/Designer/DesignerTools
     resource: {fileID: 4900000, guid: 22a50f946ea2247fcb12914a297256be, type: 3}
+  - path: DesignerTools/Designer/ModiferDialog
+    resource: {fileID: 4900000, guid: 203c14fe5556c4d9c82601c3c4388fce, type: 3}
   - path: DesignerTools/Designer/ViewTools
     resource: {fileID: 4900000, guid: 4c4439f4d3c2e42e1afe61649289ac11, type: 3}
   - path: DesignerTools/Designer/XmlLayout

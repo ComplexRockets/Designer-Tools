@@ -1,0 +1,62 @@
+<XmlLayout xmlns="http://www.w3schools.com"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\..\ModTools\UI\XmlLayout.xsd">
+    <Include path="Ui/Xml/Design/DesignStyles.xml" />
+    <Include path="Ui/Xml/InspectorPanel.xml" />
+    <Include path="Ui/Xml/Styles.xml" />
+
+    <!-- Modifer Vizualizer -->
+    <Panel class="dialog-background" width="2100" height="1200" border="border" showAnimation="FadeIn" hideAnimation="FadeOut" animationDuration="0.1" active="true">
+        <!-- Header -->
+        <Panel class="inspector-header" height="30" rectAlignment="UpperCenter">
+            <TextMeshPro class="text-lg" color="Primary" text="PART XML"/>
+            <Image class="btn flyout-close-button" rectAlignment="MiddleRight" color="labeltext" onClick="Close();"/>
+        </Panel>
+
+        <!-- Modifier Selector -->
+        <Panel width="190" height="1170" offsetXY="0 -30" rectAlignment="UpperLeft" border="border">
+            <TextMeshPro class="text-sm" text="MODIFIERS" alignment="Top" margin="0 0 10 10"/>
+            <VerticalLayout class="no-image" id="ModifierList" childForceExpandHeight="false" offsetXY="0 -10" height="1140" padding="5" spacing="5">
+                <HorizontalLayout id="ConfigModifer" childForceExpandWidth="false" childForceExpandHeight="false" spacing="5" active="true">
+                    <Button class="btn menu-button" onClick="OnModiferSelected(Config);" preferredwidth="150" colors="Button|ButtonHover|ButtonHover|ButtonDisabled">
+                        <TextMeshPro class="value text-sm" text="Config" alignment="Center" color="LabelText"/>
+                    </Button>
+                    <Panel class="no-image" preferredheight="30" preferredwidth="30"/>
+                </HorizontalLayout>
+                <HorizontalLayout id="PartModifer" childForceExpandWidth="false" childForceExpandHeight="false" spacing="5" active="true">
+                    <Button class="btn menu-button" onClick="OnModiferSelected(Part);" preferredwidth="150" colors="Button|ButtonHover|ButtonHover|ButtonDisabled">
+                        <TextMeshPro class="value text-sm" text="Part" alignment="Center" color="LabelText"/>
+                    </Button>
+                    <Panel class="no-image" preferredheight="30" preferredwidth="30"/>
+                </HorizontalLayout>
+
+                <Button class="btn menu-button" id="AddModifierButton" onClick="OnAddModifer();" preferredwidth="150" colors="Button|ButtonHover|ButtonHover|ButtonDisabled" active="false">
+                    <TextMeshPro class="value text-sm" internalId="ModiferName" text="AddModifer" alignment="Center" color="LabelText"/>
+                </Button>
+
+            </VerticalLayout>
+        </Panel>
+
+        <!-- Preview -->
+        <Panel width="1910" height="1170" offsetXY="190 -30" rectAlignment="UpperLeft" border="border" padding="15 15 15 15">
+            <VerticalScrollView class="no-image">
+                <VerticalLayout class="no-image" id="PropetiesList" childForceExpandHeight="false" spacing="5">
+                </VerticalLayout>
+            </VerticalScrollView>
+        </Panel>
+
+        <!-- Teplates-->
+        <Button class="btn menu-button" id="PropetyRowTemplate" preferredheight="30" minHeight="30" active="false">
+            <TextMeshPro class="label" internalId="label" text="property" alignment="left" margin="15 0 0 0"/>
+            <TextMeshPro class="value" internalId="value" text="value" alignment="right" margin="0 0 15 0"/>
+        </Button>
+
+        <HorizontalLayout id="ModiferTemplate" childForceExpandWidth="false" childForceExpandHeight="false" spacing="5" active="false">
+            <Button class="btn menu-button" internalId="button" preferredwidth="150" colors="Button|ButtonHover|ButtonHover|ButtonDisabled">
+                <TextMeshPro class="value text-sm" internalId="text" text="Modifer Name" alignment="Center" color="LabelText"/>
+            </Button>
+            <Image class="delete-button audio-btn-click" internalId="close" preferredheight="30" preferredwidth="30">
+                <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
+            </Image>
+        </HorizontalLayout>
+    </Panel>
+</XmlLayout>

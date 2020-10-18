@@ -10,9 +10,9 @@
             }
 
             public class location {
-                string Name;
-                string[] ReachableLocation;
-                int DvNeeded;
+                string name;
+                string[] reachableLocation;
+                int dvNeeded;
             }
         }
     }

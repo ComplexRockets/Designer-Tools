@@ -32,220 +32,234 @@ namespace Assets.Scripts.DesignerTools {
     using UnityEngine.UI;
     using UnityEngine;
     public class PartSelectorManager {
-        public List<IPartScript> SelectedParts => _SelectedParts;
-        public DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
-        private IPartScript _SelectedPart => _Designer.SelectedPart;
-        private PartData _PrevPartState;
-        private List<IPartScript> _SelectedParts = new List<IPartScript> ();
-        private IPartHighlighter _PartHighlighter => _Designer.CraftScript.PartHighlighter;
-        private DesignerTool _ActiveTool;
-        private bool _SelectedPartsAreSame = true;
-        private bool TabPressed = false;
-        private bool IgnoreNextPartSelectionEvent = false;
-        public bool RequestPartSelectionEvent = false;
+        public List<IPartScript> selectedParts => _selectedParts;
+        public DesignerScript designer => (DesignerScript) Game.Instance.Designer;
+        private PartToolsManager _partTools => _mod.partTools;
+        private Mod _mod => Mod.Instance;
+        private IPartScript _selectedPart => designer.SelectedPart;
+        private XElement _prevPartState;
+        private List<IPartScript> _selectedParts = new List<IPartScript> ();
+        public List<String> excludedModifers = new List<string> () { "AttachPoints" };
+        public List<String> excludedAtributes = new List<string> () { "id", "symmetryId" };
+        private IPartHighlighter _partHighlighter => designer.CraftScript.PartHighlighter;
+        private DesignerTool _activeTool;
+        //private bool _SelectedPartsAreSame = true;
+        public bool ignoreNextPartSelectionEvent = false;
+        public bool ignoreNextStructureChangedEvent = false;
+        public bool requestPartSelectionEvent = false;
 
         public void OnDesignerLoaded () {
-            _Designer.SelectedPartChanged += OnSelectedPartChanged;
-            _Designer.Click += OnClick;
-            _Designer.CraftStructureChanged += OnCraftStructureChanged;
-            _Designer.ActiveToolChanged += OnActiveToolChanged;
-            _Designer.BeforeCraftUnloaded += OnCraftUnloading;
+            designer.SelectedPartChanged += OnSelectedPartChanged;
+
+            if (!ModSettings.Instance.DevMode) return;
+            designer.Click += OnClick;
+            designer.CraftStructureChanged += OnCraftStructureChanged;
+            designer.ActiveToolChanged += OnActiveToolChanged;
+            designer.BeforeCraftUnloaded += OnCraftUnloading;
+        }
+
+        public void OnSettingChanged () {
+            if (!ModSettings.Instance.DevMode) {
+                Debug.LogWarning ("DesignerTools: DevMode Off");
+                try { designer.Click -= OnClick; } catch { }
+                try { designer.CraftStructureChanged -= OnCraftStructureChanged; } catch { }
+                try { designer.ActiveToolChanged -= OnActiveToolChanged; } catch { }
+                try { designer.BeforeCraftUnloaded -= OnCraftUnloading; } catch { }
+            } else {
+                Debug.LogWarning ("DesignerTools: DevMode On");
+                try { designer.Click += OnClick; } catch { }
+                try { designer.CraftStructureChanged += OnCraftStructureChanged; } catch { }
+                try { designer.ActiveToolChanged += OnActiveToolChanged; } catch { }
+                try { designer.BeforeCraftUnloaded += OnCraftUnloading; } catch { }
+            }
         }
 
         public void DesignerUpdate () {
-            try {
-                if (Input.GetKeyDown (KeyCode.Tab)) TabPressed = true;
-                else if (Input.GetKeyUp (KeyCode.Tab)) TabPressed = false;
-            } catch (EntryPointNotFoundException e) { Debug.Log ("Error on Tab Check: " + e); }
+            // try {
+            //     if (Input.GetKeyDown (KeyCode.Tab)) TabPressed = true;
+            //     else if (Input.GetKeyUp (KeyCode.Tab)) TabPressed = false;
+            // } catch (EntryPointNotFoundException e) { Debug.Log ("Error on Tab Check: " + e); }
 
-            try { if (_SelectedParts.Count > 0) UpdatePartHighlight (); } catch (EntryPointNotFoundException e) { Debug.Log ("Error on UpdatePartHighlight: " + e); }
+            try { if (_selectedParts.Count > 0) UpdatePartHighlight (); } catch (EntryPointNotFoundException e) { Debug.Log ("Error on UpdatePartHighlight: " + e); }
         }
 
         public void OnCraftStructureChanged () {
-            //Debug.Log ("Craft Structure Changed");
+            Debug.Log ("Craft Structure Changed");
+            if (ignoreNextStructureChangedEvent) {
+                ignoreNextStructureChangedEvent = false;
+                return;
+            }
             //if (_ActiveTool != null) Debug.Log ("ActiveTool : " + _ActiveTool.Name);
             //else Debug.Log ("No Active Tool");
             //if (_Designer.DesignerUi.Flyouts.PartProperties.IsOpen) Debug.Log ("Part Property Open");
             //else Debug.Log ("Part Property Close");
 
             //Debug.Log ("Selected Part count: " + _SelectedParts.Count);
-            if (_SelectedParts.Count > 0 && _SelectedPart != null) {
-                PartStateChange Change;
-
-                Change = GetTransformChange (_PrevPartState, _SelectedPart.Data);
-                if (Change == null && _Designer.DesignerUi.Flyouts.PartProperties.IsOpen) Change = GetChangedProperty (_PrevPartState, _SelectedPart.Data);
+            if (_selectedParts.Count > 1 && _selectedPart != null) {
+                List<PartStateChange> Change = GetPartStateChange (_prevPartState, _selectedPart.Data.GenerateXml (designer.CraftScript.Transform, optimizeXml : false));
 
                 if (Change != null) {
-                    ApplyChange (Change);
-                    _PrevPartState = ClonePartData (_SelectedPart.Data);
-                } //else Debug.Log ("Part State Not Changed");
-                
-                //_PrevPartState = new PartState (_SelectedPart.Data);
-            }
+                    ApplyChange (Change, _selectedParts.Select (part => part.Data.GenerateXml (designer.CraftScript.Transform, optimizeXml : false)).ToList ());
+                    _prevPartState = new XElement (_selectedPart.Data.GenerateXml (designer.CraftScript.Transform, optimizeXml : false));
+                } else Debug.Log ("Part State Not Changed");
+            } else SelectLastPart ();
         }
 
         public void OnSelectedPartChanged (IPartScript OldPart, IPartScript NewPart) {
             //Debug.Log ("Selected Part Changed: " + NewPart?.Data.PartType.Id);
-            if (!IgnoreNextPartSelectionEvent) {
-                if (!RequestPartSelectionEvent) {
-                    if (_Designer.AllowPartSelection)
-                        ManagePartSelectedEvent (OldPart, NewPart);
-                } else
-                    Mod.Instance.PartTools.OnPartSelected (NewPart);
-            } else
-                IgnoreNextPartSelectionEvent = false;
+            if (!ignoreNextPartSelectionEvent) {
+                if (NewPart != null) {
+                    if (!requestPartSelectionEvent) {
+                        if (designer.AllowPartSelection && ModSettings.Instance.DevMode) ManagePartSelectedEvent (OldPart, NewPart);
+                    } else {
+                        _mod.partTools.OnPartSelected (NewPart);
+                        SelectLastPart ();
+                    }
+                }
+            } else ignoreNextPartSelectionEvent = false;
+
+            if (NewPart != null) {
+                if (!_selectedParts.Contains (NewPart)) _selectedParts.Add (NewPart);
+
+                if (!ModSettings.Instance.DevMode) return;
+
+                _prevPartState = _selectedPart.Data.GenerateXml (designer.CraftScript.Transform, optimizeXml : false);
+                Debug.Log (NewPart.Data.GenerateXml (designer.CraftScript.Transform, optimizeXml : false));
+            } else DeselectAllParts ();
         }
 
         public void OnCraftUnloading () {
-            //Debug.Log ("Craft Unloading");
             DeselectAllParts ();
         }
 
         public bool OnClick (ClickEventArgs e) {
-            try { if (_Designer.PaintTool.Active) OnPartPainted (GetPart (e.Position)); } catch (Exception ex) { Debug.Log ("Error on OnPartPainted: " + ex); }
+            try { if (designer.PaintTool.Active) OnPartPainted (GetPart (e.Position)); } catch (Exception ex) { Debug.Log ("Error on OnPartPainted: " + ex); }
             return false;
         }
 
         public void OnActiveToolChanged (DesignerTool tool) {
-            _ActiveTool = tool;
+            _activeTool = tool;
         }
 
         public void OnPartPainted (IPartScript PaintedPart) {
-            if (_SelectedParts.Count > 0 && PaintedPart != null && _SelectedParts.Contains (PaintedPart)) {
+            if (_selectedParts.Count > 0 && PaintedPart != null && _selectedParts.Contains (PaintedPart)) {
                 bool flag = false;
-                int MaterialLevel = _Designer.PaintTool.MaterialLevel;
-                int MaterialID = _Designer.PaintTool.MaterialId;
+                int MaterialLevel = designer.PaintTool.MaterialLevel;
+                int MaterialID = designer.PaintTool.MaterialId;
 
-                foreach (IPartScript part in _SelectedParts) {
-                    if (part.Data.Id != PaintedPart.Data.Id) PaintPart (part, flag, MaterialLevel, MaterialID, true);
+                foreach (IPartScript part in _selectedParts) {
+                    if (part.Data.Id != PaintedPart.Data.Id) _partTools.PaintPart (part, flag, MaterialLevel, MaterialID, true);
                 }
             }
         }
 
-        private void PaintPart (IPartScript part, bool flag, int MaterialLevel, int MaterialID, bool paintSymmetricParts) {
-            if (MaterialLevel == -1) {
-                for (int i = 0; i < part.Data.MaterialIds.Count; i++) {
-                    if (part.Data.MaterialIds[i] != MaterialID) { part.PartMaterialScript.SetMaterial (MaterialID, i); flag = true; }
-                }
-            } else if (part.Data.MaterialIds[MaterialLevel] != MaterialID) { part.PartMaterialScript.SetMaterial (MaterialID, MaterialLevel); flag = true; }
-
-            if (paintSymmetricParts) {
-                foreach (IPartScript item in Symmetry.EnumerateSymmetricPartScripts (part)) {
-                    PaintPart (item, flag, MaterialLevel, MaterialID, false);
-                }
+        public void SelectAllParts () {
+            DeselectAllParts ();
+            foreach (PartData part in designer.CraftScript.Data.Assembly.Parts) {
+                _selectedParts.Add (part.PartScript);
             }
-
-            if (flag) {
-                foreach (PartModifierData modifier in part.Data.Modifiers) {
-                    ((IDesignerPartModifierData) modifier).DesignerPartProperties.OnPartMaterialsChanged ();
-                }
-            }
+            SelectLastPart ();
         }
 
         private void UpdatePartHighlight () {
-            if (_SelectedParts.Count > 0) {
-                _PartHighlighter.HighlightColor = new Color (0f, 1f, 0f, 1f);
+            if (_partHighlighter == null) return;
+            if (_selectedParts.Count > 1) {
+                _partHighlighter.HighlightColor = new Color (0f, 1f, 0f, 1f);
 
-                foreach (IPartScript part in _SelectedParts) {
-                    _PartHighlighter.AddPartHighlight (part);
+                foreach (IPartScript part in _selectedParts) {
+                    _partHighlighter.AddPartHighlight (part);
                     foreach (IPartScript SymmetricPart in Symmetry.EnumerateSymmetricPartScripts (part)) {
-                        _PartHighlighter.AddPartHighlight (SymmetricPart);
+                        _partHighlighter.AddPartHighlight (SymmetricPart);
                     }
                 }
-            } else _PartHighlighter.HighlightColor = _Designer.CraftScript.RootPart.Data.ThemeData.Theme.PartStateColors.Highlighted;
+            } else _partHighlighter.HighlightColor = designer.CraftScript.RootPart.Data.ThemeData.Theme.PartStateColors.Highlighted;
         }
 
         private void ManagePartSelectedEvent (IPartScript OldPart, IPartScript NewPart) {
-            if (NewPart != null && TabPressed) {
-                if (OldPart != null && !_SelectedParts.Contains (OldPart)) _SelectedParts.Add (OldPart);
-                if (!_SelectedParts.Contains (NewPart)) {
-                    if (_SelectedPartsAreSame && _SelectedParts.Count > 0 && NewPart.Data.PartType.Id != _SelectedParts.Last ().Data.PartType.Id) _SelectedPartsAreSame = false;
-                    _SelectedParts.Add (NewPart);
+            if (Input.GetKey (KeyCode.Tab)) {
+                if (OldPart != null && !_selectedParts.Contains (OldPart)) _selectedParts.Add (OldPart);
+                if (!_selectedParts.Contains (NewPart)) {
+                    _selectedParts.Add (NewPart);
                     Debug.Log ("Added Part to selection: " + NewPart);
                 } else {
-                    _SelectedParts.Remove (NewPart);
+                    _partHighlighter.RemovePartHighlight (NewPart);
+                    _selectedParts.Remove (NewPart);
                     Debug.Log ("Removed Part from selection: " + NewPart);
-                    if (!_SelectedPartsAreSame && _SelectedParts.Count > 0) {
-                        _SelectedPartsAreSame = true;
-                        foreach (IPartScript part in _SelectedParts) {
-                            if (part.Data.PartType.Id != _SelectedParts.Last ().Data.PartType.Id) { _SelectedPartsAreSame = false; break; }
-                        }
-                    }
                 }
-                if (_SelectedPart != _SelectedParts.Last ()) {
-                    _Designer.SelectPart (_SelectedParts.Last (), null, false);
-                    IgnoreNextPartSelectionEvent = true;
-                }
-                //_PrevPartState = new PartState (_SelectedPart.Data);
-                _PrevPartState = ClonePartData (_SelectedPart.Data);
+                SelectLastPart ();
             } else DeselectAllParts ();
         }
 
         private void DeselectAllParts () {
-            if (_SelectedParts.Count > 0) {
-                foreach (IPartScript part in _SelectedParts) {
-                    _PartHighlighter.RemovePartHighlight (part);
+            if (_selectedParts.Count > 0) {
+                foreach (IPartScript part in _selectedParts) {
+                    _partHighlighter.RemovePartHighlight (part);
                     foreach (IPartScript SymmetricPart in Symmetry.EnumerateSymmetricPartScripts (part)) {
-                        _PartHighlighter.RemovePartHighlight (SymmetricPart);
+                        _partHighlighter.RemovePartHighlight (SymmetricPart);
                     }
                 }
 
-                _SelectedParts = new List<IPartScript> ();
-                _SelectedPartsAreSame = true;
+                _selectedParts = new List<IPartScript> ();
                 Debug.Log ("Deselected All Parts ");
             }
         }
 
-        private PartStateChange GetTransformChange (PartData oldPart, PartData newPart) {
-            if (oldPart == null || newPart == null) { Debug.LogError ("Can not find transform change (Part State NULL)"); return null; }
-
-            Debug.Log ("Position: " + newPart.Position + " Rotation: " + newPart.Rotation);
-            Debug.Log ("Position: " + oldPart.Position + " Rotation: " + oldPart.Rotation);
-
-            if (newPart.Position != oldPart.Position) return new PartStateChange (oldPart.Position, newPart.Position);
-            if (newPart.Rotation != oldPart.Rotation) return new PartStateChange (oldPart.Rotation, newPart.Rotation);
-
-            Debug.Log ("Part Transform Not Changed");
-            return null;
-        }
-
-        private PartStateChange GetChangedProperty (PartData oldPart, PartData newPart) {
-            if (oldPart == null || newPart == null) { Debug.LogError ("Can not find property change (Part State NULL)"); return null; }
-
-            Debug.Log ("modifiers: " + oldPart.Modifiers.Count);
-            foreach (PartModifierData oldmodifier in oldPart.Modifiers) {
-                PartModifierData newmodifer = newPart.GetModifierById (oldmodifier.Id);
-                if (newmodifer != null) {
-                    if (newmodifer != oldmodifier) {
-                        return new PartStateChange (newmodifer.Id, String.Empty, String.Empty);
-                    }
-                }
-                Debug.Log ("Modifier Deleted");
+        private void SelectLastPart () {
+            if (_selectedParts.Count > 1 && _selectedPart != _selectedParts.Last ()) {
+                ignoreNextPartSelectionEvent = true;
+                designer.SelectPart (_selectedParts.Last (), null, false);
             }
-            Debug.Log ("No Change In Modifiers Found");
-            return null;
+
         }
 
-        private void ApplyChange (PartStateChange change) {
-            Debug.Log ("Player Changed " + change.Type + " of " + _SelectedPart.Data.Name);
-            if (change.Type == "Transform") {
-                if (change.TransformType == "Position") MoveParts (SelectedParts, change.PositionDelta);
-                else if (change.TransformType == "Rotation") RotateParts (SelectedParts, change.RotationAngle);
-            } else if (change.Type == "Modifier") {
-                Debug.Log ("Changed modifer: " + change.Modifier);
+        private List<PartStateChange> GetPartStateChange (XElement oldState, XElement newState) {
+            List<XElement> Old = oldState.DescendantsAndSelf ().ToList ();
+            List<XElement> New = newState.DescendantsAndSelf ().ToList ();
+            List<PartStateChange> changes = new List<PartStateChange> ();
+
+            foreach (XElement oldModifer in New) {
+                if (!excludedModifers.Contains (oldModifer.Name.LocalName)) {
+                    XElement newModifer = New.Find (m => m.Name == oldModifer.Name);
+                    if (newModifer != null) {
+                        if (oldModifer.ToString () != newModifer.ToString ()) {
+                            Debug.Log ("Modifers " + oldModifer.Name + " Was Changed");
+                            foreach (XAttribute oldAtribute in oldModifer.Attributes ()) {
+                                if (!excludedAtributes.Contains (oldAtribute.Name.LocalName)) {
+                                    XAttribute newAtribute = newModifer.Attributes ().ToList ().Find (a => a.Name == oldAtribute.Name);
+                                    if (newAtribute != null) {
+                                        if (newAtribute.Value != oldAtribute.Value) changes.Add (new PartStateChange (oldAtribute, newAtribute, false));
+                                    } else Debug.Log ("Atribute " + oldAtribute.Name + " Deleted");
+                                }
+                            }
+                        } else Debug.Log ("Modifers " + oldModifer.Name + " Was not Changed");
+                    } else Debug.Log ("Modifer " + oldModifer.Name + " Was Deleted");
+                }
+            }
+            return changes;
+        }
+
+        private void ApplyChange (List<PartStateChange> changes, List<XElement> parts) {
+            List<List<XElement>> xmls = parts.Select (p => p.DescendantsAndSelf ().ToList ()).ToList ();
+            foreach (PartStateChange change in changes) {
+                foreach (List<XElement> xml in xmls) {
+                    xml.Find (m => m.Name == change.modifer)?.SetAttributeValue (change.atribute, change.newAttribute);
+                }
+            }
+            foreach (List<XElement> xml in xmls) {
+                _partTools.ApplyXmlData (xml);
             }
         }
         private IPartScript GetPart (Vector2 screenPosition) {
-            return _Designer.GetPartAtScreenPosition (screenPosition).PartScript;
+            return designer.GetPartAtScreenPosition (screenPosition).PartScript;
         }
         private void MoveParts (List<IPartScript> parts, Vector3 deltaPosition) {
             Debug.Log ("Changed Position By " + deltaPosition);
 
             foreach (IPartScript part in parts) {
-                if (part != _SelectedPart) {
+                if (part != _selectedPart) {
                     PartSelection _partSelection = PartSelection.CreatePartSelection (part, true);
                     _partSelection.ContainerParent.Translate (deltaPosition);
-                    _partSelection.Deselect();
+                    _partSelection.Deselect ();
                 }
             }
         }
@@ -261,8 +275,7 @@ namespace Assets.Scripts.DesignerTools {
         }
 
         private PartData ClonePartData (PartData data) {
-            PartData partData = new PartData (data.GenerateXml (_Designer.CraftScript.Transform, optimizeXml : false), _Designer.CraftScript.Data.XmlVersion, data.PartType);
-            return partData;
+            return new PartData (data.GenerateXml (designer.CraftScript.Transform, optimizeXml : false), _mod.craftXMLVersion, data.PartType);
         }
     }
 
@@ -280,7 +293,7 @@ namespace Assets.Scripts.DesignerTools {
             Modifiers = data.Modifiers;
             // foreach (PartModifierData modifier in data.Modifiers) {
             //     if (modifier != null) {
-            //         Modifiers.Add (PartModifierData.CreateFromStateXml (modifier.GenerateStateXml (false), data, Mod.Instance.CraftXMLVersion));
+            //         Modifiers.Add (PartModifierData.CreateFromStateXml (modifier.GenerateStateXml (false), data, _Mod.CraftXMLVersion));
             //         Debug.Log ("Added Modifier: " + modifier.Name);
             //     } else Debug.LogError ("Modifer Null error");
             // }

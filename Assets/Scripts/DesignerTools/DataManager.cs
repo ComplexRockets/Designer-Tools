@@ -11,51 +11,52 @@ using UnityEngine;
 
 namespace Assets.Scripts.DesignerTools {
     public class DataManager {
-        private XmlSerializer _XmlSerializer;
-        private FileStream _FileStream;
-        public CraftImagesDataBase ImageDB;
+        private Mod _mod => Mod.Instance;
+        private XmlSerializer _xmlSerializer;
+        private FileStream _fileStream;
+        public CraftImagesDataBase imageDB;
 
         public void initialise () {
             //Debug.Log ("DataManagerInitialised");
-            string path = Mod.Instance.RefImagePath + "/ReferenceImagesData.xml";
-            _XmlSerializer = new XmlSerializer (typeof (CraftImagesDataBase));
+            string path = _mod.refImagePath + "/ReferenceImagesData.xml";
+            _xmlSerializer = new XmlSerializer (typeof (CraftImagesDataBase));
 
             if (!File.Exists (path)) SaveXml ();
 
             using (StringReader reader = new StringReader (File.ReadAllText (path))) {
-                ImageDB = (_XmlSerializer.Deserialize (reader)) as CraftImagesDataBase;
+                imageDB = (_xmlSerializer.Deserialize (reader)) as CraftImagesDataBase;
             }
-            if (ImageDB == null) ImageDB = new CraftImagesDataBase ();
+            if (imageDB == null) imageDB = new CraftImagesDataBase ();
         }
 
         public void SaveImages (string craftName, List<ReferenceImage> images) {
             try {
                 CraftImagesData ImageData = GetImages (craftName);
-                if (ImageData != null) ImageDB.CraftImagesList.Remove (ImageData);
+                if (ImageData != null) imageDB.CraftImagesList.Remove (ImageData);
             } catch (Exception e) { Debug.Log ("Existing CraftImagesData check failed: " + e); }
 
             List<ReferenceImageData> _ImageList = new List<ReferenceImageData> ();
             foreach (ReferenceImage image in images) {
                 _ImageList.Add (new ReferenceImageData () {
-                    View = image.View,
-                        Rotation = image.Rotation,
-                        OffsetX = image.OffsetX,
-                        OffsetY = image.OffsetY,
-                        Scale = image.Scale,
-                        Opacity = image.Opacity,
-                        Active = image.Active,
-                        ImageName = image.Image.name
+                    View = image.view,
+                        Rotation = image.rotation,
+                        OffsetX = image.offsetX,
+                        OffsetY = image.offsetY,
+                        Scale = image.scale,
+                        Opacity = image.opacity,
+                        Active = image.active,
+                        ImageName = image.image.name
                 });
             }
 
-            ImageDB.CraftImagesList.Add (new CraftImagesData () {
+            imageDB.CraftImagesList.Add (new CraftImagesData () {
                 CraftName = craftName,
                     ImageList = _ImageList
             });
         }
 
         public CraftImagesData GetImages (string craftID) {
-            foreach (CraftImagesData Images in ImageDB.CraftImagesList) {
+            foreach (CraftImagesData Images in imageDB.CraftImagesList) {
                 if (Images.CraftName == craftID) {
                     return Images;
                 }
@@ -71,7 +72,7 @@ namespace Assets.Scripts.DesignerTools {
                 foreach (ReferenceImageData image in images.ImageList) {
                     try {
                         Texture2D RefImage = new Texture2D (0, 0);
-                        RefImage.LoadImage (File.ReadAllBytes (Mod.Instance.RefImagePath + image.ImageName));
+                        RefImage.LoadImage (File.ReadAllBytes (_mod.refImagePath + image.ImageName));
                         RefImage.name = image.ImageName;
 
                         ReferenceImages.Add (new ReferenceImage (image.View, RefImage, null));
@@ -80,7 +81,7 @@ namespace Assets.Scripts.DesignerTools {
                         ReferenceImages.Last ().UpdateValue ("Scale", image.Scale);
                         ReferenceImages.Last ().UpdateValue ("Rotation", image.Rotation);
                         ReferenceImages.Last ().UpdateValue ("Opacity", image.Opacity);
-                        if (ReferenceImages.Last ().Active != image.Active) ReferenceImages.Last ().Toggle ();
+                        if (ReferenceImages.Last ().active != image.Active) ReferenceImages.Last ().Toggle ();
 
                     } catch (Exception e) { Debug.LogError ("Image Error: " + e); }
                 }
@@ -91,9 +92,9 @@ namespace Assets.Scripts.DesignerTools {
         }
 
         public void SaveXml () {
-            _FileStream = new FileStream (Mod.Instance.RefImagePath + "/ReferenceImagesData.xml", FileMode.Create);
-            _XmlSerializer.Serialize (_FileStream, ImageDB);
-            _FileStream.Close ();
+            _fileStream = new FileStream (_mod.refImagePath + "/ReferenceImagesData.xml", FileMode.Create);
+            _xmlSerializer.Serialize (_fileStream, imageDB);
+            _fileStream.Close ();
             //Debug.Log ("XmlSaved");
         }
     }
