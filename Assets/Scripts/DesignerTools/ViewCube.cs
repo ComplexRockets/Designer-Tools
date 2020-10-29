@@ -24,7 +24,7 @@ namespace Assets.Scripts.DesignerTools {
         public Vector2 cubeScreenPosition => new Vector2 (x, y);
         public Vector3 cubeWorldPosition => _designer.DesignerCamera.Camera.ScreenToWorldPoint (new Vector3 (x, y, screenDistance));
         private float screenDistance = 0.5f;
-Toggle        private float x => _openedFlyout != null? _openedFlyout.Width + offset : offset;
+        private float x => _openedFlyout != null? _openedFlyout.Width + offset : offset;
         private float y => screenHeight - screenHeight * 0.1f * _scale;
         private float offset => 0.08f * screenWidth * _scale;
         private float _scale => ModSettings.Instance.viewCubeScale / 100;
