@@ -71,7 +71,7 @@ namespace Assets.Scripts.DesignerTools {
             _imageConfirmButton = _xmlLayout.GetElementById ("ImageConfirmButton");
             _xmlLayout.GetElementById ("FolderPathText").SetAndApplyAttribute ("text", "Folder location : " + _path);
 
-            if (_designerCamera.orthographic == true) {
+            if (_designerCamera.orthographic) {
                 XmlElement orthoToggle = _xmlLayout.GetElementById ("OrthoToggle");
                 //orthoToggle.SetAndApplyAttribute ("isOn", "true");
                 _zoomPanel.SetActive (true);
@@ -330,22 +330,24 @@ namespace Assets.Scripts.DesignerTools {
             _designerCamera.orthographic = _orthoViewActive;
             _designer.GizmoCamera.orthographic = _orthoViewActive;
             _zoomPanel.SetActive (_orthoViewActive);
-            if (_orthoViewActive) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
-            else _mod.viewCube?.OnOrthoOff ();
+            if (ModSettings.Instance.viewCube) {
+                if (_orthoViewActive) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
+                else _mod.viewCube?.OnOrthoOff ();
+            }
         }
 
         private void OnZoomMinusClicked () {
             _orthoSize++;
             _designerCamera.orthographicSize = _orthoSize;
             _designer.GizmoCamera.orthographicSize = _orthoSize;
-            _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
+            if (ModSettings.Instance.viewCube) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
         }
         private void OnZoomPlusButtonClicked () {
             _orthoSize--;
             if (_orthoSize < 0.1f) _orthoSize = 0.1f;
             _designerCamera.orthographicSize = _orthoSize;
             _designer.GizmoCamera.orthographicSize = _orthoSize;
-            _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
+            if (ModSettings.Instance.viewCube) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
         }
 
         private ReferenceImage GetReferenceImage (string view) {

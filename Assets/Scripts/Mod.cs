@@ -47,8 +47,8 @@ namespace Assets.Scripts {
         private ColorPickerButtonScript _colorPickerButton;
         private DataManager _dataManager = new DataManager ();
         private DesignerToolsUI _designerToolsUI => Ui.Designer.DesignerToolsUIController.designerToolsUI;
-        public String refImagePath;
-        public String errorColor = "<color=#b33e46>";
+        public string refImagePath;
+        public string errorColor = "<color=#b33e46>";
         public int craftXMLVersion;
         public bool craftLoaded = false;
 
@@ -75,24 +75,12 @@ namespace Assets.Scripts {
             Game.Instance.SceneManager.SceneLoaded += OnSceneLoaded;
             Game.Instance.SceneManager.SceneUnloading += OnSceneUnloading;
             ModSettings.Instance.Changed += OnSettingsChanged;
-            Debug.Log ("Mod Initialized");
+            //Debug.Log ("Mod Initialized");
             //Debug.Log ("PartTTool: " + PartTools.ToString ());
         }
 
-        public void DesignerUpdate () {
-            _viewCube.Update ();
-        }
-
-        public void OnSettingsChanged (object sender, SettingsChangedEventArgs<ModSettings> e) {
-            if (Game.InDesignerScene) selectorManager.OnSettingChanged ();
-        }
-        public void OnViewPanelClosed (List<ReferenceImage> referenceImages) {
-            _referenceImages = referenceImages;
-            viewToolsUI = null;
-        }
-
         public void OnSceneLoaded (object sender, SceneEventArgs e) {
-            Debug.Log (e.Scene + " Loaded (mod.cs)");
+            //Debug.Log (e.Scene + " Loaded (mod.cs)");
             if (e.Scene == ModApi.Scenes.SceneNames.Designer) {
                 designer.CraftLoaded += OnCraftLoaded;
                 designer.BeforeCraftUnloaded += OnCraftUnloading;
@@ -100,7 +88,7 @@ namespace Assets.Scripts {
                 designer.Click += OnClick;
                 DesignerToolsUIController.OnDesignerLoaded ();
                 selectorManager.OnDesignerLoaded ();
-                _viewCube = new ViewCube (designer);
+                if (ModSettings.Instance.viewCube && _viewCube == null) _viewCube = new ViewCube (designer);
 
                 // IFlyout flyout = Game.Instance.Designer.DesignerUi.Flyouts.Tools;
                 // IXmlLayout layout = flyout.Transform.GetComponentInChildren<IXmlLayout> ().GetElementById ("PaintTool").XmlLayout;
@@ -115,10 +103,39 @@ namespace Assets.Scripts {
             }
         }
 
+        public void DesignerUpdate () {
+            if (ModSettings.Instance.viewCube) _viewCube?.Update ();
+        }
+
+        public void OnSettingsChanged (object sender, SettingsChangedEventArgs<ModSettings> e) {
+            //Debug.Log ("Settings Chaned");
+            if (Game.InDesignerScene) {
+                foreach (Transform child in designer.DesignerCamera.Camera.transform.GetComponentsInChildren<Transform> ()) {
+                    if (child.gameObject.name == "ViewCube(Clone)") {
+                        foreach (Transform c in child.gameObject.GetComponentsInChildren<Transform> ()) {
+                            GameObject.Destroy (c.gameObject);
+                        }
+                        _viewCube = null;
+                    }
+                }
+
+                selectorManager.OnSettingChanged ();
+                if (ModSettings.Instance.viewCube) {
+                    if (_viewCube == null) _viewCube = new ViewCube (designer);
+                    _viewCube.updateScale ();
+                }
+            }
+        }
+        public void OnViewPanelClosed (List<ReferenceImage> referenceImages) {
+            _referenceImages = referenceImages;
+            viewToolsUI = null;
+        }
+
         public void OnSceneUnloading (object sender, SceneEventArgs e) {
             if (e.Scene == ModApi.Scenes.SceneNames.Designer) {
                 //Debug.Log (e.Scene + " Unloading (mod.cs)");
                 designer.CraftLoaded -= OnCraftLoaded;
+                _viewCube?.Destroy ();
                 _viewCube = null;
             }
         }

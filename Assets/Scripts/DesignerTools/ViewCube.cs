@@ -24,8 +24,12 @@ namespace Assets.Scripts.DesignerTools {
         public Vector2 cubeScreenPosition => new Vector2 (x, y);
         public Vector3 cubeWorldPosition => _designer.DesignerCamera.Camera.ScreenToWorldPoint (new Vector3 (x, y, screenDistance));
         private float screenDistance = 0.5f;
-        private int x => _openedFlyout != null?(int) _openedFlyout.Width + 200 : 200;
-        private int y => _designer.DesignerCamera.Camera.pixelHeight - 150;
+Toggle        private float x => _openedFlyout != null? _openedFlyout.Width + offset : offset;
+        private float y => screenHeight - screenHeight * 0.1f * _scale;
+        private float offset => 0.08f * screenWidth * _scale;
+        private float _scale => ModSettings.Instance.viewCubeScale / 100;
+        private float screenHeight => Game.Instance.Settings.Quality.Display.Resolution.Value.height;
+        private float screenWidth => Game.Instance.Settings.Quality.Display.Resolution.Value.width;
         private GameObject _viewCube;
         private Renderer _viewCubeRenderer;
         private Renderer _highlighted;
@@ -42,8 +46,8 @@ namespace Assets.Scripts.DesignerTools {
             // _ViewCube = GameObject.Instantiate (ResourceDatabase.GetResource<GameObject> ("DesignerTools/ViewCube"));
             _viewCube = Instantiate (Mod.Instance.ResourceLoader.LoadAsset<GameObject> ("Assets/Resources/ViewCube/ViewCube.prefab"));
             _viewCube.transform.parent = _designer.DesignerCamera.Camera.transform;
-            _viewCube.transform.localScale = new Vector3 (2.5f, 2.5f, 2.5f);
             _viewCubeRenderer = _viewCube.GetComponentInChildren<Renderer> ();
+            updateScale ();
             //_ViewCube.gameObject.layer = 5;
         }
 
@@ -56,13 +60,18 @@ namespace Assets.Scripts.DesignerTools {
             _viewCube.transform.rotation = Quaternion.identity;
 
             float distance = Vector2.Distance (cubeScreenPosition, UnityEngine.Input.mousePosition);
-            if (distance < 200) {
+            if (distance < 200 * _scale) {
                 _hovered = true;
                 OnHover (distance);
             } else if (_hovered == true) {
                 _hovered = false;
                 OnExit ();
             }
+        }
+
+        public void updateScale () {
+            float scale = 2.5f * _scale;
+            _viewCube.transform.localScale = new Vector3 (scale, scale, scale);
         }
 
         private void OnHover (float distance) {
@@ -79,7 +88,7 @@ namespace Assets.Scripts.DesignerTools {
             }
             UpdateHighlight ();
 
-            _viewCubeRenderer.material.color = cubeHit? new Color (1f, 1f, 1f, 1f) : new Color (1f, 1f, 1f, (1 - distance / 200f) + 0.3f);
+            _viewCubeRenderer.material.color = cubeHit? new Color (1f, 1f, 1f, 1f) : new Color (1f, 1f, 1f, Mathf.Min (Mathf.Max (1 - distance / offset, 0.3f), 1));
         }
 
         private void OnExit () {
@@ -90,12 +99,12 @@ namespace Assets.Scripts.DesignerTools {
         }
 
         public void OnOrthoOff () {
-            _viewCube.transform.localScale = new Vector3 (2.5f, 2.5f, 2.5f);
+            updateScale ();
             screenDistance = 0.5f;
         }
 
         public void OnOrthoSizeChanged (float orthosize) {
-            float scale = 10 * orthosize;
+            float scale = 10 * orthosize * _scale;
             _viewCube.transform.localScale = new Vector3 (scale, scale, scale);
             screenDistance = 1 + orthosize / 10;
         }
@@ -105,6 +114,13 @@ namespace Assets.Scripts.DesignerTools {
                 if (_highlighted != null) _highlighted.material.color = _highlightedColor;
                 if (_prevHighlighted != null) _prevHighlighted.material.color = _hidden;
                 _prevHighlighted = _highlighted;
+            }
+        }
+
+        public void Destroy () {
+            Debug.Log ("Destroying View Cube");
+            foreach (Transform child in _viewCube.gameObject.GetComponentsInChildren<Transform> ()) {
+                GameObject.Destroy (child.gameObject);
             }
         }
     }

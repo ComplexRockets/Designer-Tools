@@ -29,12 +29,22 @@ namespace Assets.Scripts {
         /// </value>
         public static ModSettings Instance => _instance ?? (_instance = Game.Instance.Settings.ModSettings.GetCategory<ModSettings> ());
 
+        public BoolSetting viewCube { get; private set; }
+        public NumericSetting<float> viewCubeScale { get; private set; }
         public BoolSetting DevMode { get; private set; }
 
         /// <summary>
         /// Initializes the settings in the category.
         /// </summary>
-        protected override void InitializeSettings () {
+        protected override void InitializeSettings () { 
+            viewCube = this.CreateBool ("View Cube")
+                .SetDescription ("Toggles the View Cube")
+                .SetDefault (true);
+
+            viewCubeScale = this.CreateNumeric<float> ("View Cube Scale", 10f, 200f, 1)
+                .SetDescription ("Changes the size of the View Cube")
+                .SetDefault (100f);
+
             DevMode = this.CreateBool ("BetaDev Mode")
                 .SetDescription ("Turns all the hidden Designer Tools features that are currently in developpment, DO NOT LEAVE THIS SETTING ON")
                 .AddWarningOnEnabled ("Do not leave this setting on when playing, turn on at your own risk")

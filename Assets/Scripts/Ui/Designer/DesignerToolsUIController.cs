@@ -57,36 +57,10 @@
         }
 
         public static void OnDesignerLoaded () {
-            IFlyouts _Flyouts = Game.Instance.Designer.DesignerUi.Flyouts;
-            _Flyouts.ActivationGroups.Opened += OnOtherFlyoutOpened;
-            _Flyouts.ActivationGroups.Closed += OnOtherFlyoutClosed;
-
-            _Flyouts.CraftParts.Opened += OnOtherFlyoutOpened;
-            _Flyouts.CraftParts.Closed += OnOtherFlyoutClosed;
-
-            _Flyouts.LoadCraft.Opened += OnOtherFlyoutOpened;
-            _Flyouts.LoadCraft.Closed += OnOtherFlyoutClosed;
-
-            _Flyouts.Menu.Opened += OnOtherFlyoutOpened;
-            _Flyouts.Menu.Closed += OnOtherFlyoutClosed;
-
-            _Flyouts.PartConnections.Opened += OnOtherFlyoutOpened;
-            _Flyouts.PartConnections.Opened += OnOtherFlyoutClosed;
-
-            _Flyouts.PartList.Opened += OnOtherFlyoutOpened;
-            _Flyouts.PartList.Closed += OnOtherFlyoutClosed;
-
-            _Flyouts.PartProperties.Opened += OnOtherFlyoutOpened;
-            _Flyouts.PartProperties.Closed += OnOtherFlyoutClosed;
-
-            _Flyouts.StagingEditor.Opened += OnOtherFlyoutOpened;
-            _Flyouts.StagingEditor.Closed += OnOtherFlyoutClosed;
-
-            _Flyouts.Symmetry.Opened += OnOtherFlyoutOpened;
-            _Flyouts.Symmetry.Closed += OnOtherFlyoutClosed;
-
-            _Flyouts.Tools.Opened += OnOtherFlyoutOpened;
-            _Flyouts.Tools.Closed += OnOtherFlyoutClosed;
+            foreach (IFlyout flyout in Game.Instance.Designer.DesignerUi.Flyouts.All) {
+                flyout.Opened += OnOtherFlyoutOpened;
+                flyout.Closed += OnOtherFlyoutClosed;
+            }
             _openedFlyout = null;
         }
 
