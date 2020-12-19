@@ -36,7 +36,7 @@ namespace Assets.Scripts {
         /// <summary>
         /// Initializes the settings in the category.
         /// </summary>
-        protected override void InitializeSettings () { 
+        protected override void InitializeSettings () {
             viewCube = this.CreateBool ("View Cube")
                 .SetDescription ("Toggles the View Cube")
                 .SetDefault (true);

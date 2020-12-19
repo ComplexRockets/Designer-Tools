@@ -43,12 +43,10 @@ namespace Assets.Scripts.DesignerTools {
 
         public ViewCube (DesignerScript designer) {
             _designer = designer;
-            // _ViewCube = GameObject.Instantiate (ResourceDatabase.GetResource<GameObject> ("DesignerTools/ViewCube"));
             _viewCube = Instantiate (Mod.Instance.ResourceLoader.LoadAsset<GameObject> ("Assets/Resources/ViewCube/ViewCube.prefab"));
             _viewCube.transform.parent = _designer.DesignerCamera.Camera.transform;
             _viewCubeRenderer = _viewCube.GetComponentInChildren<Renderer> ();
             updateScale ();
-            //_ViewCube.gameObject.layer = 5;
         }
 
         public void visible (bool visible) {

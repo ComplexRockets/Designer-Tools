@@ -8,6 +8,7 @@ namespace Assets.Scripts {
     using Assets.Scripts.Design.Paint;
     using Assets.Scripts.Design;
     using Assets.Scripts.DesignerTools;
+    using Assets.Scripts.DevConsole;
     using Assets.Scripts.Tools;
     using Assets.Scripts.Ui.Designer;
     using ModApi.Common;
@@ -30,6 +31,8 @@ namespace Assets.Scripts {
     /// </summary>
     public class Mod : ModApi.Mods.GameMod {
         public DesignerScript designer => (DesignerScript) Game.Instance.Designer;
+        public Camera designerCamera => designer.DesignerCamera.Camera;
+        public Camera gizmoCamera => designer.GizmoCamera;
         public PartToolsManager partTools = new PartToolsManager ();
         public PartSelectorManager selectorManager = new PartSelectorManager ();
         public ViewToolsUI viewToolsUI;
@@ -51,6 +54,7 @@ namespace Assets.Scripts {
         public string errorColor = "<color=#b33e46>";
         public int craftXMLVersion;
         public bool craftLoaded = false;
+        public bool orthoOn = false;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="Mod"/> class from being created.
@@ -104,6 +108,12 @@ namespace Assets.Scripts {
         }
 
         public void DesignerUpdate () {
+            if (orthoOn) {
+                float zoom = designer.DesignerCamera.CurrentZoom / 2f;
+                designerCamera.orthographicSize = zoom;
+                gizmoCamera.orthographicSize = zoom;
+                if (ModSettings.Instance.viewCube) viewCube?.OnOrthoSizeChanged (zoom);
+            }
             if (ModSettings.Instance.viewCube) _viewCube?.Update ();
         }
 
@@ -189,32 +199,47 @@ namespace Assets.Scripts {
 
         public bool OnClick (ClickEventArgs e) {
             RaycastHit hit;
-            bool rightClick = false;
             bool leftClick = false;
+            bool rightClick = false;
+            bool middleClick = false;
             if (UnityEngine.Input.GetMouseButtonDown (0)) leftClick = true;
             else if (UnityEngine.Input.GetMouseButtonDown (1)) rightClick = true;
+            else if (UnityEngine.Input.GetMouseButtonDown (2)) middleClick = true;
+            if (middleClick) Debug.Log("Midlle Clic");
 
             if (Physics.Raycast (e.Ray, out hit)) {
-                //Debug.Log ("Hit: " + target + " parent: " + hit.transform.parent?.name);
-
                 if (hit.transform.parent?.name == "ViewCube(Clone)") {
                     String target = hit.transform.name;
+                    target = target.Remove (target.Length - 9);
                     if (leftClick) {
-                        //Debug.Log ("ViewCube clicked: " + target);
-                        SetCameraTo (target.Remove (target.Length - 9));
+                        SetCameraTo (target);
                     } else if (rightClick) {
-                        referenceImages.Find (image => image.view == target.Remove (target.Length - 9))?.Toggle ();
+                        referenceImages.Find (image => image.view == target)?.Toggle ();
+                    } else if (middleClick) {
+                        ToggleOrtho ();
                     }
                 } else if (hit.transform.parent?.parent?.name == "ViewCube(Clone)") {
                     String target = hit.transform.parent.name.Remove (0, 2);
                     if (leftClick) {
-                        //Debug.Log ("ViewCube clicked: " + target);
                         SetCameraTo (target);
+                    } else if (middleClick) {
+                        ToggleOrtho ();
                     }
                 }
             }
             if (rightClick) partTools?.OnRightClic ();
             return false;
+        }
+
+        public void ToggleOrtho () {
+            orthoOn = !orthoOn;
+            designerCamera.orthographic = orthoOn;
+            gizmoCamera.orthographic = orthoOn;
+
+            if (ModSettings.Instance.viewCube) {
+                if (orthoOn) viewCube?.OnOrthoSizeChanged (designerCamera.orthographicSize);
+                else viewCube?.OnOrthoOff ();
+            }
         }
 
         public void SetCameraTo (String view) {

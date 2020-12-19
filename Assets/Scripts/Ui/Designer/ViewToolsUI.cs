@@ -34,7 +34,6 @@ using UnityEngine.UI;
 namespace Assets.Scripts.DesignerTools {
     public class ViewToolsUI : MonoBehaviour {
         private IXmlLayoutController _controller;
-        private bool _orthoViewActive;
         private bool _selectingImage = false;
         private bool _mouseDown = false;
         public bool viewToolPanelPinned = false;
@@ -71,11 +70,9 @@ namespace Assets.Scripts.DesignerTools {
             _imageConfirmButton = _xmlLayout.GetElementById ("ImageConfirmButton");
             _xmlLayout.GetElementById ("FolderPathText").SetAndApplyAttribute ("text", "Folder location : " + _path);
 
-            if (_designerCamera.orthographic) {
-                XmlElement orthoToggle = _xmlLayout.GetElementById ("OrthoToggle");
-                //orthoToggle.SetAndApplyAttribute ("isOn", "true");
-                _zoomPanel.SetActive (true);
-                _orthoViewActive = true;
+            if (_mod.orthoOn) {
+                _xmlLayout.GetElementById<Toggle> ("OrthoToggle").isOn = true;
+                //_zoomPanel.SetActive (true);
             }
 
             UpdateReferenceImages (_mod._referenceImages);
@@ -114,7 +111,8 @@ namespace Assets.Scripts.DesignerTools {
 
                 _xmlLayout.GetElementById (image.view + "Settings").SetActive (true);
                 _xmlLayout.GetElementById (image.view + "NoImageSelected").SetActive (false);
-                _xmlLayout.GetElementById ("Select" + image.view).GetComponentInChildren<TextMeshProUGUI> ().SetText ("Edit Image");
+                TextMeshProUGUI text = _xmlLayout.GetElementById ("Select" + image.view).GetComponentInChildren<TextMeshProUGUI> ();
+                text.SetText ("Edit Image");
             }
         }
 
@@ -215,6 +213,9 @@ namespace Assets.Scripts.DesignerTools {
             selectedImage = new Texture2D (0, 0);
             selectedImage.LoadImage (File.ReadAllBytes (_path + image.id.Remove (0, 5)));
             selectedImage.name = image.id.Remove (0, 5);
+
+            RawImage preview = _xmlLayout.GetElementById<RawImage> ("PreviewImage");
+            preview.texture = selectedImage;
 
             image.SetAndApplyAttribute ("colors", "ButtonPressed|ButtonHover|ButtonHover|ButtonDisabled");
             try { OldImage.SetAndApplyAttribute ("colors", "Button|ButtonHover|ButtonHover|ButtonDisabled"); } catch { }
@@ -326,29 +327,23 @@ namespace Assets.Scripts.DesignerTools {
         }
 
         private void OnOrthoToggleButtonClicked () {
-            _orthoViewActive = !_orthoViewActive;
-            _designerCamera.orthographic = _orthoViewActive;
-            _designer.GizmoCamera.orthographic = _orthoViewActive;
-            _zoomPanel.SetActive (_orthoViewActive);
-            if (ModSettings.Instance.viewCube) {
-                if (_orthoViewActive) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
-                else _mod.viewCube?.OnOrthoOff ();
-            }
+            //_zoomPanel.SetActive (_mod.orthoOn);
+            _mod.ToggleOrtho ();
         }
 
-        private void OnZoomMinusClicked () {
-            _orthoSize++;
-            _designerCamera.orthographicSize = _orthoSize;
-            _designer.GizmoCamera.orthographicSize = _orthoSize;
-            if (ModSettings.Instance.viewCube) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
-        }
-        private void OnZoomPlusButtonClicked () {
-            _orthoSize--;
-            if (_orthoSize < 0.1f) _orthoSize = 0.1f;
-            _designerCamera.orthographicSize = _orthoSize;
-            _designer.GizmoCamera.orthographicSize = _orthoSize;
-            if (ModSettings.Instance.viewCube) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
-        }
+        // private void OnZoomMinusClicked () {
+        //     _orthoSize++;
+        //     _designerCamera.orthographicSize = _orthoSize;
+        //     _designer.GizmoCamera.orthographicSize = _orthoSize;
+        //     if (ModSettings.Instance.viewCube) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
+        // }
+        // private void OnZoomPlusButtonClicked () {
+        //     _orthoSize--;
+        //     if (_orthoSize < 0.1f) _orthoSize = 0.1f;
+        //     _designerCamera.orthographicSize = _orthoSize;
+        //     _designer.GizmoCamera.orthographicSize = _orthoSize;
+        //     if (ModSettings.Instance.viewCube) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
+        // }
 
         private ReferenceImage GetReferenceImage (string view) {
             return referenceImages.Find (image => image.view == view);

@@ -80,17 +80,17 @@
                 _parentGameObject.transform.parent.rotation = designer.ActiveCraftConfiguration.Type == ModApi.Craft.CrafConfigurationType.Plane ? Quaternion.Euler (90f, 0f, 0f) : Quaternion.identity;
 
                 if (this.view == "Front") {
-                _parentGameObject.transform.rotation = Quaternion.Euler (90f, -90f, -90f);
+                    _parentGameObject.transform.rotation = Quaternion.Euler (90f, -90f, -90f);
                 } else if (this.view == "Back") {
-                _parentGameObject.transform.rotation = Quaternion.Euler (90f, 270f, 90f);
+                    _parentGameObject.transform.rotation = Quaternion.Euler (90f, 270f, 90f);
                 } else if (this.view == "Top") {
-                _parentGameObject.transform.rotation = Quaternion.Euler (0f, -90f, 0f);
+                    _parentGameObject.transform.rotation = Quaternion.Euler (0f, -90f, 0f);
                 } else if (this.view == "Bottom") {
-                _parentGameObject.transform.rotation = Quaternion.Euler (180f, 90f, 0f);
+                    _parentGameObject.transform.rotation = Quaternion.Euler (180f, 90f, 0f);
                 } else if (this.view == "Left") {
-                _parentGameObject.transform.rotation = Quaternion.Euler (90f, 0f, 90f);
+                    _parentGameObject.transform.rotation = Quaternion.Euler (90f, 0f, 90f);
                 } else if (this.view == "Right") {
-                _parentGameObject.transform.rotation = Quaternion.Euler (90f, 0f, -90f);
+                    _parentGameObject.transform.rotation = Quaternion.Euler (90f, 0f, -90f);
                 }
                 _parentGameObject.transform.parent.rotation = ParentRot;
                 //_ParentGameObject.transform.position = (Vector3) _Designer.CraftScript?.RootPart.Transform.position;
@@ -155,8 +155,8 @@
                 if (_defaultMaterial == null) _defaultMaterial = resourceDatabase.GetResource<Material> ("DesignerTools/RefImageMaterial");
 
                 try {
-                _renderer.material = new Material(_defaultMaterial) {
-                        color = new Color(1f, 1f, 1f, _opacity),
+                    _renderer.material = new Material (_defaultMaterial) {
+                        color = new Color (1f, 1f, 1f, _opacity),
                         mainTexture = this.image
                     };
                 } catch (Exception e) { Debug.LogError ("material Error: " + e); }
