@@ -1,12 +1,12 @@
     using UnityEngine;
     namespace Assets.Scripts.DesignerTools {
         public class DesignerToolsLoop : MonoBehaviour {
-            private Mod _Mod = Mod.Instance;
+            private Mod _mod = Mod.Instance;
 
             protected virtual void Update () {
-                if (Game.InDesignerScene && _Mod.CraftLoaded) {
-                    _Mod.DesignerUpdate ();
-                    _Mod.SelectorManager.DesignerUpdate ();
+                if (Game.InDesignerScene && _mod.craftLoaded && _mod.designer.CraftScript != null) {
+                    _mod.DesignerUpdate ();
+                    if (ModSettings.Instance.DevMode) _mod.selectorManager.DesignerUpdate ();
                 }
             }
         }

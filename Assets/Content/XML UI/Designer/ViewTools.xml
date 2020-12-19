@@ -316,11 +316,10 @@
 
         <!-- Preview -->
         <Panel width="700" height="450" offsetXY="0 -30" rectAlignment="UpperRight" border="border">
-            <Image id="PreviewImage" image="" />
+            <RawImage id="PreviewImage" />
             <Button class="btn submit" id="ImageConfirmButton" onClick="OnImageConfirm();" rectAlignment="LowerRight">
                 <TextMeshPro class="text-sm" text="Select Image" alignment="Center" color="labeltext"/>
             </Button>
-            <TextMeshPro color="labeltext" text="Image Preview Not Implemented Yet"/>
         </Panel>
     </Panel>
 </XmlLayout>

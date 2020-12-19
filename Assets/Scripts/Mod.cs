@@ -8,6 +8,7 @@ namespace Assets.Scripts {
     using Assets.Scripts.Design.Paint;
     using Assets.Scripts.Design;
     using Assets.Scripts.DesignerTools;
+    using Assets.Scripts.DevConsole;
     using Assets.Scripts.Tools;
     using Assets.Scripts.Ui.Designer;
     using ModApi.Common;
@@ -18,6 +19,7 @@ namespace Assets.Scripts {
     using ModApi.Input.Events;
     using ModApi.Mods;
     using ModApi.Scenes.Events;
+    using ModApi.Settings.Core.Events;
     using ModApi.Ui;
     using ModApi;
     using UI.Xml;
@@ -28,26 +30,31 @@ namespace Assets.Scripts {
     /// A singleton object representing this mod that is instantiated and initialize when the mod is loaded.
     /// </summary>
     public class Mod : ModApi.Mods.GameMod {
-        public DesignerScript Designer => (DesignerScript) Game.Instance.Designer;
-        public PartToolsManager PartTools = new PartToolsManager ();
-        public PartSelectorManager SelectorManager = new PartSelectorManager ();
-        public ViewToolsUI ViewToolsUI;
-        public List<ReferenceImage> ReferenceImages {
+        public DesignerScript designer => (DesignerScript) Game.Instance.Designer;
+        public Camera designerCamera => designer.DesignerCamera.Camera;
+        public Camera gizmoCamera => designer.GizmoCamera;
+        public PartToolsManager partTools = new PartToolsManager ();
+        public PartSelectorManager selectorManager = new PartSelectorManager ();
+        public ViewToolsUI viewToolsUI;
+        public List<ReferenceImage> referenceImages {
             get {
-                if (ViewToolsUI != null) _ReferenceImages = ViewToolsUI.ReferenceImages;
-                return _ReferenceImages;
+                if (viewToolsUI != null) _referenceImages = viewToolsUI.referenceImages;
+                return _referenceImages;
             }
         }
-        public List<ReferenceImage> _ReferenceImages = new List<ReferenceImage> ();
-        private Vector3 RootPosition => Designer.CraftScript.RootPart.Transform.position;
-        private Vector3 _Origin = new Vector3 ();
-        private ViewCube _ViewCube;
-        private ColorPickerButtonScript _ColorPickerButton;
-        private DataManager _DataManager = new DataManager ();
-        private DesignerToolsUI _DesignerToolsUI => Ui.Designer.DesignerToolsUIController._DesignerToolsUI;
-        public String RefImagePath;
-        public int CraftXMLVersion;
-        public bool CraftLoaded = false;
+        public List<ReferenceImage> _referenceImages = new List<ReferenceImage> ();
+        private Vector3 rootPosition => designer.CraftScript.RootPart.Transform.position;
+        private Vector3 _origin = new Vector3 ();
+        private ViewCube _viewCube;
+        public ViewCube viewCube => _viewCube;
+        private ColorPickerButtonScript _colorPickerButton;
+        private DataManager _dataManager = new DataManager ();
+        private DesignerToolsUI _designerToolsUI => Ui.Designer.DesignerToolsUIController.designerToolsUI;
+        public string refImagePath;
+        public string errorColor = "<color=#b33e46>";
+        public int craftXMLVersion;
+        public bool craftLoaded = false;
+        public bool orthoOn = false;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="Mod"/> class from being created.
@@ -61,39 +68,31 @@ namespace Assets.Scripts {
         public static Mod Instance { get; } = GetModInstance<Mod> ();
 
         protected override void OnModInitialized () {
-            RefImagePath = Application.persistentDataPath + "/UserData/DesignerTools/ReferenceImages/";
-            System.IO.Directory.CreateDirectory (RefImagePath);
+            refImagePath = Application.persistentDataPath + "/UserData/DesignerTools/ReferenceImages/";
+            System.IO.Directory.CreateDirectory (refImagePath);
 
             base.OnModInitialized ();
             Ui.Designer.DesignerToolsUIController.Initialize ();
-            _DataManager.initialise ();
-            PartTools.Initialize (SelectorManager);
+            _dataManager.initialise ();
+            partTools.Initialize (selectorManager);
 
             Game.Instance.SceneManager.SceneLoaded += OnSceneLoaded;
             Game.Instance.SceneManager.SceneUnloading += OnSceneUnloading;
-            Debug.Log ("Mod Initialized");
+            ModSettings.Instance.Changed += OnSettingsChanged;
+            //Debug.Log ("Mod Initialized");
             //Debug.Log ("PartTTool: " + PartTools.ToString ());
         }
 
-        public void DesignerUpdate () {
-            _ViewCube.Update ();
-        }
-
-        public void OnViewPanelClosed (List<ReferenceImage> referenceImages) {
-            _ReferenceImages = referenceImages;
-            ViewToolsUI = null;
-        }
-
         public void OnSceneLoaded (object sender, SceneEventArgs e) {
-            Debug.Log (e.Scene + " Loaded (mod.cs)");
+            //Debug.Log (e.Scene + " Loaded (mod.cs)");
             if (e.Scene == ModApi.Scenes.SceneNames.Designer) {
-                Designer.CraftLoaded += OnCraftLoaded;
-                Designer.BeforeCraftUnloaded += OnCraftUnloading;
-                Designer.CraftStructureChanged += OnCraftStructureChanged;
-                Designer.Click += OnClick;
+                designer.CraftLoaded += OnCraftLoaded;
+                designer.BeforeCraftUnloaded += OnCraftUnloading;
+                designer.CraftStructureChanged += OnCraftStructureChanged;
+                designer.Click += OnClick;
                 DesignerToolsUIController.OnDesignerLoaded ();
-                SelectorManager.OnDesignerLoaded ();
-                _ViewCube = new ViewCube (Designer);
+                selectorManager.OnDesignerLoaded ();
+                if (ModSettings.Instance.viewCube && _viewCube == null) _viewCube = new ViewCube (designer);
 
                 // IFlyout flyout = Game.Instance.Designer.DesignerUi.Flyouts.Tools;
                 // IXmlLayout layout = flyout.Transform.GetComponentInChildren<IXmlLayout> ().GetElementById ("PaintTool").XmlLayout;
@@ -108,55 +107,90 @@ namespace Assets.Scripts {
             }
         }
 
+        public void DesignerUpdate () {
+            if (orthoOn) {
+                float zoom = designer.DesignerCamera.CurrentZoom / 2f;
+                designerCamera.orthographicSize = zoom;
+                gizmoCamera.orthographicSize = zoom;
+                if (ModSettings.Instance.viewCube) viewCube?.OnOrthoSizeChanged (zoom);
+            }
+            if (ModSettings.Instance.viewCube) _viewCube?.Update ();
+        }
+
+        public void OnSettingsChanged (object sender, SettingsChangedEventArgs<ModSettings> e) {
+            //Debug.Log ("Settings Chaned");
+            if (Game.InDesignerScene) {
+                foreach (Transform child in designer.DesignerCamera.Camera.transform.GetComponentsInChildren<Transform> ()) {
+                    if (child.gameObject.name == "ViewCube(Clone)") {
+                        foreach (Transform c in child.gameObject.GetComponentsInChildren<Transform> ()) {
+                            GameObject.Destroy (c.gameObject);
+                        }
+                        _viewCube = null;
+                    }
+                }
+
+                selectorManager.OnSettingChanged ();
+                if (ModSettings.Instance.viewCube) {
+                    if (_viewCube == null) _viewCube = new ViewCube (designer);
+                    _viewCube.updateScale ();
+                }
+            }
+        }
+        public void OnViewPanelClosed (List<ReferenceImage> referenceImages) {
+            _referenceImages = referenceImages;
+            viewToolsUI = null;
+        }
+
         public void OnSceneUnloading (object sender, SceneEventArgs e) {
             if (e.Scene == ModApi.Scenes.SceneNames.Designer) {
                 //Debug.Log (e.Scene + " Unloading (mod.cs)");
-                Designer.CraftLoaded -= OnCraftLoaded;
-                _ViewCube = null;
+                designer.CraftLoaded -= OnCraftLoaded;
+                _viewCube?.Destroy ();
+                _viewCube = null;
             }
         }
 
         public void OnCraftLoaded () {
-            List<ReferenceImage> Images = _DataManager.LoadImages (Designer.CraftScript.Data.Name);
+            List<ReferenceImage> Images = _dataManager.LoadImages (designer.CraftScript.Data.Name);
 
-            if (ReferenceImages != null) {
-                ReferenceImages.ForEach (image => image.Destroy ());
+            if (referenceImages != null) {
+                referenceImages.ForEach (image => image.Destroy ());
             }
 
-            _ReferenceImages = Images != null? Images : new List<ReferenceImage> ();
-            _Origin = RootPosition;
+            _referenceImages = Images != null? Images : new List<ReferenceImage> ();
+            _origin = rootPosition;
 
             // foreach (ReferenceImage image in ReferenceImages) {
             //     image.UpdateOrigin (_Origin);
             // }
 
-            if (ViewToolsUI != null) ViewToolsUI.UpdateReferenceImages (_ReferenceImages);
-            CraftXMLVersion = Designer.CraftScript.Data.XmlVersion;
-            CraftLoaded = true;
+            if (viewToolsUI != null) viewToolsUI.UpdateReferenceImages (_referenceImages);
+            craftXMLVersion = designer.CraftScript.Data.XmlVersion;
+            craftLoaded = true;
         }
 
         public void OnCraftUnloading () {
-            CraftLoaded = false;
+            craftLoaded = false;
         }
 
         private void OnCraftStructureChanged () {
-            if (Designer.CraftScript != null && RootPosition != _Origin) {
+            if (designer.CraftScript != null && rootPosition != _origin) {
 
-                _Origin = RootPosition;
-                foreach (ReferenceImage image in ReferenceImages) {
-                    image.UpdateOrigin (_Origin);
+                _origin = rootPosition;
+                foreach (ReferenceImage image in referenceImages) {
+                    image.UpdateOrigin (_origin);
                 }
             }
         }
 
         public void OnSaveRefImages () {
-            if (Designer.CraftScript.Data.Name != "New") {
-                if (ReferenceImages.Count > 0) {
-                    _DataManager.SaveImages (Designer.CraftScript.Data.Name, ReferenceImages);
-                    _DataManager.SaveXml ();
-                    Designer.DesignerUi.ShowMessage ("Images Saved");
-                } else Designer.DesignerUi.ShowMessage ("<color=#b33e46> Saving Failed : No Image To Save");
-            } else Designer.DesignerUi.ShowMessage ("<color=#b33e46> Saving Failed :  Remember to save your craft first, saving images for craft 'New' is not allowed");
+            if (designer.CraftScript.Data.Name != "New") {
+                if (referenceImages.Count > 0) {
+                    _dataManager.SaveImages (designer.CraftScript.Data.Name, referenceImages);
+                    _dataManager.SaveXml ();
+                    designer.DesignerUi.ShowMessage ("Images Saved");
+                } else designer.DesignerUi.ShowMessage (errorColor + "Saving Failed : No Image To Save");
+            } else designer.DesignerUi.ShowMessage (errorColor = "Saving Failed :  Remember to save your craft first, saving images for craft 'New' is not allowed");
         }
 
         public void OnColorPickerButtonClicked () {
@@ -165,32 +199,47 @@ namespace Assets.Scripts {
 
         public bool OnClick (ClickEventArgs e) {
             RaycastHit hit;
-            bool rightClick = false;
             bool leftClick = false;
+            bool rightClick = false;
+            bool middleClick = false;
             if (UnityEngine.Input.GetMouseButtonDown (0)) leftClick = true;
             else if (UnityEngine.Input.GetMouseButtonDown (1)) rightClick = true;
+            else if (UnityEngine.Input.GetMouseButtonDown (2)) middleClick = true;
+            if (middleClick) Debug.Log("Midlle Clic");
 
             if (Physics.Raycast (e.Ray, out hit)) {
-                //Debug.Log ("Hit: " + target + " parent: " + hit.transform.parent?.name);
-
                 if (hit.transform.parent?.name == "ViewCube(Clone)") {
                     String target = hit.transform.name;
+                    target = target.Remove (target.Length - 9);
                     if (leftClick) {
-                        //Debug.Log ("ViewCube clicked: " + target);
-                        SetCameraTo (target.Remove (target.Length - 9));
+                        SetCameraTo (target);
                     } else if (rightClick) {
-                        ReferenceImages.Find (image => image.View == target.Remove (target.Length - 9))?.Toggle ();
+                        referenceImages.Find (image => image.view == target)?.Toggle ();
+                    } else if (middleClick) {
+                        ToggleOrtho ();
                     }
                 } else if (hit.transform.parent?.parent?.name == "ViewCube(Clone)") {
                     String target = hit.transform.parent.name.Remove (0, 2);
                     if (leftClick) {
-                        //Debug.Log ("ViewCube clicked: " + target);
                         SetCameraTo (target);
+                    } else if (middleClick) {
+                        ToggleOrtho ();
                     }
                 }
             }
-            if (rightClick) PartTools?.OnRightClic ();
+            if (rightClick) partTools?.OnRightClic ();
             return false;
+        }
+
+        public void ToggleOrtho () {
+            orthoOn = !orthoOn;
+            designerCamera.orthographic = orthoOn;
+            gizmoCamera.orthographic = orthoOn;
+
+            if (ModSettings.Instance.viewCube) {
+                if (orthoOn) viewCube?.OnOrthoSizeChanged (designerCamera.orthographicSize);
+                else viewCube?.OnOrthoOff ();
+            }
         }
 
         public void SetCameraTo (String view) {

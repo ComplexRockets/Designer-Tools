@@ -20,7 +20,7 @@
                     <Panel class="header">
                         <TextMeshPro class="header-text" text="REFERENCE IMAGE TOOLS" />
                     </Panel>
-                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="5">
+                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="3">
                         <Image internalId="image" height="1" color="#2E353E" />
                     </Panel>
                     <Panel class="property-row row">
@@ -39,7 +39,7 @@
                     <Panel class="header">
                         <TextMeshPro class="header-text" text="ALIGN TOOLS" />
                     </Panel>
-                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="5">
+                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="3">
                         <Image internalId="image" height="1" color="#2E353E" />
                     </Panel>
                     <!--<Panel class="property-row row">
@@ -47,19 +47,50 @@
                         <Toggle rectAlignment="MiddleRight" />
                     </Panel>-->
                     <Panel class="property-row row">
-                        <TextMeshPro class="label" text="Align Parts" alignment="left"/>
+                        <TextMeshPro class="label" text="Align Position" alignment="left"/>
                         <HorizontalLayout childForceExpandWidth="false" spacing="5" width="340" rectAlignment="MiddleRight" childAlignment="MiddleRight">
-                            <Button class="btn" preferredwidth="30" onClick="OnAlignPartsButtonClicked(X);">
+                            <Button class="btn" preferredwidth="30" onClick="OnAlignPositionButtonClicked(X);">
                                 <TextMeshPro text="X" />
                             </Button>
-                            <Button class="btn" preferredwidth="30" onClick="OnAlignPartsButtonClicked(Y);">
+                            <Button class="btn" preferredwidth="30" onClick="OnAlignPositionButtonClicked(Y);">
                                 <TextMeshPro text="Y" />
                             </Button>
-                            <Button class="btn" preferredwidth="30" onClick="OnAlignPartsButtonClicked(Z);">
+                            <Button class="btn" preferredwidth="30" onClick="OnAlignPositionButtonClicked(Z);">
                                 <TextMeshPro text="Z" />
                             </Button>
                         </HorizontalLayout>
                     </Panel>
+                    <Panel class="property-row row">
+                        <TextMeshPro class="label" text="Align Rotation" alignment="left"/>
+                        <HorizontalLayout childForceExpandWidth="false" spacing="5" width="340" rectAlignment="MiddleRight" childAlignment="MiddleRight">
+                            <Button class="btn" preferredwidth="30" onClick="OnAlignRotationButtonClicked(X);">
+                                <TextMeshPro text="X" />
+                            </Button>
+                            <Button class="btn" preferredwidth="30" onClick="OnAlignRotationButtonClicked(Y);">
+                                <TextMeshPro text="Y" />
+                            </Button>
+                            <Button class="btn" preferredwidth="30" onClick="OnAlignRotationButtonClicked(Z);">
+                                <TextMeshPro text="Z" />
+                            </Button>
+                        </HorizontalLayout>
+                    </Panel>
+
+                    <!-- Multi Part Editing Tools-->
+                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="10"/>
+                    <Panel class="header">
+                        <TextMeshPro class="header-text" text="MULTI PART EDITING TOOLS" />
+                    </Panel>
+                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="3">
+                        <Image internalId="image" height="1" color="#2E353E" />
+                    </Panel>
+                    <Panel class="property-row slider" active="false">
+                        <TextMeshPro class="label" text="Resize" />
+                        <TextMeshPro class="value" id="Resizeslider-value" text="100%" />
+                        <Slider id="Resizeslider-slider" prefabPath="Ui/Prefabs/XmlLayout/Slider" onValueChanged="ResizeSliderValueChanged(selectedValue);" onMouseExit="ResizeSliderMouseExit();" minValue="0" maxValue="500" value="100" wholeNumbers="true"/>
+                    </Panel>
+                    <Button class="btn" preferredwidth="200" onClick="OnModifierPanelButtonClicked();">
+                        <TextMeshPro text="Open Modifer panel" />
+                    </Button>
 
                 </VerticalLayout>
             </VerticalScrollView>

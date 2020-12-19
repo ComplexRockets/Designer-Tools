@@ -9,6 +9,9 @@ using Assets.Scripts;
 using Assets.Scripts.Craft.Parts;
 using Assets.Scripts.Design;
 using Assets.Scripts.Design.Tools;
+using Assets.Scripts.Flight.GameView.UI;
+using Assets.Scripts.Flight.GameView.UI.Inspector;
+using Assets.Scripts.Flight.UI;
 using Assets.Scripts.Input;
 using Assets.Scripts.Ui;
 using Assets.Scripts.Ui.Inspector;
@@ -18,237 +21,241 @@ using ModApi.Craft.Parts;
 using ModApi.Craft.Parts.Attributes;
 using ModApi.Design;
 using ModApi.Design.PartProperties;
+using ModApi.Flight.UI;
 using ModApi.Input;
 using ModApi.Math;
 using ModApi.Ui;
 using TMPro;
 using UI.Xml;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.DesignerTools {
     public class ViewToolsUI : MonoBehaviour {
         private IXmlLayoutController _controller;
-        private bool OrthoViewActive;
-        private bool SelectingImage = false;
-        private bool MouseDown = false;
-        public bool ViewToolPanelPinned = false;
-        private Camera DesignerCamera = Game.Instance.Designer.DesignerCamera.Camera;
-        private float OrthoSize;
-        private MouseDrag _MouseDrag;
-        private String _Path = Mod.Instance.RefImagePath;
-        private List<String> _Images => (Directory.EnumerateFiles (_Path, "*.png").Union (Directory.EnumerateFiles (_Path, "*.jpg")).Union (Directory.EnumerateFiles (_Path, "*.jpeg"))).ToList ();
-        private List<ReferenceImage> _ReferenceImages = new List<ReferenceImage> ();
-        public List<ReferenceImage> ReferenceImages => _ReferenceImages;
-        public DesignerScript _Designer => (DesignerScript) Game.Instance.Designer;
-        private DesignerPartList _DesignerParts;
-        private DesignerPart _Fuselage = new DesignerPart ();
-        private PartScript _ReferencePart;
-        private XmlLayout _XmlLayout;
-        private XmlElement _ZoomPanel;
-        private XmlElement _ImageSelector;
-        private XmlElement _ViewToolsPin;
-        private XmlElement _ImageConfirmButton;
-        private Texture2D SelectedImage;
-        private string SelectedView;
+        private bool _selectingImage = false;
+        private bool _mouseDown = false;
+        public bool viewToolPanelPinned = false;
+        private Camera _designerCamera = Game.Instance.Designer.DesignerCamera.Camera;
+        private float _orthoSize;
+        private MouseDrag _mouseDrag;
+        private String _path = Mod.Instance.refImagePath;
+        private List<String> _images => (Directory.EnumerateFiles (_path, "*.png").Union (Directory.EnumerateFiles (_path, "*.jpg")).Union (Directory.EnumerateFiles (_path, "*.jpeg"))).ToList ();
+        private List<ReferenceImage> _referenceImages = new List<ReferenceImage> ();
+        public List<ReferenceImage> referenceImages => _referenceImages;
+        public DesignerScript _designer => (DesignerScript) Game.Instance.Designer;
+        private Mod _mod => Mod.Instance;
+        private DesignerPartList _designerParts;
+        private DesignerPart _fuselage = new DesignerPart ();
+        private PartScript _referencePart;
+        private XmlLayout _xmlLayout;
+        private XmlElement _zoomPanel;
+        private XmlElement _imageSelector;
+        private XmlElement _viewToolsPin;
+        private XmlElement _imageConfirmButton;
+        private Texture2D selectedImage;
+        private string selectedView;
 
         public void OnLayoutRebuilt (IXmlLayoutController xmlLayoutController) {
-            OrthoSize = DesignerCamera.orthographicSize;
+            _orthoSize = _designerCamera.orthographicSize;
             //_MouseDrag = new MouseDrag (_Designer.GizmoCamera);
-            Mod.Instance.ViewToolsUI = this;
+            _mod.viewToolsUI = this;
 
             _controller = xmlLayoutController;
-            _XmlLayout = (XmlLayout) _controller.XmlLayout;
-            _ZoomPanel = _XmlLayout.GetElementById ("ZoomPanel");
-            _ImageSelector = _XmlLayout.GetElementById ("ImageSelector");
-            _ViewToolsPin = _XmlLayout.GetElementById ("ViewToolsPin");
-            _ImageConfirmButton = _XmlLayout.GetElementById ("ImageConfirmButton");
-            _XmlLayout.GetElementById ("FolderPathText").SetAndApplyAttribute ("text", "Folder location : " + _Path);
+            _xmlLayout = (XmlLayout) _controller.XmlLayout;
+            _zoomPanel = _xmlLayout.GetElementById ("ZoomPanel");
+            _imageSelector = _xmlLayout.GetElementById ("ImageSelector");
+            _viewToolsPin = _xmlLayout.GetElementById ("ViewToolsPin");
+            _imageConfirmButton = _xmlLayout.GetElementById ("ImageConfirmButton");
+            _xmlLayout.GetElementById ("FolderPathText").SetAndApplyAttribute ("text", "Folder location : " + _path);
 
-            if (DesignerCamera.orthographic == true) {
-                XmlElement OrthoToggle = _XmlLayout.GetElementById ("OrthoToggle");
-                OrthoToggle.SetAndApplyAttribute ("isOn", "true");
-                _ZoomPanel.SetActive (true);
-                OrthoViewActive = true;
+            if (_mod.orthoOn) {
+                _xmlLayout.GetElementById<Toggle> ("OrthoToggle").isOn = true;
+                //_zoomPanel.SetActive (true);
             }
 
-            UpdateReferenceImages (Mod.Instance._ReferenceImages);
+            UpdateReferenceImages (_mod._referenceImages);
 
-            _DesignerParts = Game.Instance.CachedDesignerParts;
-            foreach (DesignerPart part in _DesignerParts.Parts) {
+            _designerParts = Game.Instance.CachedDesignerParts;
+            foreach (DesignerPart part in _designerParts.Parts) {
                 if (part.PartTypes.First ().Id == "Fuselage1") {
-                    _Fuselage = part;
+                    _fuselage = part;
                 }
             }
 
-            foreach (PartData part in _Designer.CraftScript.Data.Assembly.Parts) {
+            foreach (PartData part in _designer.CraftScript.Data.Assembly.Parts) {
                 PartScript _part = (PartScript) part.PartScript;
                 if (_part.name == "DesignerToolsRefPart") {
-                    _Designer.SelectPart (_part, null, false);
-                    _Designer.DeleteSelectedParts ();
+                    _designer.SelectPart (_part, null, false);
+                    _designer.DeleteSelectedParts ();
                 }
             }
         }
 
-        public void UpdateReferenceImages (List<ReferenceImage> Images) { 
-            foreach (ReferenceImage image in _ReferenceImages) {
+        public void UpdateReferenceImages (List<ReferenceImage> Images) {
+            foreach (ReferenceImage image in _referenceImages) {
                 image.Destroy ();
             }
 
-            _ReferenceImages = Images;
+            _referenceImages = Images;
 
-            foreach (ReferenceImage image in _ReferenceImages) {
-                if (image.ViewToolsUI == null) image.ViewToolsUI = this;
+            foreach (ReferenceImage image in _referenceImages) {
+                if (image.viewToolsUI == null) image.viewToolsUI = this;
                 image.ApplyChanges ();
 
-                if (!image.Active) {
-                    XmlElement ToggleButton = _XmlLayout.GetElementById ("Toggle" + image.View);
+                if (!image.active) {
+                    XmlElement ToggleButton = _xmlLayout.GetElementById ("Toggle" + image.view);
                     ToggleButton.SetAndApplyAttribute ("color", "Button");
                 }
 
-                _XmlLayout.GetElementById (image.View + "Settings").SetActive (true);
-                _XmlLayout.GetElementById (image.View + "NoImageSelected").SetActive (false);
-                _XmlLayout.GetElementById ("Select" + image.View).GetComponentInChildren<TextMeshProUGUI> ().SetText ("Edit Image");
+                _xmlLayout.GetElementById (image.view + "Settings").SetActive (true);
+                _xmlLayout.GetElementById (image.view + "NoImageSelected").SetActive (false);
+                TextMeshProUGUI text = _xmlLayout.GetElementById ("Select" + image.view).GetComponentInChildren<TextMeshProUGUI> ();
+                text.SetText ("Edit Image");
             }
         }
 
         public void Close () {
-            foreach (ReferenceImage image in _ReferenceImages) {
+            foreach (ReferenceImage image in _referenceImages) {
                 image.EditMode (false);
             }
-            Mod.Instance.OnViewPanelClosed (_ReferenceImages);
-            _XmlLayout.Hide (() => Destroy (this.gameObject), true);
+            _mod.OnViewPanelClosed (_referenceImages);
+            _xmlLayout.Hide (() => Destroy (this.gameObject), true);
         }
 
         public void OnUIValueChanged (ReferenceImage image) {
-            String prefix = image.View + "-";
-            _XmlLayout.GetElementById<InputField> (prefix + "OffsetX")?.SetTextWithoutNotify ((image.OffsetX).ToString ());
-            _XmlLayout.GetElementById<InputField> (prefix + "OffsetY")?.SetTextWithoutNotify ((image.OffsetY).ToString ());
-            _XmlLayout.GetElementById<InputField> (prefix + "Rotation")?.SetTextWithoutNotify (image.Rotation.ToString ());
-            _XmlLayout.GetElementById<InputField> (prefix + "Scale")?.SetTextWithoutNotify (image.Scale.ToString ());
-            _XmlLayout.GetElementById<InputField> (prefix + "Opacity")?.SetTextWithoutNotify (image.Opacity.ToString ());
+            String prefix = image.view + "-";
+            _xmlLayout.GetElementById<InputField> (prefix + "OffsetX")?.SetTextWithoutNotify ((image.offsetX).ToString ());
+            _xmlLayout.GetElementById<InputField> (prefix + "OffsetY")?.SetTextWithoutNotify ((image.offsetY).ToString ());
+            _xmlLayout.GetElementById<InputField> (prefix + "Rotation")?.SetTextWithoutNotify (image.rotation.ToString ());
+            _xmlLayout.GetElementById<InputField> (prefix + "Scale")?.SetTextWithoutNotify (image.scale.ToString ());
+            _xmlLayout.GetElementById<InputField> (prefix + "Opacity")?.SetTextWithoutNotify (image.opacity.ToString ());
         }
 
         protected virtual void Update () {
             if (UnityEngine.Input.GetMouseButtonDown (0)) {
-                MouseDown = true;
-                foreach (ReferenceImage image in _ReferenceImages) {
-                    if (image.EditModeOn) image.OnMouseStart ();
+                _mouseDown = true;
+                foreach (ReferenceImage image in _referenceImages) {
+                    if (image.editModeOn) image.OnMouseStart ();
                 }
             } else if (UnityEngine.Input.GetMouseButtonUp (0)) {
-                MouseDown = false;
-                foreach (ReferenceImage image in _ReferenceImages) {
-                    if (image.EditModeOn) image.OnMouseEnd ();
+                _mouseDown = false;
+                foreach (ReferenceImage image in _referenceImages) {
+                    if (image.editModeOn) image.OnMouseEnd ();
                 }
             }
-            if (MouseDown) {
-                foreach (ReferenceImage image in _ReferenceImages) {
-                    if (image.EditModeOn) image.OnMouseDown ();
+            if (_mouseDown) {
+                foreach (ReferenceImage image in _referenceImages) {
+                    if (image.editModeOn) image.OnMouseDown ();
                 }
             }
         }
 
         public void SetReferencePart (bool on) {
             bool editmode = false;
-            foreach (ReferenceImage image in _ReferenceImages) {
-                if (image.EditModeOn) { editmode = true; break; }
+            foreach (ReferenceImage image in _referenceImages) {
+                if (image.editModeOn) { editmode = true; break; }
             }
 
-            if (on && _ReferencePart == null) {
-                _Designer.AddPart (_Fuselage, new Vector2 ());
-                _ReferencePart = (PartScript) _Designer.CraftScript.Data.Assembly.Parts.Last ().PartScript;
-                _ReferencePart.name = "DesignerToolsRefPart";
-                _Designer.SelectPart (_ReferencePart, null, false);
-            } else if (!on && _ReferencePart != null) {
+            if (on && _referencePart == null) {
+                _designer.AddPart (_fuselage, new Vector2 ());
+                _referencePart = (PartScript) _designer.CraftScript.Data.Assembly.Parts.Last ().PartScript;
+                _referencePart.name = "DesignerToolsRefPart";
+                _designer.SelectPart (_referencePart, null, false);
+            } else if (!on && _referencePart != null) {
                 if (!editmode) {
-                    _Designer.SelectPart (_ReferencePart, null, false);
-                    _Designer.DeleteSelectedParts ();
-                    _ReferencePart = null;
+                    _designer.SelectPart (_referencePart, null, false);
+                    _designer.DeleteSelectedParts ();
+                    _referencePart = null;
                 }
             }
-            _Designer.AllowPartSelection = !editmode;
+            _designer.AllowPartSelection = !editmode;
         }
 
         private void OnViewButtonClicked (String view) {
-            Mod.Instance.SetCameraTo (view);
+            _mod.SetCameraTo (view);
         }
 
         private void OnSelectImageButtonClicked (XmlElement button) {
-            if (SelectingImage == false) {
+            if (_selectingImage == false) {
                 string view = button.id.Remove (0, 6);
 
                 ReferenceImage refimage = GetReferenceImage (view);
-                if (refimage?.View != null) {
-                    if (refimage.Active) refimage.EditMode (true);
-                    if (refimage.EditModeOn) {
-                        _XmlLayout.GetElementById ("Select" + view).SetActive (false);
-                        _XmlLayout.GetElementById ("EditModeSettings" + view).SetActive (true);
+                if (refimage?.view != null) {
+                    if (refimage.active) refimage.EditMode (true);
+                    if (refimage.editModeOn) {
+                        _xmlLayout.GetElementById ("Select" + view).SetActive (false);
+                        _xmlLayout.GetElementById ("EditModeSettings" + view).SetActive (true);
                     } else {
-                        _XmlLayout.GetElementById ("Select" + view).SetActive (true);
-                        _XmlLayout.GetElementById ("EditModeSettings" + view).SetActive (false);
+                        _xmlLayout.GetElementById ("Select" + view).SetActive (true);
+                        _xmlLayout.GetElementById ("EditModeSettings" + view).SetActive (false);
                     }
                     return;
                 }
 
-                SelectingImage = true;
-                _ImageSelector.SetActive (true);
-                _ImageConfirmButton.SetActive (false);
-                UpdateList ("Image", _Images);
-                SelectedView = view;
+                _selectingImage = true;
+                _imageSelector.SetActive (true);
+                _imageConfirmButton.SetActive (false);
+                UpdateList ("Image", _images);
+                selectedView = view;
             }
         }
 
         private void OnImageSelected (XmlElement image) {
-            if (_Path == null) _Path = (Application.persistentDataPath + "/mods/DesignerTools/ReferenceImages/");
+            if (_path == null) _path = (Application.persistentDataPath + "/mods/DesignerTools/ReferenceImages/");
 
             XmlElement OldImage = new XmlElement ();
-            try { OldImage = _XmlLayout.GetElementById ("Image" + SelectedImage.name); } catch { }
-            XmlElement Preview = _XmlLayout.GetElementById ("PreviewImage");
-            Preview.SetAndApplyAttribute ("image", _Path + image.id.Remove (0, 5));
+            try { OldImage = _xmlLayout.GetElementById ("Image" + selectedImage.name); } catch { }
+            XmlElement Preview = _xmlLayout.GetElementById ("PreviewImage");
+            Preview.SetAndApplyAttribute ("image", _path + image.id.Remove (0, 5));
 
-            SelectedImage = new Texture2D (0, 0);
-            SelectedImage.LoadImage (File.ReadAllBytes (_Path + image.id.Remove (0, 5)));
-            SelectedImage.name = image.id.Remove (0, 5);
+            selectedImage = new Texture2D (0, 0);
+            selectedImage.LoadImage (File.ReadAllBytes (_path + image.id.Remove (0, 5)));
+            selectedImage.name = image.id.Remove (0, 5);
+
+            RawImage preview = _xmlLayout.GetElementById<RawImage> ("PreviewImage");
+            preview.texture = selectedImage;
 
             image.SetAndApplyAttribute ("colors", "ButtonPressed|ButtonHover|ButtonHover|ButtonDisabled");
             try { OldImage.SetAndApplyAttribute ("colors", "Button|ButtonHover|ButtonHover|ButtonDisabled"); } catch { }
-            _ImageConfirmButton.SetActive (true);
+            _imageConfirmButton.SetActive (true);
         }
 
         private void OnImageConfirm () {
-            ReferenceImage refimage = GetReferenceImage (SelectedView);
-            if (refimage != null) refimage.UpdateImage (SelectedImage);
-            else _ReferenceImages.Add (new ReferenceImage (SelectedView, SelectedImage, this));
+            ReferenceImage refimage = GetReferenceImage (selectedView);
+            if (refimage != null) refimage.UpdateImage (selectedImage);
+            else _referenceImages.Add (new ReferenceImage (selectedView, selectedImage, this));
 
-            _XmlLayout.GetElementById (SelectedView + "Settings").SetActive (true);
-            _XmlLayout.GetElementById (SelectedView + "NoImageSelected").SetActive (false);
-            _XmlLayout.GetElementById ("Select" + SelectedView).GetComponentInChildren<TextMeshProUGUI> ().SetText ("Edit Image");
+            _xmlLayout.GetElementById (selectedView + "Settings").SetActive (true);
+            _xmlLayout.GetElementById (selectedView + "NoImageSelected").SetActive (false);
+            _xmlLayout.GetElementById ("Select" + selectedView).GetComponentInChildren<TextMeshProUGUI> ().SetText ("Edit Image");
 
-            SelectingImage = false;
-            _ImageSelector.SetActive (false);
+            _selectingImage = false;
+            _imageSelector.SetActive (false);
         }
 
         private void OnDeleteImageClicked (string view) {
             ReferenceImage refimage = GetReferenceImage (view);
             OnCloseEditMode (view);
             refimage?.Destroy ();
-            _ReferenceImages.Remove (refimage);
+            _referenceImages.Remove (refimage);
 
-            _XmlLayout.GetElementById (view + "Settings").SetActive (false);
-            _XmlLayout.GetElementById (view + "NoImageSelected").SetActive (true);
-            _XmlLayout.GetElementById ("Select" + view).GetComponentInChildren<TextMeshProUGUI> ().SetText ("Select Image");
+            _xmlLayout.GetElementById (view + "Settings").SetActive (false);
+            _xmlLayout.GetElementById (view + "NoImageSelected").SetActive (true);
+            _xmlLayout.GetElementById ("Select" + view).GetComponentInChildren<TextMeshProUGUI> ().SetText ("Select Image");
         }
 
         private void UpdateList (String List, List<String> ListItems) {
-            XmlElement scrollView = _XmlLayout.GetElementById (List + "List");
-            XmlElement ListItemTemplate = _XmlLayout.GetElementById (List + "template");
+            XmlElement scrollView = _xmlLayout.GetElementById (List + "List");
+            XmlElement ListItemTemplate = _xmlLayout.GetElementById (List + "template");
             List<string> _ListItems = new List<string> ();
 
             foreach (String item in ListItems) {
                 string _item = item.Split ('/').Last ();
                 _ListItems.Add (_item);
 
-                if (_XmlLayout.GetElementById (List + _item) == null) {
+                if (_xmlLayout.GetElementById (List + _item) == null) {
 
                     //Debug.Log ("Adding New item to " + List + " list : " + _item);
 
@@ -256,7 +263,7 @@ namespace Assets.Scripts.DesignerTools {
                     ListItem.name = List + _item;
                     XmlElement component = ListItem.GetComponent<XmlElement> ();
 
-                    component.Initialise (_XmlLayout, (RectTransform) ListItem.transform, ListItemTemplate.tagHandler);
+                    component.Initialise (_xmlLayout, (RectTransform) ListItem.transform, ListItemTemplate.tagHandler);
                     scrollView.AddChildElement (component);
 
                     component.SetAttribute ("active", "true");
@@ -279,7 +286,7 @@ namespace Assets.Scripts.DesignerTools {
             ReferenceImage refimage = GetReferenceImage (view);
             refimage?.Toggle ();
             refimage?.EditMode (false);
-            if (refimage.Active) image.SetAndApplyAttribute ("color", "White");
+            if (refimage.active) image.SetAndApplyAttribute ("color", "White");
             else image.SetAndApplyAttribute ("color", "Button");
         }
 
@@ -302,43 +309,44 @@ namespace Assets.Scripts.DesignerTools {
 
         private void OnCloseEditMode (string view) {
             GetReferenceImage (view).EditMode (false);
-            _XmlLayout.GetElementById ("Select" + view).SetActive (true);
-            _XmlLayout.GetElementById ("EditModeSettings" + view).SetActive (false);
+            _xmlLayout.GetElementById ("Select" + view).SetActive (true);
+            _xmlLayout.GetElementById ("EditModeSettings" + view).SetActive (false);
         }
 
         private void OnPin (XmlElement Panel) {
-            ViewToolPanelPinned = !ViewToolPanelPinned;
-            if (ViewToolPanelPinned) _ViewToolsPin.SetAndApplyAttribute ("color", "Primary");
-            else _ViewToolsPin.SetAndApplyAttribute ("color", "labeltext");
+            viewToolPanelPinned = !viewToolPanelPinned;
+            if (viewToolPanelPinned) _viewToolsPin.SetAndApplyAttribute ("color", "Primary");
+            else _viewToolsPin.SetAndApplyAttribute ("color", "labeltext");
         }
 
         private void OnClose (XmlElement panel) {
             if (panel.id == "ImageSelectorClose") {
-                SelectingImage = false;
-                _ImageSelector.SetActive (false);
+                _selectingImage = false;
+                _imageSelector.SetActive (false);
             }
         }
 
         private void OnOrthoToggleButtonClicked () {
-            OrthoViewActive = !OrthoViewActive;
-            DesignerCamera.orthographic = OrthoViewActive;
-            _Designer.GizmoCamera.orthographic = OrthoViewActive;
-            _ZoomPanel.SetActive (OrthoViewActive);
+            //_zoomPanel.SetActive (_mod.orthoOn);
+            _mod.ToggleOrtho ();
         }
 
-        private void OnZoomMinusClicked () {
-            OrthoSize++;
-            DesignerCamera.orthographicSize = OrthoSize;
-            _Designer.GizmoCamera.orthographicSize = OrthoSize;
-        }
-        private void OnZoomPlusButtonClicked () {
-            OrthoSize--;
-            if (OrthoSize <= 0) OrthoSize = 0.1f;
-            DesignerCamera.orthographicSize = OrthoSize;
-        }
+        // private void OnZoomMinusClicked () {
+        //     _orthoSize++;
+        //     _designerCamera.orthographicSize = _orthoSize;
+        //     _designer.GizmoCamera.orthographicSize = _orthoSize;
+        //     if (ModSettings.Instance.viewCube) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
+        // }
+        // private void OnZoomPlusButtonClicked () {
+        //     _orthoSize--;
+        //     if (_orthoSize < 0.1f) _orthoSize = 0.1f;
+        //     _designerCamera.orthographicSize = _orthoSize;
+        //     _designer.GizmoCamera.orthographicSize = _orthoSize;
+        //     if (ModSettings.Instance.viewCube) _mod.viewCube?.OnOrthoSizeChanged (_orthoSize);
+        // }
 
         private ReferenceImage GetReferenceImage (string view) {
-            return ReferenceImages.Find (image => image.View == view);
+            return referenceImages.Find (image => image.view == view);
         }
     }
 }

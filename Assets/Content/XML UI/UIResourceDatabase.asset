@@ -22,10 +22,10 @@ MonoBehaviour:
     resource: {fileID: 4900000, guid: 90afde8e7d8ca45feb784c73d70d5c1f, type: 3}
   - path: DesignerTools/Designer/DesignerTools
     resource: {fileID: 4900000, guid: 22a50f946ea2247fcb12914a297256be, type: 3}
+  - path: DesignerTools/Designer/ModiferDialog
+    resource: {fileID: 4900000, guid: 203c14fe5556c4d9c82601c3c4388fce, type: 3}
   - path: DesignerTools/Designer/ViewTools
     resource: {fileID: 4900000, guid: 4c4439f4d3c2e42e1afe61649289ac11, type: 3}
-  - path: DesignerTools/Designer/XmlLayout
-    resource: {fileID: 102900000, guid: d4ebce6f28f834720b6383de808f0c59, type: 3}
   - path: DesignerTools/RefImageMaterial
     resource: {fileID: 2100000, guid: e3c9ba3d79eb64ed3ae3d78bffba7d95, type: 2}
   - path: DesignerTools/Sprites/DesignerToolsIcon
@@ -34,5 +34,3 @@ MonoBehaviour:
     resource: {fileID: 21300000, guid: 838e2d1a8567b4b67b0ec1276c451be0, type: 3}
   - path: DesignerTools/UIResourceDatabase
     resource: {fileID: 11400000}
-  - path: DesignerTools/XmlLayout
-    resource: {fileID: 102900000, guid: e64268c14fb0e4bd69c74da4d1c0fb7d, type: 3}
