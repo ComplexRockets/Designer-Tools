@@ -1,107 +1,82 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using Assets.Scripts.Design;
-using Assets.Scripts.DesignerTools;
-using Assets.Scripts.Input;
-using Assets.Scripts.Ui;
-using ModApi;
-using ModApi.Common;
-using ModApi.Design;
-using ModApi.Input;
-using ModApi.Math;
 using ModApi.Ui;
-using TMPro;
 using UI.Xml;
-using UnityEngine;
-using UnityEngine.UI;
 
-namespace Assets.Scripts.Ui.Designer {
-    public class DesignerToolsUI : MonoBehaviour {
-        public FlyoutScript flyout = new FlyoutScript ();
-        private DesignerScript _designer => (DesignerScript) Game.Instance.Designer;
-        private Mod _mod = Mod.Instance;
-        private IXmlLayoutController _controller;
-        private static ViewToolsUI _viewToolsUI;
-        private XmlLayout _xmlLayout;
-        private XmlElement _resizeSlider;
-        private XmlElement _resizeSliderValue;
-        private float resizeSliderValue = 0;
+namespace Assets.Scripts.Ui.Designer
+{
+    public class DesignerToolsUI
+    {
+        private const string _buttonId = "DesignerTools-button";
+        private static DesignerScript _designer => (DesignerScript)Game.Instance.Designer;
+        private static XmlElement _flyoutButton;
+        public static bool flyoutOpened => designerToolsFlyout != null;
+        public static DesignerToolsFlyout designerToolsFlyout;
 
-        public void OnLayoutRebuilt (IXmlLayoutController xmlLayoutController) {
-            _controller = xmlLayoutController;
-            _xmlLayout = (XmlLayout) _controller.XmlLayout;
-            _resizeSliderValue = _xmlLayout.GetElementById ("Resizeslider-value");
-
-            flyout.Initialize (_xmlLayout.GetElementById ("flyout-DesignerTools"));
-            flyout.Open ();
+        public static void Initialize()
+        {
+            var userInterface = Game.Instance.UserInterface;
+            userInterface.AddBuildUserInterfaceXmlAction(UserInterfaceIds.Design.DesignerUi, OnBuildDesignerUI);
         }
 
-        private void OnViewToolButtonClicked () {
-            if (_viewToolsUI != null) {
-                _viewToolsUI.Close ();
-                _viewToolsUI = null;
-            } else {
-                var ui = Game.Instance.UserInterface;
-                _viewToolsUI = ui.BuildUserInterfaceFromResource<ViewToolsUI> ("DesignerTools/Designer/ViewTools", (script, controller) => script.OnLayoutRebuilt (controller));
+        private static void OnBuildDesignerUI(BuildUserInterfaceXmlRequest request)
+        {
+            var ns = XmlLayoutConstants.XmlNamespace;
+            var viewButton = request.XmlDocument
+                .Descendants(ns + "Panel")
+                .First(x => (string)x.Attribute("internalId") == "flyout-view");
+
+            viewButton.Parent.Add(
+                new XElement(
+                    ns + "Panel",
+                    new XAttribute("id", _buttonId),
+                    new XAttribute("class", "toggle-button audio-btn-click"),
+                    new XAttribute("name", "ButtonPanel.DesignerToolsUIController"),
+                    new XAttribute("tooltip", "Designer Tools"),
+                    new XElement(
+                        ns + "Image",
+                        new XAttribute("class", "toggle-button-icon"),
+                        new XAttribute("sprite", "DesignerTools/Sprites/DesignerToolsIcon"))));
+
+            request.AddOnLayoutRebuiltAction(xmlLayoutController =>
+            {
+                var button = xmlLayoutController.XmlLayout.GetElementById(_buttonId);
+                _flyoutButton = (XmlElement)button;
+                button.AddOnClickEvent(ToggleFlyout);
+            });
+
+            _designer.DesignerUi.SelectedFlyoutChanged += SelectedFlyoutChanged;
+        }
+
+        private static void SelectedFlyoutChanged(IFlyout flyout)
+        {
+            if (flyout != null && flyoutOpened && flyout.Title != designerToolsFlyout.flyout.Title) CloseFlyout();
+        }
+
+        public static void ToggleFlyout()
+        {
+            if (flyoutOpened)
+            {
+                _designer.DesignerUi.SelectedFlyout = null;
+                CloseFlyout();
             }
+            else OpenFlyout();
         }
 
-        private void OnSaveRefImagesButtonClicked () {
-            _mod.OnSaveRefImages ();
+        public static void OpenFlyout()
+        {
+            var ui = Game.Instance.UserInterface;
+            designerToolsFlyout = ui.BuildUserInterfaceFromResource<DesignerToolsFlyout>("DesignerTools/Designer/DesignerTools", (script, controller) => script.OnLayoutRebuilt(controller));
+            _flyoutButton.AddClass("toggle-button-toggled");
+            _designer.DesignerUi.SelectedFlyout = designerToolsFlyout.flyout;
         }
 
-        private void OnAlignPositionButtonClicked (char axis) {
-            if (!ModSettings.Instance.DevMode) { DevModeOffError (); return; }
-            _mod.partTools.OnAlignPosition (axis);
-        }
-
-        private void OnAlignRotationButtonClicked (char axis) {
-            if (!ModSettings.Instance.DevMode) { DevModeOffError (); return; }
-            _mod.partTools.OnAlignRotation (axis);
-        }
-
-        private void ResizeSliderValueChanged (float value) {
-            if (!ModSettings.Instance.DevMode) return;
-            _mod.partTools.OnResizeParts (resizeSliderValue);
-            _resizeSliderValue.SetAndApplyAttribute ("text", value + "%");
-            resizeSliderValue = value;
-        }
-
-        private void ResizeSliderMouseExit () {
-            //if (ResizeSliderValue != 0)     
-            //ResizeSliderValue = 0;
-        }
-
-        private void OnModifierPanelButtonClicked () {
-            if (_mod.selectorManager.selectedParts.Count > 0) {
-                ModiferDialogController.Create (_designer.SelectedPart.Data);
-            } else _designer.DesignerUi.ShowMessage (_mod.errorColor + "No Part Selected");
-        }
-
-        public void OnFlyoutCloseButtonClicked () {
-            Close ();
-        }
-
-        public void DevModeOffError () {
-            _designer.DesignerUi.ShowMessage (_mod.errorColor + "This feature is not yet fully working and is hidden to avoid bugs, it can be activated through the settings");
-        }
-
-        public void Close () {
-            _xmlLayout.Hide (() => Destroy (this.gameObject), true);
-            if (_viewToolsUI != null && !_viewToolsUI.viewToolPanelPinned) {
-                _viewToolsUI.Close ();
-                _viewToolsUI = null;
-            }
-        }
-
-        public ViewToolsUI GetViewToolsUI () {
-            if (_viewToolsUI != null) return _viewToolsUI;
-            return null;
+        public static void CloseFlyout()
+        {
+            designerToolsFlyout.Close();
+            designerToolsFlyout = null;
+            _flyoutButton.RemoveClass("toggle-button-toggled");
         }
     }
 }

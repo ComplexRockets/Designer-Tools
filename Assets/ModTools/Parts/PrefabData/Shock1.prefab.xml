@@ -37,5 +37,9 @@
         <Component type="ModApi.Craft.Parts.PartMeshScript" />
       </GameObject>
     </GameObject>
+    <GameObject name="AttachPointPositions">
+      <GameObject name="AttachPointTop" />
+      <GameObject name="AttachPointBottom" />
+    </GameObject>
   </GameObject>
 </GameObject>

@@ -34,9 +34,11 @@
         <TextMeshPro text="CUSTOMIZE" />
       </Button>
       <VerticalLayout id="edit-color-panel" class="no-image" spacing="15" childForceExpandHeight="false" childAlignment="UpperCenter">
-        <Panel class="header">
-          <TextMeshPro text="EDIT COLOR" />
-          <Image class="separator" />
+        <Panel class="row">
+          <TextMeshProInputField id="color-name-input" text="" width="100%" height="100%" rectAlignment="MiddleRight">
+            <TMP_Placeholder id="color-name-input-placeholder" text="Material Name..." alignment="Left" />
+            <TMP_Text text="" alignment="Left" />
+          </TextMeshProInputField>
         </Panel>
         <Panel id="hue-color-picker" class="color-picker">
           <Image offsetMin="-2 -2" offsetMax="2 2" color="Button" />
@@ -48,12 +50,10 @@
           <RawImage raycastTarget="false" />
           <Image class="color-picker-selection" />
         </Panel>
-        <Panel class="row">
-          <TextMeshPro class="label tooltip" text="Color" tooltip="The hex value of the color, in the form of #RRGGBB." />
-          <TextMeshProInputField id="color-input" text="" width="65%" height="100%" rectAlignment="MiddleRight">
-            <TMP_Placeholder text="#RRGGBB" alignment="Center" />
-            <TMP_Text text="" alignment="Center" />
-          </TextMeshProInputField>
+        <Panel class="no-image" preferredHeight="20" id="select-background-color-panel">
+          <Button class="btn" onClick="OnColorPickerClicked();" tooltip="Pick a color using a color wheel.">
+            <TextMeshPro text="Color Picker" />
+          </Button>
         </Panel>
         <Panel class="spinner">
           <TextMeshPro class="label tooltip" text="Style" tooltip="Style preset that changes how smooth and metallic the color should look" />

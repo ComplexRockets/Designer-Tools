@@ -103,6 +103,16 @@
             </TextMeshProInputField>
           </Spinner>
         </Panel>
+        <Panel class="slider">
+          <TextMeshPro class="label tooltip" text="Pinch" tooltip="Higher values will reduce the size of one of the sides" />
+          <TextMeshPro name="slider-value" class="value" text="None" />
+          <Slider id="pinch" />
+        </Panel>
+        <Panel class="slider">
+          <TextMeshPro class="label tooltip" text="Slant" tooltip="Higher values will slant one of the sides of the top face" />
+          <TextMeshPro name="slider-value" class="value" text="None" />
+          <Slider id="slant" />
+        </Panel>
       </VerticalLayout>
     </VerticalLayout>
   </VerticalScrollView>

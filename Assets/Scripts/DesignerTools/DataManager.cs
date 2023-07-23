@@ -7,117 +7,194 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using Assets.Scripts;
+using Assets.Scripts.DesignerTools.ReferenceImages;
+using ModApi.Ui;
 using UnityEngine;
 
-namespace Assets.Scripts.DesignerTools {
-    public class DataManager {
+namespace Assets.Scripts.DesignerTools
+{
+    public class DataManager
+    {
         private Mod _mod => Mod.Instance;
         private XmlSerializer _xmlSerializer;
         private FileStream _fileStream;
         public CraftImagesDataBase imageDB;
+        public CraftImagesData copiedImageData;
 
-        public void initialise () {
-            //Debug.Log ("DataManagerInitialised");
+        public void initialise()
+        {
             string path = _mod.refImagePath + "/ReferenceImagesData.xml";
-            _xmlSerializer = new XmlSerializer (typeof (CraftImagesDataBase));
+            _xmlSerializer = new XmlSerializer(typeof(CraftImagesDataBase));
 
-            if (!File.Exists (path)) SaveXml ();
+            if (!File.Exists(path)) SaveXml();
 
-            using (StringReader reader = new StringReader (File.ReadAllText (path))) {
-                imageDB = (_xmlSerializer.Deserialize (reader)) as CraftImagesDataBase;
+            using (StringReader reader = new StringReader(File.ReadAllText(path)))
+            {
+                imageDB = (_xmlSerializer.Deserialize(reader)) as CraftImagesDataBase;
             }
-            if (imageDB == null) imageDB = new CraftImagesDataBase ();
+            if (imageDB == null) imageDB = new CraftImagesDataBase();
         }
 
-        public void SaveImages (string craftName, List<ReferenceImage> images) {
-            try {
-                CraftImagesData ImageData = GetImages (craftName);
-                if (ImageData != null) imageDB.CraftImagesList.Remove (ImageData);
-            } catch (Exception e) { Debug.Log ("Existing CraftImagesData check failed: " + e); }
+        public void SaveImages(string craftName, ReferenceImage[] images)
+        {
+            List<ReferenceImageData> _ImageList = new List<ReferenceImageData>();
+            foreach (ReferenceImage image in images)
+            {
+                if (image.hasImage || image.missingImage)
+                {
+                    _ImageList.Add(new ReferenceImageData()
+                    {
 
-            List<ReferenceImageData> _ImageList = new List<ReferenceImageData> ();
-            foreach (ReferenceImage image in images) {
-                _ImageList.Add (new ReferenceImageData () {
-                    View = image.view,
+                        View = image.view,
                         Rotation = image.rotation,
                         OffsetX = image.offsetX,
                         OffsetY = image.offsetY,
+                        OffsetZ = image.offsetZ,
                         Scale = image.scale,
                         Opacity = image.opacity,
                         Active = image.active,
-                        ImageName = image.image.name
+                        ImageName = image.imageName
+                    });
+                }
+            }
+
+            if (_ImageList.Count() > 0)
+            {
+                DeleteImageData(craftName);
+                imageDB.CraftImagesList.Add(new CraftImagesData()
+                {
+                    CraftName = craftName,
+                    ImageList = _ImageList
                 });
             }
+        }
 
-            imageDB.CraftImagesList.Add (new CraftImagesData () {
+        public void PasteImageData()
+        {
+            if (copiedImageData == null)
+            {
+                _mod.designer.DesignerUi.ShowMessage("No reference image data was copied!");
+                return;
+            }
+
+            string craftName = _mod.designer.CraftScript.Data.Name;
+
+            if (!_mod.CraftValidForRefImg())
+            {
+                _mod.designer.DesignerUi.ShowMessage(_mod.errorColor + "'" + craftName + "' can't have reference images");
+                return;
+            }
+
+            if (GetImages(craftName) != null)
+            {
+                MessageDialogScript messageDialogScript = Game.Instance.UserInterface.CreateMessageDialog(MessageDialogType.OkayCancel);
+                messageDialogScript.OkayButtonText = "OVERWRITE";
+                messageDialogScript.MessageText = string.Format("'" + craftName + "' already has reference images");
+                messageDialogScript.UseDangerButtonStyle = true;
+                messageDialogScript.OkayClicked += delegate (MessageDialogScript d)
+                {
+                    d.Close();
+                    Paste();
+                };
+            }
+            else Paste();
+        }
+
+        private void Paste()
+        {
+            string craftName = _mod.designer.CraftScript.Data.Name;
+            DeleteImageData(craftName);
+            imageDB.CraftImagesList.Add(new CraftImagesData()
+            {
                 CraftName = craftName,
-                    ImageList = _ImageList
+                ImageList = copiedImageData.ImageList
             });
+            _mod.designer.DesignerUi.ShowMessage("Pasted images from '" + copiedImageData.CraftName + "'");
+            _mod.RefreshReferenceImages();
         }
 
-        public CraftImagesData GetImages (string craftID) {
-            foreach (CraftImagesData Images in imageDB.CraftImagesList) {
-                if (Images.CraftName == craftID) {
-                    return Images;
+        public CraftImagesData GetImages(string craftID)
+        {
+            foreach (CraftImagesData images in imageDB.CraftImagesList)
+            {
+                if (images.CraftName == craftID)
+                {
+                    return images;
                 }
             }
             return null;
         }
 
-        public List<ReferenceImage> LoadImages (string craftID) {
-            //Debug.Log ("LoadingImages...");
-            CraftImagesData images = GetImages (craftID);
-            if (images != null) {
-                List<ReferenceImage> ReferenceImages = new List<ReferenceImage> ();
-                foreach (ReferenceImageData image in images.ImageList) {
-                    try {
-                        Texture2D RefImage = new Texture2D (0, 0);
-                        RefImage.LoadImage (File.ReadAllBytes (_mod.refImagePath + image.ImageName));
-                        RefImage.name = image.ImageName;
+        public ReferenceImage[] LoadImages(string craftID)
+        {
+            CraftImagesData images = GetImages(craftID);
+            ReferenceImage[] referenceImages = Mod.emptyRefImages();
+            if (images != null)
+            {
+                foreach (ReferenceImageData img in images.ImageList)
+                {
+                    ReferenceImage image;
+                    if (File.Exists(_mod.refImagePath + img.ImageName))
+                    {
+                        Texture2D RefImage = new Texture2D(0, 0);
+                        RefImage.LoadImage(File.ReadAllBytes(_mod.refImagePath + img.ImageName));
+                        RefImage.name = img.ImageName;
 
-                        ReferenceImages.Add (new ReferenceImage (image.View, RefImage, null));
-                        ReferenceImages.Last ().UpdateValue ("OffsetX", image.OffsetX);
-                        ReferenceImages.Last ().UpdateValue ("OffsetY", image.OffsetY);
-                        ReferenceImages.Last ().UpdateValue ("Scale", image.Scale);
-                        ReferenceImages.Last ().UpdateValue ("Rotation", image.Rotation);
-                        ReferenceImages.Last ().UpdateValue ("Opacity", image.Opacity);
-                        if (ReferenceImages.Last ().active != image.Active) ReferenceImages.Last ().Toggle ();
+                        image = new GameObject().AddComponent<ReferenceImage>().Initialise(img.View, RefImage);
+                    }
+                    else image = new GameObject().AddComponent<ReferenceImage>().Initialise(img.View, img.ImageName);
 
-                    } catch (Exception e) { Debug.LogError ("Image Error: " + e); }
+                    image.UpdateValue("OffsetX", img.OffsetX);
+                    image.UpdateValue("OffsetY", img.OffsetY);
+                    image.UpdateValue("OffsetZ", img.OffsetZ);
+                    image.UpdateValue("Scale", img.Scale);
+                    image.UpdateValue("Rotation", img.Rotation);
+                    image.UpdateValue("Opacity", img.Opacity);
+                    image.Toggle(img.Active);
+                    referenceImages[(int)img.View] = image;
                 }
-                return ReferenceImages;
             }
-            //Debug.Log ("Images null");
-            return null;
+            return referenceImages;
         }
 
-        public void SaveXml () {
-            _fileStream = new FileStream (_mod.refImagePath + "/ReferenceImagesData.xml", FileMode.Create);
-            _xmlSerializer.Serialize (_fileStream, imageDB);
-            _fileStream.Close ();
+        public void DeleteImageData(string craftId)
+        {
+            CraftImagesData images = GetImages(craftId);
+            if (images != null) imageDB.CraftImagesList.Remove(images);
+            SaveXml();
+        }
+
+        public void SaveXml()
+        {
+            _fileStream = new FileStream(_mod.refImagePath + "/ReferenceImagesData.xml", FileMode.Create);
+            _xmlSerializer.Serialize(_fileStream, imageDB);
+            _fileStream.Close();
             //Debug.Log ("XmlSaved");
         }
     }
 
-    public class CraftImagesDataBase {
-        [XmlArrayAttribute ("Crafts")]
-        public List<CraftImagesData> CraftImagesList = new List<CraftImagesData> ();
+    public class CraftImagesDataBase
+    {
+        [XmlArrayAttribute("Crafts")]
+        public List<CraftImagesData> CraftImagesList = new List<CraftImagesData>();
     }
 
-    public class CraftImagesData {
+    public class CraftImagesData
+    {
         [XmlAttribute]
         public string CraftName;
-        [XmlArray ("ReferenceImages")]
-        public List<ReferenceImageData> ImageList = new List<ReferenceImageData> ();
+        [XmlArray("ReferenceImages")]
+        public List<ReferenceImageData> ImageList = new List<ReferenceImageData>();
     }
 
-    public class ReferenceImageData {
+    public class ReferenceImageData
+    {
         [XmlAttribute]
-        public string View;
+        public Views View;
         [XmlAttribute]
         public string ImageName;
         [XmlAttribute]
-        public float Rotation, OffsetX, OffsetY, Scale, Opacity;
+        public float Rotation, OffsetX, OffsetY, OffsetZ, Scale, Opacity;
         [XmlAttribute]
         public bool Active;
     }

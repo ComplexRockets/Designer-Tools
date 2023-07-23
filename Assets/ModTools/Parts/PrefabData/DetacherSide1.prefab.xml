@@ -8,5 +8,9 @@
       <Component type="UnityEngine.BoxCollider" />
       <Component type="ModApi.Craft.Parts.PartColliderScript" />
     </GameObject>
+    <GameObject name="AttachPointPositions">
+      <GameObject name="AttachPoint1" />
+      <GameObject name="AttachPoint2" />
+    </GameObject>
   </GameObject>
 </GameObject>

@@ -29,5 +29,9 @@
       <Component type="UnityEngine.MeshRenderer" />
       <Component type="UnityEngine.BoxCollider" />
     </GameObject>
+    <GameObject name="AttachPointPositions">
+      <GameObject name="AttachPointTop" />
+      <GameObject name="AttachPointBottom" />
+    </GameObject>
   </GameObject>
 </GameObject>

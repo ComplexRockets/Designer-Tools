@@ -8,7 +8,7 @@
     <VerticalLayout id="content" class="no-image" childForceExpandHeight="false" spacing="10" pivot="0 1">
       <Panel class="spinner row">
         <TextMeshPro class="label tooltip" text="Grid Size" tooltip="Changes how far to move the part with each step" />
-        <Spinner id="spinner-grid-size" numericFormat="0.##" onNumericValueChanged="OnGridSizeSpinnerChanged();" stepSize="0.05" minValue="0" maxValue="2">
+        <Spinner id="spinner-grid-size" numericFormat="0.###" onNumericValueChanged="OnGridSizeSpinnerChanged();" stepSize="0.05" minValue="0" maxValue="2">
           <TextMeshProInputField>
             <TMP_Text />
           </TextMeshProInputField>
@@ -33,24 +33,24 @@
         <Image class="separator" />
       </Panel>
       <Panel class="spinner row">
-        <TextMeshPro class="label tooltip" text="X-Pos" tooltip="Part's current X-position" />
-        <Spinner id="spinner-x" class="position-spinner" onNumericValueChanged="OnPositionSpinnerChanged();">
+        <TextMeshPro class="label tooltip" text="X-Pos" color="#e62e2e" tooltip="Part's current X-position" />
+        <Spinner id="spinner-x" class="position-spinner" numericFormat="0.###" onNumericValueChanged="OnPositionSpinnerChanged();">
           <TextMeshProInputField>
             <TMP_Text />
           </TextMeshProInputField>
         </Spinner>
       </Panel>
       <Panel class="spinner row">
-        <TextMeshPro class="label tooltip" text="Y-Pos" tooltip="Part's current Y-position" />
-        <Spinner id="spinner-y" class="position-spinner" onNumericValueChanged="OnPositionSpinnerChanged();">
+        <TextMeshPro class="label tooltip" text="Y-Pos" color="#088f00" tooltip="Part's current Y-position" />
+        <Spinner id="spinner-y" class="position-spinner" numericFormat="0.###" onNumericValueChanged="OnPositionSpinnerChanged();">
           <TextMeshProInputField>
             <TMP_Text />
           </TextMeshProInputField>
         </Spinner>
       </Panel>
       <Panel class="spinner row">
-        <TextMeshPro class="label tooltip" text="Z-Pos" tooltip="Part's current Z-position" />
-        <Spinner id="spinner-z" class="position-spinner" onNumericValueChanged="OnPositionSpinnerChanged();">
+        <TextMeshPro class="label tooltip" text="Z-Pos" color="#5670ff" tooltip="Part's current Z-position" />
+        <Spinner id="spinner-z" class="position-spinner" numericFormat="0.###" onNumericValueChanged="OnPositionSpinnerChanged();">
           <TextMeshProInputField>
             <TMP_Text />
           </TextMeshProInputField>

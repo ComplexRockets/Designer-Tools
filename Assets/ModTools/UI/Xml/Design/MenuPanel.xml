@@ -23,24 +23,20 @@
         <Button class="icon-button audio-btn-big" icon="Ui/Sprites/Common/IconButtonShare" rectAlignment="MiddleCenter" onClick="OnShareCraftButtonClicked();" tooltip="Upload this craft to the website to share it with other players." tooltipPosition="Above" />
         <Button class="icon-button audio-btn-big" icon="Ui/Sprites/Common/IconButtonCamera" rectAlignment="MiddleRight" offsetXY="-15 0" onClick="OnPhotoLibraryButtonClicked();" tooltip="Photo Library" tooltipPosition="Above" id="photo-library-button" />
       </Panel>
-      <Image class="separator" />
-      <Button class="btn btn-primary" rectAlignment="LowerLeft" onClick="OnPerformanceAnalyzerButtonClicked();" tooltip="Open the Analyze Performance window to view your craft's performance.">
-        <TextMeshPro text="PERFORMANCE" />
+      <Image class="separator career-mode" />
+      <Button class="btn btn-primary career-mode" rectAlignment="LowerLeft" onClick="OnTechTreeButtonClicked();" tooltip="View the Tech Tree.">
+        <TextMeshPro text="TECH TREE" />
       </Button>
-      <Button class="btn btn-primary" rectAlignment="LowerLeft" onClick="OnEditProgramButtonClicked();" tooltip="Automate your craft with Vizzy, a visual programming system.">
-        <TextMeshPro text="EDIT PROGRAM" />
+      <Button class="btn btn-primary career-mode" rectAlignment="LowerLeft" onClick="OnCareerButtonClicked();" tooltip="View the Career dialog.">
+        <TextMeshPro text="CAREER" />
       </Button>
       <Image class="separator" />
       <Button class="btn" rectAlignment="LowerLeft" onClick="OnBugReportButtonClicked();" tooltip="Report a bug to the developers.">
         <TextMeshPro text="REPORT A BUG" />
       </Button>
       <Image class="separator" />
-      <Button class="btn" rectAlignment="LowerLeft" onClick="OnLaunchLocationButtonClicked();" tooltip="Change the current launch location.">
-        <TextMeshPro text="LAUNCH LOCATION" />
-      </Button>
-      <Image class="separator" />
       <Button class="btn audio-btn-big" rectAlignment="LowerLeft" onClick="OnExitButtonClicked();" tooltip="Exit the designer back to the main menu.">
-        <TextMeshPro text="EXIT" />
+        <TextMeshPro text="EXIT DESIGNER" />
       </Button>
     </VerticalLayout>
   </VerticalScrollView>

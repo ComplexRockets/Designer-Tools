@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 2121057919, guid: 43320b5f70320504aa4b1543184e13b2, type: 3}
   m_Name: Structural Part Category
   m_EditorClassIdentifier: 
-  _id: Structural
+  _careerModeOnly: 0
   _displayName: Structural
-  _displayOrder: 1000
+  _displayOrder: 1100
   _icon: {fileID: 0}
+  _id: Structural
   _tooltip: Structural

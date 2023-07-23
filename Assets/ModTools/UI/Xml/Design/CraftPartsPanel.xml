@@ -24,7 +24,19 @@
         <TextMeshPro id="toggle-all-button-text" text="Hide All" />
       </Button>
     </Panel>
-    <VerticalScrollView id="scrollview" class="no-image" pivot="0 1" offsetMax="0 -65">
+    <Panel height="32" color="ButtonPressed" offsetXY="0 -65" rectAlignment="UpperCenter">
+      <TextMeshPro id="sort" offsetMin="10 0" alignment="Left" rectAlignment="MiddleLeft" text="Sort by" width="30%" />
+      <Button class="btn btn-sm" rectAlignment="MiddleRight" width="20%" offsetXY="-105 0" onClick="OnSortingMethodMass();">
+        <TextMeshPro text="Mass" />
+      </Button>
+      <Button class="btn btn-sm" rectAlignment="MiddleRight" width="20%" offsetXY="-55 0" onClick="OnSortingMethodName();">
+        <TextMeshPro text="Name" />
+      </Button>
+      <Button class="btn btn-sm" rectAlignment="MiddleRight" width="20%" offsetXY="-5 0" onClick="OnSortingMethodPrice();">
+        <TextMeshPro text="Price" />
+      </Button>
+    </Panel>
+    <VerticalScrollView id="scrollview" class="no-image" pivot="0 1" offsetMax="0 -100">
       <VerticalLayout id="content" class="no-image" contentSizeFitter="vertical" childAlignment="UpperCenter" childForceExpandHeight="false" pivot="0 1" padding="0 0 0 40">
         <ContentButton id="template" class="list-item btn" active="false">
           <TextMeshPro internalId="name" offsetMin="10 0" alignment="Left" text="Part Name" />

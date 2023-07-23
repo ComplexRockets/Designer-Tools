@@ -4,6 +4,10 @@
   <Component type="Assets.Scripts.Craft.Parts.Modifiers.LandingGear.LandingGearAnimator" />
   <Component type="Assets.Scripts.Craft.Parts.Modifiers.LandingGear.LandingGearScriptConfig" />
   <Component type="Assets.Scripts.Craft.Parts.Modifiers.LoopingAudioScript" />
+  <Component type="UnityEngine.AudioSource" />
+  <Component type="UnityEngine.AudioSource" />
+  <Component type="UnityEngine.AudioSource" />
+  <Component type="UnityEngine.AudioSource" />
   <GameObject name="AttachPointWithBay" />
   <GameObject name="AttachPointWithoutBay" />
   <GameObject name="LandingGear">

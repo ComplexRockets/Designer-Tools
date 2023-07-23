@@ -10,9 +10,11 @@
       <Panel preferredHeight="320">
         <Panel rectAlignment="MiddleLeft" width="55%">
           <Panel id="hue-selector" sprite="Ui/Sprites/Common/ColorPickerWheel" width="280" height="280" raycastTarget="true"></Panel>
-          <Image id="color-selector" color="white" width="130" height="130" raycastTarget="true">
-            <Panel id="color-selector-point" color="Primary" sprite="Ui/Sprites/Common/CircleBorder" width="16" height="16" />
-          </Image>
+          <Panel id="color-selector-input" width="150" height="150" raycastTarget="true">
+            <Image id="color-selector" color="white" width="130" height="130">
+              <Panel id="color-selector-point" color="Primary" sprite="Ui/Sprites/Common/CircleBorder" width="16" height="16" />
+            </Image>
+          </Panel>
           <Panel id="hue-selector-point" width="269" height="7">
             <Panel sprite="Ui/Sprites/Common/CircleBorder" width="32" height="32" rectAlignment="MiddleRight" />
           </Panel>

@@ -84,6 +84,55 @@
                 </GameObject>
               </GameObject>
             </GameObject>
+            <GameObject name="EVAChestPlateVariant">
+              <Component type="UnityEngine.MeshFilter" />
+              <Component type="UnityEngine.MeshRenderer" />
+              <Component type="ModApi.Craft.Parts.PartMeshScript" />
+              <GameObject name="JetPackNozzleBottomLeft">
+                <GameObject name="ParticleSystem">
+                  <Component type="UnityEngine.ParticleSystem" />
+                  <Component type="UnityEngine.ParticleSystemRenderer" />
+                </GameObject>
+                <GameObject name="JetPackNozzleBottomLeft">
+                  <Component type="UnityEngine.MeshFilter" />
+                  <Component type="UnityEngine.MeshRenderer" />
+                  <Component type="ModApi.Craft.Parts.PartMeshScript" />
+                </GameObject>
+              </GameObject>
+              <GameObject name="JetPackNozzleBottomRight">
+                <GameObject name="JetPackNozzleBottomRight">
+                  <Component type="UnityEngine.MeshFilter" />
+                  <Component type="UnityEngine.MeshRenderer" />
+                  <Component type="ModApi.Craft.Parts.PartMeshScript" />
+                </GameObject>
+                <GameObject name="ParticleSystem">
+                  <Component type="UnityEngine.ParticleSystem" />
+                  <Component type="UnityEngine.ParticleSystemRenderer" />
+                </GameObject>
+              </GameObject>
+              <GameObject name="JetPackNozzleTopLeft">
+                <GameObject name="ParticleSystem">
+                  <Component type="UnityEngine.ParticleSystem" />
+                  <Component type="UnityEngine.ParticleSystemRenderer" />
+                </GameObject>
+                <GameObject name="JetPackNozzleTopLeft">
+                  <Component type="UnityEngine.MeshFilter" />
+                  <Component type="UnityEngine.MeshRenderer" />
+                  <Component type="ModApi.Craft.Parts.PartMeshScript" />
+                </GameObject>
+              </GameObject>
+              <GameObject name="JetPackNozzleTopRight">
+                <GameObject name="ParticleSystem">
+                  <Component type="UnityEngine.ParticleSystem" />
+                  <Component type="UnityEngine.ParticleSystemRenderer" />
+                </GameObject>
+                <GameObject name="JetPackNozzleTopRight">
+                  <Component type="UnityEngine.MeshFilter" />
+                  <Component type="UnityEngine.MeshRenderer" />
+                  <Component type="ModApi.Craft.Parts.PartMeshScript" />
+                </GameObject>
+              </GameObject>
+            </GameObject>
             <GameObject name="LeftClavicle">
               <GameObject name="LeftShoulder">
                 <GameObject name="LeftElbow">

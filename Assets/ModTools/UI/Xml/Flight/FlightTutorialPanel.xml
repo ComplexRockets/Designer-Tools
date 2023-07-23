@@ -8,19 +8,18 @@
     <VerticalLayout class="tutorial-offset" device="mobile" offsetXY="0 55" />
   </Defaults>
   <Panel id="tutorial" class="no-image">
-    <Image id="tutorial-highlight" width="64" height="64" sprite="Ui/Sprites/Border/Square-2px" type="Sliced" fillCenter="false" active="false" />
     <Panel class="safe-area no-image">
       <VerticalLayout pivot="0.5 0" id="tutorial-panel" class="tutorial-offset" color="TutorialPanel" childForceExpandHeight="false" contentSizeFitter="vertical" width="700" height="100" rectAlignment="LowerCenter" padding="5 5 5 5" spacing="5">
-        <TextMeshPro id="tutorial-step-text" color="White" autoSizeTextContainer="true" margin="10 0 10 0" />
-        <Panel preferredHeight="5" />
-        <TextMeshPro color="Primary" id="tutorial-instruction-text" />
-        <Panel preferredHeight="5" />
-        <Panel id="tutorial-button-panel" preferredHeight="25" active="false">
+        <Button id="close-button" active="false" class="icon-button audio-btn-back" ignoreLayout="true" width="24" height="24" icon="Ui/Sprites/Common/IconCloseButton" rectAlignment="UpperRight" onClick="OnCloseButtonClicked();" tooltip="Close tutorial" tooltipPosition="Above" />
+        <TextMeshPro id="tutorial-step-text" color="White" autoSizeTextContainer="true" margin="25 5 25 5" />
+        <TextMeshPro color="Primary" id="tutorial-instruction-text" margin="25 0 25 5" />
+        <Panel id="tutorial-button-panel" preferredHeight="30" active="false">
           <Button class="btn btn-primary" width="150" rectAlignment="MiddleCenter" onClick="OnButtonClicked();">
-            <TextMeshPro text="Okay" />
+            <TextMeshPro name="Tutorial.OkayButton" text="OKAY" />
           </Button>
         </Panel>
       </VerticalLayout>
     </Panel>
+    <Image id="tutorial-highlight" width="64" height="64" sprite="Ui/Sprites/Border/Square-2px" type="Sliced" fillCenter="false" active="false" />
   </Panel>
 </XmlLayout>

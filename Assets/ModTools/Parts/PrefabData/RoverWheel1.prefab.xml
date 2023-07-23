@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <GameObject name="RoverWheel1" path="Craft/Parts/Prefabs/RoverWheel1.prefab">
+  <Component type="UnityEngine.AudioSource" />
+  <Component type="UnityEngine.AudioSource" />
+  <Component type="UnityEngine.AudioSource" />
+  <Component type="UnityEngine.AudioSource" />
   <GameObject name="TrackContainer">
     <GameObject name="TrackRenderer">
       <Component type="Assets.Scripts.CustomWheelCollider.TireTrackRenderer" />
@@ -21,6 +25,9 @@
           </GameObject>
           <GameObject name="NoSuspensionCollider">
             <Component type="UnityEngine.SphereCollider" />
+            <GameObject name="GroundEscaper">
+              <Component type="UnityEngine.CapsuleCollider" />
+            </GameObject>
           </GameObject>
           <GameObject name="SphereCollider">
             <Component type="UnityEngine.SphereCollider" />

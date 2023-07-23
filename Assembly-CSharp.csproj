@@ -1,0 +1,1460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build"
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <LangVersion>9.0</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProductVersion>10.0.20506</ProductVersion>
+        <SchemaVersion>2.0</SchemaVersion>
+        <RootNamespace></RootNamespace>
+        <ProjectGuid>{5653cc53-bdc1-9ccb-cc39-cd6bed15efef}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <AssemblyName>Assembly-CSharp</AssemblyName>
+        <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <BaseDirectory>.</BaseDirectory>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>Temp\bin\Debug\</OutputPath>
+        <DefineConstants>
+            DEBUG;TRACE;UNITY_2021_3_19;UNITY_2021_3;UNITY_2021;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_OSX;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;ENABLE_SPATIALTRACKING;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_4_6;NET_UNITY_4_8;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <NoWarn>0169</NoWarn>
+        <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    </PropertyGroup>
+    <PropertyGroup>
+        <NoConfig>true</NoConfig>
+        <NoStdLib>true</NoStdLib>
+        <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+        <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
+        <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="Assets/Scripts/DesignerTools/ReferenceImages/ReferenceImage.cs" />
+        <Compile Include="Assets/Scripts/Ui/Designer/DesignerToolsUI.cs" />
+        <Compile Include="Assets/Scripts/DesignerTools/ReferenceImages/ImageHighlighter.cs" />
+        <Compile Include="Assets/Scripts/Ui/Designer/DesignerToolsFlyout.cs" />
+        <Compile Include="Assets/Scripts/ModSettings.cs" />
+        <Compile Include="Assets/Scripts/DesignerTools/ReferenceImages/ReferenceImagGizmos.cs" />
+        <Compile Include="Assets/Scripts/DesignerTools/ViewCube.cs" />
+        <Compile Include="Assets/Scripts/DesignerTools/ReferenceImages/ReferenceImagesManager.cs" />
+        <Compile Include="Assets/Scripts/DesignerTools/DataManager.cs" />
+        <Compile Include="Assets/Scripts/DesignerTools/ReferenceImages/ReferenceImagesDetails.cs" />
+        <Compile Include="Assets/Scripts/DesignerTools/ReferenceImages/ReferenceImageDetails.cs" />
+        <Compile Include="Assets/Scripts/Ui/Designer/ViewToolsPanel.cs" />
+        <Compile Include="Assets/Scripts/DesignerTools/ReferenceImages/ImageSelector.cs" />
+        <Compile Include="Assets/Scripts/Mod.cs" />
+        <Compile Include="Assets/Scripts/DesignerTools/DesignerToolsLoop.cs" />
+        <None Include="Assets/ModTools/UI/Xml/Mods/RequiredModsDialog.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/FeaturesFlyout.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Gauges/Trim2.prefab.xml" />
+        <None Include="Assets/Content/XML UI/Designer/ModiferDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CargoBay1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/CrewAssignmentDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Cycle_GasGenerator1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/MenuFlyout.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/RoverTireLunar.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/FairingNoseCone-6.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/RoverTireStreet.prefab.xml" />
+        <None Include="Assets/Content/Craft/Parts/RocketEngines/_Help_ Rocket Engines.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/DockingPort1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingLeg2.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/NoiseFlyout.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Settings/BindInputDialog.xml" />
+        <None Include="Assets/Content/XML UI/Designer/ColorPickerButton.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/PlanetObjectsFlyout.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/PaintPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/HingeRotator1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/InfoPanel/InfoPanelStyles.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Detacher1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Lights/CircularSpotlight.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/ViewPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Menu/MenuTutorialPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Exhaust/ExhaustMesh.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Cockpit1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Eva/EvaChairs/Rover.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/HeatShield1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/PropellerAssembly1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Sharing/PhotoLibraryDialog.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/FlightSceneUi.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Extension_Cone.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Bay-Curved.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/StagingEditorPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/RetroRim.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/LandingGearRim.prefab.xml" />
+        <None Include="Assets/Resources/Craft/Parts/Styles/PartStyleExtensions.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Solid-1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/RotatePartPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/InspectorModelFlyout.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Wheel-Straddled.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/EvaPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear1.prefab.xml" />
+        <None Include="Assets/Content/XML UI/Designer/DesignerTools.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/SolarPanelArray.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/RoverTireSmooth.prefab.xml" />
+        <None Include="Assets/Content/Craft/Parts/Prefabs/_Help_ Part Prefabs.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/StructuralPanel1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/CargoBay-5.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Door-Curved-Vertical.prefab.xml" />
+        <None Include="Assets/ModTools/Assemblies/EditorAssemblies/Jundroo.ModTools.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/InputSliderPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/UndoHistoryFlyout.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/JetEngineShroud-None-2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Audio_Large.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerWarbird.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/FairingNoseCone-3.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Nozzle_Echo.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/Fan_SCurve.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Nozzle_Base.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/InletCone_Spike.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/InputDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Gauges/Indicator2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Packages/Crate.prefab.xml" />
+        <None Include="Assets/Content/Craft/Parts/Categories/Icons/_Help_ Part Category Icons.txt" />
+        <None Include="Assets/ModTools/UI/Xml/Design/NudgePartPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/MenuPanel.xml" />
+        <None Include="Assets/ModTools/Assemblies/EditorAssemblies/SimpleRockets2.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Door-None.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Interstage-4.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CommandPod5.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/ToggleSwitch1.prefab.xml" />
+        <None Include="Assets/Content/Craft/Parts/_Help_ Part Manager.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Door-Straight-Side.prefab.xml" />
+        <None Include="Assets/ModTools/Assemblies/EditorAssemblies/ModApi.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CommandPod1.prefab.xml" />
+        <None Include="Assets/Content/Craft/Parts/Styles/_Help_ Part Style Extensions.txt" />
+        <None Include="Assets/ModTools/Assemblies/ModApi.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Package.prefab.xml" />
+        <None Include="Assets/ModTools/Assemblies/EditorAssemblies/Jundroo.ModTools.Editor.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/CargoBay-1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Chamber_PressureFed.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingLeg1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/InletCone_None.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Engine3.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Parachutes/ParachuteCheckered.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/SymmetryPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerScimitar.prefab.xml" />
+        <None Include="Assets/Content/Craft/Parts/Meshes/_Help_ Part Meshes.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/RacingRim.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/NoseCone-Straight-1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/NoseCone1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/LoadCraftPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/AccountDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Gimbal_Staged.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Light1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Nozzle_Omega.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Career/TechTreeUI.xml" />
+        <None Include="Assets/ModTools/UI/Xml/StatsDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Audio_Heavy.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/Fan_Curved.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/PlanetStudioUI.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerCapPointy.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Settings/CalibrateControllerDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/IonEngine1.prefab.xml" />
+        <None Include="Assets/Resources/Craft/Parts/Textures/TextureStyles.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Solar/HingeCenter.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Eva/EvaChairs/Rocket.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/StagingPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/ToolPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Audio_Small.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/HelpDialog.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/NavPanel.xml" />
+        <None Include="Assets/Content/Craft/Parts/Textures/Styles/_Help_ Part Texture Styles.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Gyroscope1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerDroneFlipped.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/FuelTransferPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/SystemLaunchLocationsFlyout.xml" />
+        <None
+            Include="Assets/ModTools/Parts/PrefabData/Parachutes/ParachuteStripedHorizontal.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/RoverTireLandingGear.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CommandPod4.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Parachute1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Eva/AstronautRigged.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Sharing/UploadContentDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Shock1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/JetEngineShroud-None.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Packages/Barrel.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/RoverTireRugged.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Chamber_Nuclear.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerCapRound.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Label1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/LevelUIDefault.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Solar/Square.prefab.xml" />
+        <None
+            Include="Assets/ModTools/Parts/PrefabData/LandingGear/Door-Straight-Vertical.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerBoat2.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Vizzy/VizzyToolbox.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Eva/TouristRigged.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/RuggedRim.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/Propulsion.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Menu/NewGameDialog.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Settings/SettingsDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/JetEngineShroud-2.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/CelestialBodyDesigner.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fin1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerBoat2Flipped.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Sharing/ScreenshotList.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Sharing/DownloadContentDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Door-Curved-Side.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Extension_Aerospike.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/XMLEditPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/DesignStyles.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Vizzy/VizzyUI.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Fairing-1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerFlat.prefab.xml" />
+        <None Include="Assets/ModTools/Assemblies/EditorAssemblies/ModApi.Editor.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/FairingNoseCone-5.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/BiomesFlyout.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/Fan_Straight.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Lights/SquareSpotlight.prefab.xml" />
+        <None
+            Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerCivilianFlipped.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Strut1.prefab.xml" />
+        <None Include="Assets/Designer Tools.asmdef" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/NoseCone-Round-2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Chamber_Solid.prefab.xml" />
+        <None Include="Assets/ModTools/Config/layers.txt" />
+        <None Include="Assets/ModTools/UI/Xml/Map/MapViewUi.xml" />
+        <None Include="Assets/ModTools/UI/Xml/ColorPickerDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Nozzle_Plug.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerFlatFlipped.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/FairingNoseCone-2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Generator2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Wheel-Double.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/GaugeBase1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/MovePartPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/Nozzle_Civilian.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Sharing/ScreenshotDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Piston1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Parachutes/ParachuteSmall.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/PartListPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/FlightStyles.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fairing1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Chamber_Liquid.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/FairingNoseCone-1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/Nozzle_Military.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/TestPilotSitting.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/TutorialPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/MessageDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/InletCone_Spiral.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Inlet1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/ValidationPanel.xml" />
+        <None
+            Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerScimitarFlipped.prefab.xml" />
+        <None
+            Include="Assets/ModTools/Parts/PrefabData/LandingGear/Door-Curved-Horizontal.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingLeg3.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Menu/ListView.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/PreflightPanel.xml" />
+        <None Include="Assets/ModTools/Assemblies/ModApi.Core.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Audio_Solid.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/SystemPlanetsFlyout.xml" />
+        <None Include="Assets/Content/Craft/Parts/Categories/_Help_ Part Categories.txt" />
+        <None
+            Include="Assets/ModTools/Parts/PrefabData/LandingGear/Door-Straight-Horizontal.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Career/CareerDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Cycle_GasGenerator2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Audio_Medium.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RoverWheel1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerDrone.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Extension_Bell.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Gauges/Indicator1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/ElectricMotor1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CommandDisc1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/ActivationGroupsPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Mfd1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerCapFlat.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Parachutes/ChutePackageBase.prefab.xml" />
+        <None Include="Assets/ModTools/Assemblies/Jundroo.ModTools.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/FairingBase1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/InletCone_Round.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/NoseCone-1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/StockUserInterfaceResourcesManifest.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Gimbal_Normal.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Parachutes/ChutePackageSmall.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Inlet-1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Mfd/Default.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Wheel-Skid.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Exhaust/ExhaustSystem.prefab.xml" />
+        <None
+            Include="Assets/Content/Craft/Parts/Textures/Normal/_Help_ Part Normal Map Textures.txt" />
+        <None Include="Assets/ModTools/UI/Xml/PlanetStudio/TexturesFlyout.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Eva.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/CraftPartsPanel.xml" />
+        <None Include="Assets/ModTools/Assemblies/SimpleRockets2.xml" />
+        <None Include="Assets/ModTools/Parts/Shaders/PartEditorTestShader.shader" />
+        <None Include="Assets/ModTools/Config/tags.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Camera1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/HeatShield-1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CommandChip1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Eva-Tourist.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wing1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Nozzle_Alpha.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/SolarPanel1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RotatingNoseCone1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Interstage-3.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/ActivationPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Gauges/Indicator5.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Bay-Straight.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/LevelUIDefault.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Nozzle_Bravo.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Chamber_Staged1.prefab.xml" />
+        <None Include="Assets/Content/Craft/Parts/Textures/Detail/_Help_ Part Detail Textures.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerBoat1Flipped.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/JetEngineShroud-1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Vizzy/CreateCustomNodeDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Wheels/LunarRim.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/DesignerUi.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RCSNozzle2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CommandPod2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Rotator1.prefab.xml" />
+        <None Include="Assets/Content/XML UI/Designer/ViewTools.xml" />
+        <None
+            Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerWarbirdFlipped.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Career/CareerListView.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/JetEngine/Nozzle_Basic.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Nozzle_Aerospike.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/TimePanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Gauges/Trim1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/ElectricMotor2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/Parts.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Block1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerBoat1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Generator1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CommandPod3.prefab.xml" />
+        <None Include="Assets/_Help_ Getting Started.txt" />
+        <None Include="Assets/ModTools/UI/Xml/Styles.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/FuselageShapePanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/FlightLogPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Wheel-Single.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Solar/BaseHinge.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/FlightTutorialPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Brace-Inline.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/CargoBay-3.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Parachutes/ParachuteBase.prefab.xml" />
+        <None Include="Assets/ModTools/Assemblies/Jundroo.ModTools.Core.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingLeg4.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Flight/ContextMenuPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Propellers/PropellerCivilian.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/PartPropertiesPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Interstage-1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Chamber_Staged2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/CargoBay-2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RCSNozzle1.prefab.xml" />
+        <None Include="Assets/ModTools/Assemblies/EditorAssemblies/ModApi.Core.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Interstage-2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Gauges/Indicator4.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/NoseCone-2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CommandPod6.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/ScenarioDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/FairingNoseCone-4.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/EvaChair1.prefab.xml" />
+        <None Include="Assets/Content/XML UI Overrides/_Help_ XML UI Resource Overrides.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Fairing-2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Gauges/Indicator3.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/CargoBay-4.prefab.xml" />
+        <None Include="Assets/ModTools/Assemblies/EditorAssemblies/Jundroo.ModTools.Core.xml" />
+        <None
+            Include="Assets/ModTools/Parts/PrefabData/Parachutes/ParachuteStripedVertical.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Solar/Default.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/TestPilot.prefab.xml" />
+        <None Include="Assets/Content/Craft/Parts/RocketEngines/Propulsion.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Nozzle_Delta.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Engine2.prefab.xml" />
+        <None Include="Assets/Content/XML UI/_Help_ XML-Based UI.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Ball1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/NoseCone-Round-1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/InspectorPanel.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Extension_Delta.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/RocketEngine/Cycle_Electric.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Sharing/PhotoLibraryImageViewer.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/BeaconLight1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Engine1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Solar/HingeJuice.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Menu/About.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/NoseCone-Straight-2.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Packages/ShippingContainer.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/ViewOptionsPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Menu/MenuUi.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CockpitCanopy1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/DetacherSide1.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Design/PartConnectionsPanel.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Settings/ControlSettingsDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/CrewCompartment.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/FuelAdapter1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Mfd/HUD.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Solid-2.prefab.xml" />
+        <None Include="Assets/Content/Craft/Parts/DesignerParts/_Help_ Designer Part XML.txt" />
+        <None Include="Assets/ModTools/Parts/PrefabData/LandingGear/Bay-None.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Gauge1.prefab.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/Fuselage/Inlet-2.prefab.xml" />
+        <None Include="Assets/ModTools/UI/Xml/Settings/AxisCalibratorDialog.xml" />
+        <None Include="Assets/ModTools/Parts/PrefabData/FairingNoseCone1.prefab.xml" />
+        <Reference Include="UnityEngine">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AIModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ARModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ARModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AccessibilityModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AndroidJNIModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AndroidJNIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AnimationModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AnimationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AssetBundleModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClothModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClothModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClusterInputModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClusterRendererModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CrashReportingModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DSPGraphModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.DSPGraphModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DirectorModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.DirectorModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GIModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GameCenterModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GameCenterModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GridModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.GridModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.HotReloadModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.HotReloadModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversionModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.InputModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.JSONSerializeModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.LocalizationModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.LocalizationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PerformanceReportingModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ProfilerModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ProfilerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ScreenCaptureModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SharedInternalsModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteMaskModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteShapeModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.StreamingModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.StreamingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SubstanceModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SubstanceModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SubsystemsModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.SubsystemsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TLSModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TLSModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TerrainModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TerrainModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TerrainPhysicsModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreFontEngineModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreTextEngineModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TilemapModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.TilemapModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIElementsModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UIElementsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIElementsNativeModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UIElementsNativeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UNETModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UNETModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UmbraModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UmbraModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityAnalyticsModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityConnectModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityCurlModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityCurlModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityTestProtocolModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityTestProtocolModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VFXModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VFXModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VRModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VRModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VehiclesModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VehiclesModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VideoModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VideoModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VirtualTexturingModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.VirtualTexturingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.WindModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.XRModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.CoreModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.DeviceSimulatorModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.DiagnosticsModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.GraphViewModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.GraphViewModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.PackageManagerUIModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.PackageManagerUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.QuickSearchModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.QuickSearchModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.SceneTemplateModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.SceneTemplateModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.TextCoreFontEngineModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.TextCoreFontEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.TextCoreTextEngineModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.TextCoreTextEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.UIBuilderModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UIBuilderModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.UIElementsModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UIElementsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.UIElementsSamplesModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UIElementsSamplesModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.UIServiceModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UIServiceModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.UnityConnectModule">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Collections.LowLevel.ILSupport">
+            <HintPath>
+                /Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/PackageCache/com.unity.collections@1.4.0/Unity.Collections.LowLevel.ILSupport/Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+        </Reference>
+        <Reference Include="Rewired_Windows">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/Rewired_Windows.dll</HintPath>
+        </Reference>
+        <Reference Include="Jundroo.ModTools.Core">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/Jundroo.ModTools.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Rewired_OSX">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/Rewired_OSX.dll</HintPath>
+        </Reference>
+        <Reference Include="DOTween">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/DOTween.dll</HintPath>
+        </Reference>
+        <Reference Include="Mystery Node Set">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/Mystery Node Set.dll</HintPath>
+        </Reference>
+        <Reference Include="SimpleRockets2">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/SimpleRockets2.dll</HintPath>
+        </Reference>
+        <Reference Include="DOTween46">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/DOTween46.dll</HintPath>
+        </Reference>
+        <Reference Include="Mystery Squiggle">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/Mystery Squiggle.dll</HintPath>
+        </Reference>
+        <Reference Include="Ookii.Dialogs">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/Ookii.Dialogs.dll</HintPath>
+        </Reference>
+        <Reference Include="ModApi.Core">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/ModApi.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="ModApi">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/ModApi.dll</HintPath>
+        </Reference>
+        <Reference Include="Mystery Squiggle UI">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/Mystery Squiggle UI.dll</HintPath>
+        </Reference>
+        <Reference Include="Packages">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/Packages.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Windows.Forms">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/System.Windows.Forms.dll</HintPath>
+        </Reference>
+        <Reference Include="ReportGeneratorMerged">
+            <HintPath>
+                /Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/PackageCache/com.unity.testtools.codecoverage@1.2.2/lib/ReportGenerator/ReportGeneratorMerged.dll</HintPath>
+        </Reference>
+        <Reference Include="Jundroo.ModTools.ProjectSetup">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/Jundroo.ModTools.ProjectSetup.dll</HintPath>
+        </Reference>
+        <Reference Include="DOTweenEditor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/DOTweenEditor.dll</HintPath>
+        </Reference>
+        <Reference Include="ThirdParty">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/ThirdParty.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.IO.Compression">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/Unity.IO.Compression.dll</HintPath>
+        </Reference>
+        <Reference Include="Mystery Squiggle Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/Mystery Squiggle Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="ModApi.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/ModApi.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Web.Client">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/Web.Client.dll</HintPath>
+        </Reference>
+        <Reference Include="DOTween43">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/DOTween43.dll</HintPath>
+        </Reference>
+        <Reference Include="Jundroo.ModTools.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/Jundroo.ModTools.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="LeTai.TranslucentImage">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/LeTai.TranslucentImage.dll</HintPath>
+        </Reference>
+        <Reference Include="Rewired_Core">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/Rewired_Core.dll</HintPath>
+        </Reference>
+        <Reference Include="XmlLayout.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/XmlLayout.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="XmlLayout">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/XmlLayout.dll</HintPath>
+        </Reference>
+        <Reference Include="ThirdParty.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/ThirdParty.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Jundroo.ModTools">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/EditorAssemblies/Jundroo.ModTools.dll</HintPath>
+        </Reference>
+        <Reference Include="DOTween50">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Assets/ModTools/Assemblies/DOTween50.dll</HintPath>
+        </Reference>
+        <Reference Include="Mono.Cecil">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/PackageCache/com.unity.nuget.mono-cecil@1.11.4/Mono.Cecil.dll</HintPath>
+        </Reference>
+        <Reference Include="mscorlib">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/mscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="System">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Core">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Serialization">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Runtime.Serialization.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Xml.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml.Linq">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Numerics.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics.Vectors">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Numerics.Vectors.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Http">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Net.Http.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.Compression">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.IO.Compression.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.CSharp">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Microsoft.CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Data">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Data.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Data.DataSetExtensions">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Data.DataSetExtensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Drawing">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Drawing.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.Compression.FileSystem">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.IO.Compression.FileSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.Composition">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Transactions">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/System.Transactions.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Win32.Primitives">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/Microsoft.Win32.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="System.AppContext">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.AppContext.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Buffers">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Buffers.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Collections.Concurrent">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.Concurrent.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Collections.NonGeneric">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.NonGeneric.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Collections.Specialized">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.Specialized.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Collections">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.Annotations">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.Annotations.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.EventBasedAsync">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.EventBasedAsync.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.Primitives">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.TypeConverter">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.TypeConverter.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Console">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Console.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Data.Common">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Data.Common.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Diagnostics.Contracts">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Contracts.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Diagnostics.Debug">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Debug.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Diagnostics.FileVersionInfo">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.FileVersionInfo.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Diagnostics.Process">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Process.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Diagnostics.StackTrace">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.StackTrace.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Diagnostics.TextWriterTraceListener">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.TextWriterTraceListener.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Diagnostics.Tools">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Tools.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Diagnostics.TraceSource">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.TraceSource.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Drawing.Primitives">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Drawing.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Dynamic.Runtime">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Dynamic.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Globalization.Calendars">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.Calendars.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Globalization.Extensions">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.Extensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Globalization">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.Compression.ZipFile">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.Compression.ZipFile.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.FileSystem.DriveInfo">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.DriveInfo.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.FileSystem.Primitives">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.FileSystem.Watcher">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.Watcher.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.FileSystem">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.IsolatedStorage">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.IsolatedStorage.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.MemoryMappedFiles">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.MemoryMappedFiles.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.Pipes">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.Pipes.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.UnmanagedMemoryStream">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.UnmanagedMemoryStream.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Linq.Expressions">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Expressions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Linq.Parallel">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Parallel.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Linq.Queryable">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Queryable.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Linq">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Memory">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Memory.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Http.Rtc">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Http.Rtc.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.NameResolution">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.NameResolution.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.NetworkInformation">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.NetworkInformation.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Ping">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Ping.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Primitives">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Requests">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Requests.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Security">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Security.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Sockets">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Sockets.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.WebHeaderCollection">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebHeaderCollection.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.WebSockets.Client">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebSockets.Client.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.WebSockets">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebSockets.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ObjectModel">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ObjectModel.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Reflection.DispatchProxy">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.DispatchProxy.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Reflection.Emit.ILGeneration">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.ILGeneration.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Reflection.Emit.Lightweight">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.Lightweight.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Reflection.Emit">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Reflection.Extensions">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Extensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Reflection.Primitives">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Reflection">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Resources.Reader">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.Reader.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Resources.ResourceManager">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.ResourceManager.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Resources.Writer">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.Writer.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.CompilerServices.VisualC">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.CompilerServices.VisualC.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Extensions">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Extensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Handles">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Handles.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.InteropServices.WindowsRuntime">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.InteropServices">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Numerics">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Numerics.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Serialization.Formatters">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Formatters.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Serialization.Json">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Serialization.Primitives">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Serialization.Xml">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Xml.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Claims">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Claims.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Cryptography.Algorithms">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Algorithms.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Cryptography.Csp">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Csp.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Cryptography.Encoding">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Encoding.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Cryptography.Primitives">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Cryptography.X509Certificates">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.X509Certificates.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Principal">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Principal.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.SecureString">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.SecureString.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ServiceModel.Duplex">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Duplex.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ServiceModel.Http">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Http.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ServiceModel.NetTcp">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.NetTcp.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ServiceModel.Primitives">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Primitives.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ServiceModel.Security">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Security.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Text.Encoding.Extensions">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.Encoding.Extensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Text.Encoding">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.Encoding.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Text.RegularExpressions">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.RegularExpressions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Overlapped">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Overlapped.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Tasks.Extensions">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.Extensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Tasks.Parallel">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.Parallel.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Tasks">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Thread">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Thread.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.ThreadPool">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.ThreadPool.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Timer">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Timer.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ValueTuple">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ValueTuple.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml.ReaderWriter">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.ReaderWriter.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml.XDocument">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XDocument.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml.XPath.XDocument">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XPath.XDocument.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml.XPath">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XPath.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml.XmlDocument">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XmlDocument.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml.XmlSerializer">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XmlSerializer.dll</HintPath>
+        </Reference>
+        <Reference Include="netstandard">
+            <HintPath>
+                /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/UnityReferenceAssemblies/unity-4.8-api/Facades/netstandard.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.VSCode.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.VisualStudio.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Performance.Profile-Analyzer.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Performance.Profile-Analyzer.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
+            <HintPath>
+                /Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Timeline">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Burst.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
+            <HintPath>
+                /Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEditor.UI">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Rider.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.EditorCoroutines.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Mathematics">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Collections.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Collections.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Burst">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Timeline.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Mathematics.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Collections">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.Collections.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TestTools.CodeCoverage.Editor">
+            <HintPath>/Users/aram/Documents/Creations/Programation/Unity/SimpleRockets2Mod/Designer
+                Tools/Library/ScriptAssemblies/Unity.TestTools.CodeCoverage.Editor.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment
+    it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

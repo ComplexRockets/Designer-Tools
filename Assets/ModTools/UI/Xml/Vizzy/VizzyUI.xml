@@ -70,7 +70,6 @@
           <Button class="btn" onClick="OnButtonImportClicked();" tooltip="Import an existing program into this program.">
             <TextMeshPro text="IMPORT PROGRAM" />
           </Button>
-          <Image class="separator" />
           <Panel class="row">
             <Button id="undo-button" class="btn" rectAlignment="MiddleLeft" onClick="OnButtonUndoClicked();" tooltip="Undoes the last step." width="46%">
               <TextMeshPro text="UNDO" />
@@ -79,6 +78,10 @@
               <TextMeshPro text="REDO" />
             </Button>
           </Panel>
+          <Image class="separator" />
+          <Button class="btn btn-primary" onClick="OnButtonHelpClicked();" tooltip="Start here to learn more about how to use Vizzy.">
+            <TextMeshPro text="MORE INFO" />
+          </Button>
           <Image class="separator" />
           <Panel class="no-image" preferredHeight="25">
             <TextMeshPro class="label column-left" text="Grid" overflowMode="Overflow" enableWordWrapping="false" />
