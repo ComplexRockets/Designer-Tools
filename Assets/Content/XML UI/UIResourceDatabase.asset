@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 462600611, guid: 7b9b173fba861ad4885ea819538124ef, type: 3}
+  m_Script: {fileID: 462600611, guid: a67a49df4508efd41b25d5ea1d54bed1, type: 3}
   m_Name: UIResourceDatabase
   m_EditorClassIdentifier: 
   PathPrefix: DesignerTools/
@@ -18,16 +18,12 @@ MonoBehaviour:
   - Content/XML UI
   AutomaticallyRemoveEntries: 1
   entries:
-  - path: DesignerTools/Designer/ColorPickerButton
-    resource: {fileID: 4900000, guid: 90afde8e7d8ca45feb784c73d70d5c1f, type: 3}
   - path: DesignerTools/Designer/DesignerTools
     resource: {fileID: 4900000, guid: 22a50f946ea2247fcb12914a297256be, type: 3}
-  - path: DesignerTools/Designer/ModiferDialog
-    resource: {fileID: 4900000, guid: 203c14fe5556c4d9c82601c3c4388fce, type: 3}
-  - path: DesignerTools/Designer/ViewTools
+  - path: DesignerTools/Designer/ReferenceImagesPanel
     resource: {fileID: 4900000, guid: 4c4439f4d3c2e42e1afe61649289ac11, type: 3}
   - path: DesignerTools/RefImageMaterial
-    resource: {fileID: 2100000, guid: e3c9ba3d79eb64ed3ae3d78bffba7d95, type: 2}
+    resource: {fileID: 2100000, guid: 6c67a6b376cde4c75a32c40a88324e86, type: 2}
   - path: DesignerTools/Sprites/DesignerToolsIcon
     resource: {fileID: 21300000, guid: c5310b9b7afcb4b78b81268a7bf9bf39, type: 3}
   - path: DesignerTools/Sprites/IconToggle

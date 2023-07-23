@@ -3,9 +3,4 @@
   <Component type="UnityEngine.MeshFilter" />
   <Component type="UnityEngine.MeshRenderer" />
   <Component type="ModApi.Craft.Parts.PartMeshScript" />
-  <GameObject name="SolarPanel">
-    <Component type="UnityEngine.MeshFilter" />
-    <Component type="UnityEngine.MeshRenderer" />
-    <Component type="ModApi.Craft.Parts.PartMeshScript" />
-  </GameObject>
 </GameObject>

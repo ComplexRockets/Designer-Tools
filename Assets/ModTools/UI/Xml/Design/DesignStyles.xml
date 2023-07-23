@@ -14,7 +14,8 @@
     <Panel class="toggle-button-pressed" color="Button" />
     <Panel class="toggle-button-toggled" color="Button" border="Primary" />
     <Image class="toggle-button-icon" color="ButtonIcon" width="32" height="32" raycastTarget="false" />
-    <Image class="toggle-button-toggled&gt;toggle-button-icon" color="White" />
+    <Image class="toggle-button-toggled&gt;toggle-button-icon" color="Primary" />
+    <Image class="toggle-button-toggled&gt;toggle-button-icon-white" color="White" />
     <Image class="delete-button" color="Button" width="24" height="24" offsetXY="0 0" raycastTarget="true" hoverClass="delete-button-hover" />
     <Image class="delete-button-hover" color="ButtonHover" />
     <Image class="delete-button-icon" image="Ui/Sprites/Design/IconButtonDeleteItem" color="Primary" width="16" height="16" raycastTarget="false" />

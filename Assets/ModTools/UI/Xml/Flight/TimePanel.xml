@@ -9,8 +9,10 @@
     <ContentButton class="time-warp-button" color="Transparent" tooltipPosition="Below" width="40" height="32" hoverClass="time-warp-button-hover" />
     <Image class="time-warp-arrow" sprite="Ui/Sprites/Common/IconChevronLeft" width="15" height="20" color="ButtonHover" />
     <Image class="time-warp-button-hover&gt;@Image" color="ButtonPressed" />
+    <VerticalLayout class="time-panel" offsetXY="0 0" device="desktop" />
+    <VerticalLayout class="time-panel" offsetXY="-50 0" device="mobile" />
   </Defaults>
-  <VerticalLayout class="no-image" width="280" height="0" rectAlignment="UpperRight" contentSizeFitter="vertical" childAlignment="MiddleCenter" offsetXY="0 0">
+  <VerticalLayout class="no-image time-panel" width="280" height="0" rectAlignment="UpperRight" contentSizeFitter="vertical" childAlignment="MiddleCenter">
     <Panel class="flight-panel" preferredHeight="40">
       <TextMeshPro id="time-text" onClickSound="Ui/Audio/ButtonClicked" class="value" text="06:12:11" width="140" height="50" rectAlignment="MiddleRight" alignment="Center" offsetXY="-150 0" onClick="OnTimeClicked();" raycastTarget="true" />
       <ContentButton id="mode-slow" class="time-button audio-btn-click" offsetXY="-140 0" tooltip="Slow Motion" onClick="OnSlowMotionClicked();">

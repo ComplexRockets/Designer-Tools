@@ -8,7 +8,7 @@
     <Panel class="header" preferredHeight="30" />
     <Image class="header-background" color="Button" offsetMax="10 0" hoverClass="header-hover" raycastTarget="true" />
     <Image class="header-hover" color="ButtonHover" />
-    <TextMeshPro class="header-text" color="White" fontStyle="Bold,UpperCase" alignment="Left" rectAlignment="MiddleLeft" width="300" offsetXY="25 0" />
+    <TextMeshPro class="header-text" color="ButtonText" fontStyle="Bold,UpperCase" alignment="Left" rectAlignment="MiddleLeft" width="300" offsetXY="25 0" />
     <VerticalLayout class="properties-group" childForceExpandHeight="false" childAlignment="UpperLeft" pivot="0 1" spacing="5" />
     <VerticalLayout class="property-row" tooltipPosition="Right" tooltipBackgroundColor="DarkPanel" />
     <Panel class="property-row" tooltipPosition="Right" tooltipBackgroundColor="DarkPanel" />

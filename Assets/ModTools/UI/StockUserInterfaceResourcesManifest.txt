@@ -64,6 +64,7 @@ UnityEngine.GameObject
    Ui/Prefabs/XmlLayout/TextButton
    Ui/Prefabs/XmlLayout/Toggle
    Ui/Prefabs/XmlLayout/ToggleButton
+   Ui/Prefabs/XmlLayout/TranslucentImagePanel
    Ui/Vizzy/BoolExpressionElement
    Ui/Vizzy/CustomExpressionElement
    Ui/Vizzy/CustomInstructionElement
@@ -80,9 +81,16 @@ UnityEngine.GameObject
 
 UnityEngine.TextAsset
    XmlLayout Prefabs/TableLayout/Note
+   Ui/Fonts/AngkatanBersenjata/info
+   Ui/Fonts/DSEG-LICENSE
+   Ui/Fonts/Pirulen/License
    Ui/Fonts/Roboto/LICENSE
    Ui/Xml/AccountDialog
+   Ui/Xml/Career/CareerDialog
+   Ui/Xml/Career/CareerListView
+   Ui/Xml/Career/TechTreeUI
    Ui/Xml/ColorPickerDialog
+   Ui/Xml/CrewAssignmentDialog
    Ui/Xml/Design/ActivationGroupsPanel
    Ui/Xml/Design/CraftPartsPanel
    Ui/Xml/Design/DesignerUi
@@ -97,15 +105,19 @@ UnityEngine.TextAsset
    Ui/Xml/Design/PartConnectionsPanel
    Ui/Xml/Design/PartListPanel
    Ui/Xml/Design/PartPropertiesPanel
+   Ui/Xml/Design/PreflightPanel
    Ui/Xml/Design/RotatePartPanel
    Ui/Xml/Design/StagingEditorPanel
    Ui/Xml/Design/SymmetryPanel
    Ui/Xml/Design/ToolPanel
    Ui/Xml/Design/TutorialPanel
+   Ui/Xml/Design/ValidationPanel
    Ui/Xml/Design/ViewOptionsPanel
+   Ui/Xml/Design/XMLEditPanel
    Ui/Xml/Flight/ActivationPanel
-   Ui/Xml/Flight/EndFlightDialog
+   Ui/Xml/Flight/ContextMenuPanel
    Ui/Xml/Flight/EvaPanel
+   Ui/Xml/Flight/FlightLogPanel
    Ui/Xml/Flight/FlightSceneUi
    Ui/Xml/Flight/FlightStyles
    Ui/Xml/Flight/FlightTutorialPanel
@@ -113,7 +125,6 @@ UnityEngine.TextAsset
    Ui/Xml/Flight/InputSliderPanel
    Ui/Xml/Flight/LevelUIDefault
    Ui/Xml/Flight/NavPanel
-   Ui/Xml/Flight/RetryFlightDialog
    Ui/Xml/Flight/StagingPanel
    Ui/Xml/Flight/TimePanel
    Ui/Xml/Flight/ViewPanel
@@ -123,6 +134,7 @@ UnityEngine.TextAsset
    Ui/Xml/Map/MapViewUi
    Ui/Xml/Menu/About
    Ui/Xml/Menu/ListView
+   Ui/Xml/Menu/MenuTutorialPanel
    Ui/Xml/Menu/MenuUi
    Ui/Xml/Menu/NewGameDialog
    Ui/Xml/MessageDialog
@@ -130,13 +142,14 @@ UnityEngine.TextAsset
    Ui/Xml/PlanetStudio/BiomesFlyout
    Ui/Xml/PlanetStudio/CelestialBodyDesigner
    Ui/Xml/PlanetStudio/FeaturesFlyout
+   Ui/Xml/PlanetStudio/HelpDialog
    Ui/Xml/PlanetStudio/InspectorModelFlyout
-   Ui/Xml/PlanetStudio/Menu
    Ui/Xml/PlanetStudio/MenuFlyout
    Ui/Xml/PlanetStudio/NoiseFlyout
    Ui/Xml/PlanetStudio/PlanetObjectsFlyout
    Ui/Xml/PlanetStudio/PlanetStudioUI
    Ui/Xml/PlanetStudio/SystemLaunchLocationsFlyout
+   Ui/Xml/PlanetStudio/SystemPlanetsFlyout
    Ui/Xml/PlanetStudio/TexturesFlyout
    Ui/Xml/PlanetStudio/UndoHistoryFlyout
    Ui/Xml/ScenarioDialog
@@ -151,6 +164,7 @@ UnityEngine.TextAsset
    Ui/Xml/Sharing/ScreenshotDialog
    Ui/Xml/Sharing/ScreenshotList
    Ui/Xml/Sharing/UploadContentDialog
+   Ui/Xml/StatsDialog
    Ui/Xml/Styles
    Ui/Xml/Vizzy/CreateCustomNodeDialog
    Ui/Xml/Vizzy/VizzyToolbox
@@ -175,17 +189,54 @@ UnityEngine.Sprite
    Ui/Sprites/Border/Target-1px
    Ui/Sprites/Border/Target-2px
    Ui/Sprites/Border/TooltipBorder-1px
+   Ui/Sprites/Career/IconCareerContracts
+   Ui/Sprites/Career/IconCareerExploration
+   Ui/Sprites/Career/IconCareerMilestones
+   Ui/Sprites/Career/IconExplorationContact
+   Ui/Sprites/Career/IconExplorationFlyBy
+   Ui/Sprites/Career/IconExplorationLandmarks
+   Ui/Sprites/Career/IconExplorationMilestones
+   Ui/Sprites/Career/IconExplorationOrbit
+   Ui/Sprites/Career/Planets/Boreas
+   Ui/Sprites/Career/Planets/Brigo
+   Ui/Sprites/Career/Planets/Cylero
+   Ui/Sprites/Career/Planets/Droo
+   Ui/Sprites/Career/Planets/HandrewsComet
+   Ui/Sprites/Career/Planets/Herma
+   Ui/Sprites/Career/Planets/Hypatchion
+   Ui/Sprites/Career/Planets/Jastrus
+   Ui/Sprites/Career/Planets/Luna
+   Ui/Sprites/Career/Planets/Miros
+   Ui/Sprites/Career/Planets/Nebra
+   Ui/Sprites/Career/Planets/Niobe
+   Ui/Sprites/Career/Planets/None
+   Ui/Sprites/Career/Planets/Orcus
+   Ui/Sprites/Career/Planets/Sergeaa
+   Ui/Sprites/Career/Planets/Taurus
+   Ui/Sprites/Career/Planets/TT
+   Ui/Sprites/Career/Planets/Tydos
+   Ui/Sprites/Career/Planets/Urados
+   Ui/Sprites/Career/Planets/Vulco
+   Ui/Sprites/Career/TechTree/NodeItemIcon
    Ui/Sprites/Circle
    Ui/Sprites/CircleProgressBar
+   Ui/Sprites/Common/CenterButtonBackground
+   Ui/Sprites/Common/CenterButtonFront
+   Ui/Sprites/Common/Checkmark
    Ui/Sprites/Common/CircleBorder
    Ui/Sprites/Common/ColorPickerWheel
+   Ui/Sprites/Common/CrewProfile
    Ui/Sprites/Common/DefaultAlbumThumbnail
    Ui/Sprites/Common/DropdownArrow
+   Ui/Sprites/Common/GlassButtonShort
+   Ui/Sprites/Common/GlassButtonShortEdge
+   Ui/Sprites/Common/GlassButtonSimple
    Ui/Sprites/Common/Grid-32
    Ui/Sprites/Common/IconAdd
    Ui/Sprites/Common/IconArrowUp
    Ui/Sprites/Common/IconButtonAperture
    Ui/Sprites/Common/IconButtonCamera
+   Ui/Sprites/Common/IconButtonContracts
    Ui/Sprites/Common/IconButtonDetails
    Ui/Sprites/Common/IconButtonLandscape
    Ui/Sprites/Common/IconButtonLoad
@@ -196,10 +247,13 @@ UnityEngine.Sprite
    Ui/Sprites/Common/IconButtonToggleUI
    Ui/Sprites/Common/IconChevronLeft
    Ui/Sprites/Common/IconChevronRight
+   Ui/Sprites/Common/IconCloseButton
    Ui/Sprites/Common/IconCloseFlyout
    Ui/Sprites/Common/IconDeltaV
    Ui/Sprites/Common/IconDepthOfFieldFocalPoint
    Ui/Sprites/Common/IconMenu
+   Ui/Sprites/Common/IconMoveDown
+   Ui/Sprites/Common/IconMoveUp
    Ui/Sprites/Common/IconQuestionMark
    Ui/Sprites/Common/IconSearch
    Ui/Sprites/Common/IconSettings
@@ -208,7 +262,10 @@ UnityEngine.Sprite
    Ui/Sprites/Common/IconStagingInterstage
    Ui/Sprites/Common/IconStagingLandingLeg
    Ui/Sprites/Common/IconStagingParachute
+   Ui/Sprites/Common/IconStagingPayload
+   Ui/Sprites/Common/IconSubtract
    Ui/Sprites/Common/IconTriangleRight
+   Ui/Sprites/Common/JundrooSplashScreen
    Ui/Sprites/Common/White
    Ui/Sprites/Design/AttachPointFuelLine
    Ui/Sprites/Design/DropZone
@@ -226,6 +283,7 @@ UnityEngine.Sprite
    Ui/Sprites/Design/IconArrowRightLong
    Ui/Sprites/Design/IconAutoRecalculateStaging
    Ui/Sprites/Design/IconButtonAddStage
+   Ui/Sprites/Design/IconButtonAssignCrew
    Ui/Sprites/Design/IconButtonCamera
    Ui/Sprites/Design/IconButtonCenterGizmo
    Ui/Sprites/Design/IconButtonCraftParts
@@ -235,6 +293,7 @@ UnityEngine.Sprite
    Ui/Sprites/Design/IconButtonDisableAttachPoints
    Ui/Sprites/Design/IconButtonDisconnectPart
    Ui/Sprites/Design/IconButtonEdit
+   Ui/Sprites/Design/IconButtonEditProgram
    Ui/Sprites/Design/IconButtonFingerTool
    Ui/Sprites/Design/IconButtonFuselageShapeTool
    Ui/Sprites/Design/IconButtonGroupParts
@@ -247,6 +306,7 @@ UnityEngine.Sprite
    Ui/Sprites/Design/IconButtonPaint
    Ui/Sprites/Design/IconButtonParts
    Ui/Sprites/Design/IconButtonPlay
+   Ui/Sprites/Design/IconButtonPreflight
    Ui/Sprites/Design/IconButtonProperties
    Ui/Sprites/Design/IconButtonReconnectPart
    Ui/Sprites/Design/IconButtonRedo
@@ -255,6 +315,7 @@ UnityEngine.Sprite
    Ui/Sprites/Design/IconButtonSymmetry
    Ui/Sprites/Design/IconButtonTrash
    Ui/Sprites/Design/IconButtonUndo
+   Ui/Sprites/Design/IconButtonValidation
    Ui/Sprites/Design/IconButtonView
    Ui/Sprites/Design/IconButtonViewFront
    Ui/Sprites/Design/IconButtonViewSide
@@ -291,6 +352,8 @@ UnityEngine.Sprite
    Ui/Sprites/Flight/IconChangeCamera
    Ui/Sprites/Flight/IconCraftFuel
    Ui/Sprites/Flight/IconCraftThrottle
+   Ui/Sprites/Flight/IconCrewExit
+   Ui/Sprites/Flight/IconCrewTransfer
    Ui/Sprites/Flight/IconEvaGrapple
    Ui/Sprites/Flight/IconEvaJump
    Ui/Sprites/Flight/IconFuelTransferDrain
@@ -329,15 +392,18 @@ UnityEngine.Sprite
    Ui/Sprites/Flight/IconStatusFuel
    Ui/Sprites/Flight/IconStatusMono
    Ui/Sprites/Flight/IconStatusThrottle
+   Ui/Sprites/Flight/IconTargetLocation
    Ui/Sprites/Flight/IconTimeFastForward
    Ui/Sprites/Flight/IconTimePlay
    Ui/Sprites/Flight/IconTimeSlowMotion
    Ui/Sprites/Flight/IconTimeWarp
    Ui/Sprites/Flight/IconToggleAnalogSticks
    Ui/Sprites/Flight/IconToggleFlightInfoPanel
+   Ui/Sprites/Flight/IconToggleFlightLog
    Ui/Sprites/Flight/IconTriangle
    Ui/Sprites/Flight/InstrumentRectFill
    Ui/Sprites/Flight/InstrumentRectFillSmall
+   Ui/Sprites/Flight/MfdBatteryEmpty
    Ui/Sprites/Flight/NavBallBezel
    Ui/Sprites/Flight/NavBallBottomPanel
    Ui/Sprites/Flight/NavBallChevronIcon
@@ -355,9 +421,11 @@ UnityEngine.Sprite
    Ui/Sprites/Layout/Button
    Ui/Sprites/Layout/Viewport
    Ui/Sprites/MapView/IconAutoBurn
+   Ui/Sprites/MapView/IconCamera
    Ui/Sprites/MapView/IconNodeLocked
    Ui/Sprites/MapView/IconPlayer
    Ui/Sprites/MapView/IconRenameNode
+   Ui/Sprites/MapView/IconReplacePlanet
    Ui/Sprites/MapView/IconSelectNode
    Ui/Sprites/MapView/IconSetTarget
    Ui/Sprites/MapView/IconTakeControl
@@ -367,18 +435,22 @@ UnityEngine.Sprite
    Ui/Sprites/Menu/IconButtonBuild
    Ui/Sprites/Menu/IconButtonMenu
    Ui/Sprites/Menu/IconButtonPlay
+   Ui/Sprites/Menu/IconButtonReset
    Ui/Sprites/Menu/IconButtonTrash
    Ui/Sprites/Menu/IconButtonWhatsNew
    Ui/Sprites/Menu/IconComplete
    Ui/Sprites/Menu/IconExclamation
+   Ui/Sprites/Menu/IconLock
    Ui/Sprites/Menu/JundrooLogo
    Ui/Sprites/Menu/LevelIcons/DockingPractice
+   Ui/Sprites/Menu/LevelIcons/EsaJuice
    Ui/Sprites/Menu/LevelIcons/EscapeSoi
    Ui/Sprites/Menu/LevelIcons/LandingPractice
    Ui/Sprites/Menu/LevelIcons/LevelAltitude100
    Ui/Sprites/Menu/LevelIcons/LevelDefault
    Ui/Sprites/Menu/LevelIcons/LevelDesignerTutorial
    Ui/Sprites/Menu/LevelIcons/LevelFlightTutorial
+   Ui/Sprites/Menu/LevelIcons/LevelTutorialBlank
    Ui/Sprites/Menu/LevelIcons/LowFlyer
    Ui/Sprites/Menu/LevelIcons/LowOrbit
    Ui/Sprites/Menu/LevelIcons/MaximumSpeed
@@ -395,8 +467,17 @@ UnityEngine.Sprite
    Ui/Sprites/Menu/LevelIcons/SatelliteRendezvous
    Ui/Sprites/Menu/LevelIcons/ShuttleLanding
    Ui/Sprites/Menu/LevelIcons/TimedOrbit
-   Ui/Sprites/Menu/SimpleRockets2Logo
+   Ui/Sprites/Menu/LevelIcons/TutorialFirstFlight
+   Ui/Sprites/Menu/LevelIcons/TutorialFirstOrbit
+   Ui/Sprites/Menu/LevelIcons/TutorialFirstPayload
+   Ui/Sprites/Menu/LevelIcons/TutorialFirstRace
+   Ui/Sprites/Menu/LevelIcons/TutorialTheJump
+   Ui/Sprites/Menu/LevelIcons/TutorialVerticalShot
+   Ui/Sprites/Menu/NotificationButton
+   Ui/Sprites/Menu/PrimaryGameLogo
+   Ui/Sprites/Menu/Star
    Ui/Sprites/Menu/Team
+   Ui/Sprites/Menu/TutorialProfile
    Ui/Sprites/Panel-Angled-Right
    Ui/Sprites/Panel-Angled
    Ui/Sprites/Panel-Pin
@@ -404,11 +485,20 @@ UnityEngine.Sprite
    Ui/Sprites/PlanetStudio/DataSlotGridRow
    Ui/Sprites/PlanetStudio/DataSlotInput
    Ui/Sprites/PlanetStudio/DataSlotOutput
+   Ui/Sprites/PlanetStudio/Help/celestial-body-designer-1
+   Ui/Sprites/PlanetStudio/Help/data-flow-1
+   Ui/Sprites/PlanetStudio/Help/data-flow-2
+   Ui/Sprites/PlanetStudio/Help/debug-visualize-1
+   Ui/Sprites/PlanetStudio/Help/sub-biomes-1
+   Ui/Sprites/PlanetStudio/Help/sub-biomes-slopes-1
    Ui/Sprites/PlanetStudio/IconAddLaunchLocation
    Ui/Sprites/PlanetStudio/IconAddStructure
+   Ui/Sprites/PlanetStudio/IconAddSubStructure
    Ui/Sprites/PlanetStudio/IconAltitudeBiomes
+   Ui/Sprites/PlanetStudio/IconAtmosphere
    Ui/Sprites/PlanetStudio/IconButtonBrush
    Ui/Sprites/PlanetStudio/IconButtonProperties
+   Ui/Sprites/PlanetStudio/IconButtonRings
    Ui/Sprites/PlanetStudio/IconCameraRecenter
    Ui/Sprites/PlanetStudio/IconCopy
    Ui/Sprites/PlanetStudio/IconEdit
@@ -425,20 +515,31 @@ UnityEngine.Sprite
    Ui/Sprites/PlanetStudio/IconNoiseRandomizeNode
    Ui/Sprites/PlanetStudio/IconNoiseShowDataFlow
    Ui/Sprites/PlanetStudio/IconNoiseShowEmpty
+   Ui/Sprites/PlanetStudio/IconNoiseShowProfiler
    Ui/Sprites/PlanetStudio/IconPlanetObjects
    Ui/Sprites/PlanetStudio/IconRebuildPlanet
    Ui/Sprites/PlanetStudio/IconRebuildPlanetFull
+   Ui/Sprites/PlanetStudio/IconSnapToGround
+   Ui/Sprites/PlanetStudio/IconSystemPlanets
    Ui/Sprites/PlanetStudio/IconTerrainTextures
    Ui/Sprites/PlanetStudio/IconTrash
+   Ui/Sprites/PlanetStudio/IconUploadedNo
+   Ui/Sprites/PlanetStudio/IconUploadedPending
+   Ui/Sprites/PlanetStudio/IconUploadedYes
    Ui/Sprites/PlanetStudio/IconViewTarget
    Ui/Sprites/PlanetStudio/IconWater
-   Ui/Sprites/PlanetStudio/PlanetTemplates/Asteroid
-   Ui/Sprites/PlanetStudio/PlanetTemplates/Desert Planet
-   Ui/Sprites/PlanetStudio/PlanetTemplates/Earth Analog
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Blank
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Gas Giant 2
    Ui/Sprites/PlanetStudio/PlanetTemplates/Gas Giant
-   Ui/Sprites/PlanetStudio/PlanetTemplates/Ice Planet
-   Ui/Sprites/PlanetStudio/PlanetTemplates/Lava Planet
-   Ui/Sprites/PlanetStudio/PlanetTemplates/Moon
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Ice
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Lava
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Lunar
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Martian
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Ocean
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Rock
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Star
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Terrestrial
+   Ui/Sprites/PlanetStudio/PlanetTemplates/Venusian
    Ui/Sprites/Settings/CalibrationArrow
    Ui/Sprites/Settings/graphic-center-stick
    Ui/Sprites/Settings/graphic-move-stick
@@ -488,6 +589,14 @@ UnityEditor.Animations.AnimatorController
 UnityEngine.Texture2D
    Cursors/DefaultCursor
    Ui/Sprites/Common/DeleteThis_PlaceholderTexture
+   Ui/Sprites/Common/ResizeArrowDiagonal1
+   Ui/Sprites/Common/ResizeArrowDiagonal1_small
+   Ui/Sprites/Common/ResizeArrowDiagonal2
+   Ui/Sprites/Common/ResizeArrowDiagonal2_small
+   Ui/Sprites/Common/ResizeArrowHorizontal
+   Ui/Sprites/Common/ResizeArrowHorizontal_small
+   Ui/Sprites/Common/ResizeArrowVertical
+   Ui/Sprites/Common/ResizeArrowVertical_small
 
 UnityEngine.Font
    Fonts/Arial Bold
@@ -495,8 +604,12 @@ UnityEngine.Font
    Fonts/Arial
    Fonts/Courier New Bold
    Fonts/Courier New
+   Ui/Fonts/AngkatanBersenjata/AngkatanBersenjata-2OD4o
    Ui/Fonts/AnitaSemiSquare/Anita semi square
+   Ui/Fonts/DSEG-14-Classic/DSEG14Classic-Regular
+   Ui/Fonts/DSEG-14-Modern/DSEG14Modern-Regular
    Ui/Fonts/FutureEarth/Future Earth
+   Ui/Fonts/Pirulen/pirulen rg
    Ui/Fonts/Roboto/Roboto-Regular
 
 UnityEngine.AudioClip
@@ -505,20 +618,32 @@ UnityEngine.AudioClip
    Ui/Audio/ButtonClickedBig
 
 TMPro.TMP_FontAsset
+   Ui/Fonts/AngkatanBersenjata/AngkatanBersenjata-2OD4o SDF
    Ui/Fonts/AnitaSemiSquare/Anita semi square SDF
+   Ui/Fonts/DSEG-14-Classic/DSEG14Classic-Regular SDF
+   Ui/Fonts/DSEG-14-Modern/DSEG14Modern-Regular SDF
    Ui/Fonts/FutureEarth/Future Earth SDF
+   Ui/Fonts/Pirulen/pirulen rg SDF
+   Ui/Fonts/Roboto/PartMaterial-Roboto-Regular SDF
    Ui/Fonts/Roboto/Roboto-Regular SDF
 
-UnityEditor.DefaultAsset
-   Ui/Fonts/AnitaSemiSquare/CC BY SA License
-
 UnityEngine.Material
+   Ui/Fonts/AngkatanBersenjata/AngkatanBersenjata-2OD4oSurface
+   Ui/Fonts/AnitaSemiSquare/AnitaSemiSquareShadow
+   Ui/Fonts/AnitaSemiSquare/AnitaSemiSquareSurface
+   Ui/Fonts/Pirulen/pirulen rg Shadow Material
+   Ui/Fonts/Pirulen/pirulen rg Tech Tree
+   Ui/Fonts/Roboto/PartMaterial-Roboto-RegularSurface
    Ui/Materials/ColorPickerMaterial
+   Ui/Materials/Default-Translucent
    Ui/Materials/GradientMaterial
    Ui/Prefabs/Mfd/Mfd-Roboto-Regular-SDF
    Ui/Prefabs/Mfd/MfdHudMaskMaterial
    Ui/Prefabs/Mfd/MfdMaskMaterial
    Ui/Prefabs/Mfd/MfdUIMaterial
+
+UnityEditor.DefaultAsset
+   Ui/Fonts/AnitaSemiSquare/CC BY SA License
 
 UnityEngine.Shader
    Ui/Materials/ColorPickerShader

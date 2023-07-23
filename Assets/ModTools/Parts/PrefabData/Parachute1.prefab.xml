@@ -2,9 +2,7 @@
 <GameObject name="Parachute1" path="Craft/Parts/Prefabs/Parachute1.prefab">
   <Component type="UnityEngine.AudioSource" />
   <GameObject name="Scalar">
-    <GameObject name="ParachuteBase">
-      <Component type="UnityEngine.MeshFilter" />
-      <Component type="UnityEngine.MeshRenderer" />
+    <GameObject name="LegacyParent">
       <GameObject name="ParachuteBaseCollider">
         <Component type="UnityEngine.MeshFilter" />
         <Component type="UnityEngine.MeshCollider" />
@@ -35,6 +33,10 @@
             <Component type="ModApi.Craft.Parts.PartMeshScript" />
           </GameObject>
         </GameObject>
+      </GameObject>
+      <GameObject name="ParachuteBase">
+        <Component type="UnityEngine.MeshFilter" />
+        <Component type="UnityEngine.MeshRenderer" />
       </GameObject>
     </GameObject>
   </GameObject>

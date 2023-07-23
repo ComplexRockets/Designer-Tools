@@ -1,7 +1,0 @@
-<XmlLayout xmlns="http://www.w3schools.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\ModTools\UI\XmlLayout.xsd">
-	<Include path="Ui/Xml/Design/DesignStyles.xml" />
-
-  <Button id="ColorPickerButton" class="btn" width="150" onClick="OnColorPickerButtonClicked()">
-    <TextMeshPro text="Open Color Picker" />
-  </Button>
-</XmlLayout>

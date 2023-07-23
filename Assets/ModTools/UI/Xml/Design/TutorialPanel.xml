@@ -7,7 +7,7 @@
   </Defaults>
   <RectTransform id="tutorial">
     <RectTransform class="safe-area">
-      <VerticalLayout pivot="0.5 0" id="tutorial-panel" color="TutorialPanel" childForceExpandHeight="false" contentSizeFitter="vertical" width="640" height="100" rectAlignment="LowerCenter" offsetXY="0 0" padding="5 5 5 10" spacing="5">
+      <VerticalLayout pivot="0.5 0" id="tutorial-panel" class="translucent-panel-dark border" childForceExpandHeight="false" contentSizeFitter="vertical" width="640" height="100" rectAlignment="LowerCenter" offsetXY="0 0" padding="5 5 5 10" spacing="5">
         <Panel class="no-image" preferredHeight="10"></Panel>
         <TextMeshPro id="tutorial-step-text" color="White" autoSizeTextContainer="true" margin="10 0 10 0" />
         <Panel class="no-image" preferredHeight="15"></Panel>
@@ -16,21 +16,21 @@
           <Panel padding="40 40 0 0">
             <TextMeshPro color="Primary" id="tutorial-instruction-text" />
           </Panel>
-          <ContentButton class="panel tutorial-button" sprite="Ui/Sprites/Design/IconTutorialRestartStep" rectAlignment="MiddleLeft" onClick="OnRestartStepClicked();" tooltip="Restart this step"></ContentButton>
-          <ContentButton class="panel tutorial-button" sprite="Ui/Sprites/Design/IconTutorialSkipStep" rectAlignment="MiddleRight" onClick="OnSkipStepClicked();" tooltip="Skip this step"></ContentButton>
+          <ContentButton name="Tutorial.RestartButton" class="panel tutorial-button" sprite="Ui/Sprites/Design/IconTutorialRestartStep" rectAlignment="MiddleLeft" onClick="OnRestartStepClicked();" tooltip="Restart this step" navigation="None"></ContentButton>
+          <ContentButton id="skip-button" class="panel tutorial-button" sprite="Ui/Sprites/Design/IconTutorialSkipStep" rectAlignment="MiddleRight" onClick="OnSkipStepClicked();" tooltip="Skip this step" navigation="None"></ContentButton>
         </Panel>
         <Panel id="okay-panel" class="no-image" preferredHeight="40" active="false">
-          <Button class="btn btn-primary" width="150" onClick="OnSkipStepClicked();">
-            <TextMeshPro text="Okay" />
+          <Button name="Tutorial.OkayButton" class="btn btn-primary" width="150" onClick="OnSkipStepClicked();">
+            <TextMeshPro text="OKAY" />
           </Button>
         </Panel>
-        <Panel id="intro-panel" class="no-image" preferredHeight="40" padding="10 10 0 0" active="false">
+        <Panel id="backup-craft-panel" class="no-image" preferredHeight="40" padding="10 10 0 0" active="false">
           <Panel class="no-image">
-            <Button class="btn" width="150" rectAlignment="MiddleLeft" onClick="OnExitTutorialClicked();">
-              <TextMeshPro text="Cancel" />
+            <Button class="btn" width="150" rectAlignment="MiddleLeft" onClick="OnSkipStepClicked();">
+              <TextMeshPro text="No Thanks" />
             </Button>
-            <Button class="btn btn-primary" width="150" rectAlignment="MiddleRight" onClick="OnSkipStepClicked();">
-              <TextMeshPro text="Start Tutorial" />
+            <Button class="btn btn-primary" width="150" rectAlignment="MiddleRight" onClick="OnBackupCraftClicked();">
+              <TextMeshPro text="Backup Craft" />
             </Button>
           </Panel>
         </Panel>

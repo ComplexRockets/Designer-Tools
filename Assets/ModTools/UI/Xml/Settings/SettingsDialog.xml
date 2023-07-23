@@ -7,16 +7,16 @@
     <Image class="expanded" rotation="0 0 -90" />
     <Panel class="header" color="Panel" offsetMax="10 0" hoverClass="header-hover" raycastTarget="true" preferredHeight="40" />
     <Panel class="header-hover" color="PanelHover" />
-    <TextMeshPro class="header-text" color="White" fontStyle="Bold,UpperCase" alignment="Left" rectAlignment="MiddleLeft" width="250" offsetXY="40 0" />
+    <TextMeshPro class="header-text" color="ButtonText" fontStyle="Bold,UpperCase" alignment="Left" rectAlignment="MiddleLeft" width="250" offsetXY="40 0" />
     <Spinner class="settings-spinner" onClickSound="Ui/Audio/ButtonClicked" buttonColors="Button|ButtonHover|ButtonPressed|ButtonDisabled" rectAlignment="MiddleRight" width="200" />
     <TextMeshPro class="spinner:label" rectAlignment="MiddleLeft" width="200" />
     <TextMeshPro class="settings-spinner:@TextMeshPro" color="White" />
     <Image class="setting-info" rectAlignment="MiddleLeft" sprite="Ui/Sprites/Common/IconQuestionMark" hoverClass="setting-info-hover" width="30" height="30" color="Button" offsetXY="-35 0" tooltipDelayTime="0.0" tooltipPosition="Above" raycastTarget="true" />
     <Image class="setting-info-hover" color="ButtonHover" />
   </Defaults>
-  <Panel id="panel" showAnimation="FadeIn" hideAnimation="FadeOut" animationDuration="0.1" class="dialog-background">
+  <Panel id="panel" showAnimation="FadeIn" hideAnimation="FadeOut" animationDuration="0.1" class="dialog-background" color="Transparent">
     <RectTransform class="safe-area">
-      <Panel class="panel border" width="550" padding="20" maxSize="550 960" allowDragging="true" returnToOriginalPositionWhenReleased="false">
+      <Panel class="translucent-panel border" width="550" padding="20" maxSize="550 960" allowDragging="true" returnToOriginalPositionWhenReleased="false">
         <RectTransform>
           <TextMeshPro class="text-header" text="SETTINGS" alignment="Top" />
           <HorizontalLayout id="control-categories" class="no-image" childForceExpandHeight="true" height="30" rectAlignment="UpperCenter" spacing="10" offsetXY="0 -50">
@@ -35,7 +35,7 @@
           </HorizontalLayout>
           <Panel class="no-image" offsetMax="0 -90">
             <Image color="Border" height="1" rectAlignment="UpperCenter" />
-            <Panel offsetMax="0 0" offsetMin="0 50" color="DarkPanel" padding="10">
+            <Panel offsetMax="0 0" offsetMin="0 50" class="translucent-panel-dark" padding="10">
               <RectTransform id="templates" active="false">
                 <Panel id="template-header" class="header audio-btn-click">
                   <Image internalId="arrow" class="header-arrow expanded" />
@@ -81,6 +81,13 @@
                   <Image internalId="setting-info" class="setting-info" />
                   <TextMeshPro internalId="label" class="label" text="Label Text" />
                   <Toggle internalId="toggle" class="audio-btn-click" rectAlignment="MiddleRight" />
+                </Panel>
+                <Panel id="template-button" class="settings-row row no-image">
+                  <Image internalId="setting-info" class="setting-info" />
+                  <TextMeshPro internalId="label" class="label" text="Label Text" />
+                  <Button internalId="button" class="btn audio-btn-click" rectAlignment="MiddleRight" width="100" pivot="1 0.5">
+                    <TextMeshPro internalId="button-text" />
+                  </Button>
                 </Panel>
                 <Panel id="template-text-input" class="settings-row row no-image">
                   <Image internalId="setting-info" class="setting-info" />

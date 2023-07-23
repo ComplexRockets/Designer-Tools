@@ -6,11 +6,11 @@
     <Component type="UnityEngine.BoxCollider" />
     <Component type="ModApi.Craft.Parts.PartColliderScript" />
     <Component type="ModApi.Craft.Parts.PartMeshScript" />
+    <Component type="ModApi.Craft.Parts.EnabledScript" />
   </GameObject>
   <GameObject name="Text">
     <Component type="UnityEngine.RectTransform" />
     <Component type="UnityEngine.MeshRenderer" />
-    <Component type="UnityEngine.CanvasRenderer" />
     <Component type="TMPro.TextMeshPro" />
     <Component type="ModApi.Craft.Parts.PartMeshScript" />
     <Component type="UnityEngine.MeshFilter" />

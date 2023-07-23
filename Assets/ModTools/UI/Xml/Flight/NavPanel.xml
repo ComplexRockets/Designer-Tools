@@ -12,6 +12,8 @@
     <Image class="nav-sphere-row:panel-button-icon-toggled:panel-button-icon" opacity="1.0" color="White" />
     <Image class="panel-button-icon-toggled:nav-sphere-icon" opacity="1.0" />
     <HorizontalLayout class="nav-sphere-row" width="200" />
+    <VerticalLayout class="nav-panel" offsetXY="0 0" device="desktop" />
+    <VerticalLayout class="nav-panel" offsetXY="0 100" device="mobile" />
   </Defaults>
   <Panel class="no-image" rectAlignment="UpperRight" width="100" height="280" offsetXY="0 -100" pivot="1 1">
     <VerticalLayout id="nav-sphere-panel" class="flight-panel" padding="5" childForceExpandWidth="false" childForceExpandHeight="false" offsetXY="-60 0" childAlignment="UpperRight" spacing="0" rectAlignment="UpperRight" width="100" pivot="1 1" contentSizeFitter="vertical" name="NavSpherePanel">
@@ -32,11 +34,11 @@
         </ContentButton>
       </HorizontalLayout>
       <HorizontalLayout class="nav-sphere-row">
-        <ContentButton id="nav-sphere-radial-in" class="panel-button audio-btn-click" tooltip="Lock Radial In" name="NavSpherePanel.LockRadialIn">
-          <Image class="panel-button-icon" sprite="Ui/Sprites/Flight/IconNavSphereLockRadialIn" />
-        </ContentButton>
         <ContentButton id="nav-sphere-radial-out" class="panel-button audio-btn-click" tooltip="Lock Radial Out" name="NavSpherePanel.LockRadialOut">
           <Image class="panel-button-icon" sprite="Ui/Sprites/Flight/IconNavSphereLockRadialOut" />
+        </ContentButton>
+        <ContentButton id="nav-sphere-radial-in" class="panel-button audio-btn-click" tooltip="Lock Radial In" name="NavSpherePanel.LockRadialIn">
+          <Image class="panel-button-icon" sprite="Ui/Sprites/Flight/IconNavSphereLockRadialIn" />
         </ContentButton>
       </HorizontalLayout>
       <HorizontalLayout class="nav-sphere-row">
@@ -79,8 +81,13 @@
           <Image class="panel-button-icon" sprite="Ui/Sprites/Flight/IconNavSphereLockDown" />
         </ContentButton>
       </HorizontalLayout>
+      <HorizontalLayout class="nav-sphere-row">
+        <ContentButton id="nav-sphere-maneuver" class="panel-button audio-btn-click" tooltip="Lock Maneuver" name="NavSpherePanel.LockManeuverNode">
+          <Image class="panel-button-icon" sprite="Ui/Sprites/Flight/IconNavSphereLockManeuver" />
+        </ContentButton>
+      </HorizontalLayout>
     </VerticalLayout>
-    <VerticalLayout name="NavPanel" class="flight-panel" padding="5" childForceExpandWidth="false" childForceExpandHeight="false" offsetXY="0 0" childAlignment="UpperRight" spacing="5" rectAlignment="UpperRight" width="50" pivot="1 1" contentSizeFitter="vertical">
+    <VerticalLayout name="NavPanel" class="flight-panel nav-panel" padding="5" childForceExpandWidth="false" childForceExpandHeight="false" childAlignment="UpperRight" spacing="5" rectAlignment="UpperRight" width="50" pivot="1 1" contentSizeFitter="vertical">
       <ContentButton class="panel-button audio-btn-click" onClick="OnToggleNavPanelClicked(this);" tooltip="Toggle Nav Sphere Panel" name="NavPanel.ToggleNavSpherePanel">
         <Image class="nav-sphere-icon" sprite="Ui/Sprites/Flight/IconNavPanelToggle" color="White" />
       </ContentButton>
@@ -89,6 +96,9 @@
       </ContentButton>
       <ContentButton id="toggle-flight-inspector" class="panel-button audio-btn-click" onClick="OnToggleFlightInspectorClicked(this);" tooltip="Toggle Flight Info Panel" name="NavPanel.ToggleInspector">
         <Image class="panel-button-icon" sprite="Ui/Sprites/Flight/IconToggleFlightInfoPanel" />
+      </ContentButton>
+      <ContentButton id="toggle-flight-log" class="panel-button audio-btn-click" onClick="OnToggleFlightLogClicked(this);" tooltip="Toggle Flight Log Panel" name="NavPanel.ToggleFlightLog">
+        <Image class="panel-button-icon" sprite="Ui/Sprites/Flight/IconToggleFlightLog" />
       </ContentButton>
       <ContentButton id="toggle-analog-sticks" class="panel-button audio-btn-click" onClick="OnToggleAnalogSticks(this);" tooltip="Toggle Analog Sticks" device="mobile" name="NavPanel.ToggleAnalogSticks">
         <Image class="panel-button-icon" sprite="Ui/Sprites/Flight/IconToggleAnalogSticks" />

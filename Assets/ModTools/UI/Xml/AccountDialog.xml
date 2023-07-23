@@ -3,7 +3,7 @@
   <Include path="Ui/Xml/Styles.xml" />
   <Defaults></Defaults>
   <Panel id="panel" showAnimation="FadeIn" hideAnimation="FadeOut" animationDuration="0.1" class="dialog-background">
-    <VerticalLayout class="panel border" width="420" contentSizeFitter="vertical" spacing="10" padding="20">
+    <VerticalLayout class="panel border" width="450" contentSizeFitter="vertical" spacing="10" padding="20">
       <VerticalLayout id="form" contentSizeFitter="vertical" spacing="10" padding="20">
         <Panel class="row toggle-buttons" rectAlignment="UpperCenter" preferredHeight="30">
           <ToggleGroup>
@@ -54,14 +54,21 @@
         </HorizontalLayout>
       </VerticalLayout>
       <Panel id="profile" minHeight="128">
-        <Panel rectAlignment="MiddleLeft" width="50%">
+        <Panel rectAlignment="MiddleLeft" width="40%">
           <TextMeshPro text="Loading..." />
-          <RawImage id="profile-image" width="128" height="128" />
+          <RawImage id="profile-image" width="128" height="128" rectAlignment="MiddleLeft" />
         </Panel>
-        <VerticalLayout rectAlignment="MiddleRight" width="50%">
+        <VerticalLayout rectAlignment="MiddleRight" width="60%" spacing="10">
           <TextMeshPro text="Logged in as:" alignment="Left" opacity=".75" />
           <TextMeshPro id="profile-username" alignment="Left" />
-          <TextMeshPro class="link" alignment="Left" onClick="OnViewProfileClicked();">View Profile</TextMeshPro>
+          <HorizontalLayout height="30" spacing="10" childForceExpandHeight="false">
+            <Button class="btn btn-primary audio-btn-big" onClick="OnViewProfileClicked();">
+              <TextMeshPro text="View Profile" />
+            </Button>
+            <Button class="btn btn-danger audio-btn-big" onClick="OnDeleteProfileClicked();">
+              <TextMeshPro text="Delete Account" />
+            </Button>
+          </HorizontalLayout>
         </VerticalLayout>
       </Panel>
       <Panel preferredHeight="50">

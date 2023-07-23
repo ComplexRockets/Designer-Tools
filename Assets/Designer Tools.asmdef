@@ -1,8 +1,9 @@
 {
-    "name": "Designer Tools",
-    "references": [
-        "UnityEngine.UI",
-        "Unity.TextMeshPro",
-        "Unity.Mathematics"
-    ]
+	"name": "Designer Tools",
+	"references": [
+		"UnityEngine.UI",
+		"Unity.TextMeshPro",
+		"Unity.Mathematics",
+		"0Harmony"
+	]
 }

@@ -9,7 +9,7 @@
   </Defaults>
   <Panel id="main-panel" active="false" color="DarkPanel" showAnimation="FadeIn" animationDuration="0.5" hideAnimation="FadeOut" raycastTarget="true">
     <Panel class="safe-area">
-      <Button class="icon-button" icon="Ui/Sprites/Menu/IconButtonBack" rectAlignment="UpperLeft" offsetXY="20 -20" onClick="OnCloseAboutPage();" />
+      <Button class="icon-button" icon="Ui/Sprites/Common/IconCloseButton" rectAlignment="UpperRight" offsetXY="-20 -20" onClick="OnCloseAboutPage();" />
       <VerticalLayout spacing="20" padding="50">
         <Panel preferredHeight="50" rectAlignment="UpperCenter">
           <Image sprite="Ui/Sprites/Menu/JundrooLogo" preserveAspect="true" height="50" rectAlignment="MiddleCenter" />
@@ -28,14 +28,13 @@
               <TextMeshPro class="name" text="Joey Sellers" />
               <TextMeshPro class="job" text="Design" />
             </Panel>
+          </VerticalLayout>
+          <VerticalLayout contentSizeFitter="vertical" childForceExpandWidth="false" childForceExpandHeight="false" rectAlignment="UpperCenter" childAlignment="UpperCenter" spacing="5" pivot="0.5 1">
+            <TextMeshPro text="CORE TEAM" class="credit-header" />
             <Panel class="credit">
               <TextMeshPro class="name" text="Pedro Carro" />
               <TextMeshPro class="job" text="Design &amp; QA" />
             </Panel>
-          </VerticalLayout>
-          <VerticalLayout contentSizeFitter="vertical" childForceExpandWidth="false" childForceExpandHeight="false" rectAlignment="UpperCenter" childAlignment="UpperCenter" spacing="5" pivot="0.5 1">
-            <TextMeshPro text="CORE TEAM" class="credit-header" />
-            <TextMeshPro text="from left to right" color="LabelText" />
             <Panel class="credit">
               <TextMeshPro class="name" text="Nicky Pike" />
               <TextMeshPro class="job" text="Code" />

@@ -12,6 +12,10 @@
       <Image sprite="Ui/Sprites/Common/IconStagingLandingLeg" />
       <TextMeshPro text="x2" />
     </Panel>
+    <Panel id="stage-group-payloads" class="stage-group" tooltip="Payloads">
+      <Image sprite="Ui/Sprites/Common/IconStagingPayload" />
+      <TextMeshPro text="x2" />
+    </Panel>
     <Panel id="stage-group-parachutes" class="stage-group" tooltip="Parachutes">
       <Image sprite="Ui/Sprites/Common/IconStagingParachute" />
       <TextMeshPro text="x2" />

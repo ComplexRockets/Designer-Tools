@@ -10,7 +10,6 @@
     <Image class="finger-button-selected" color="Primary" />
   </Defaults>
   <Panel id="main-panel" opacity="1" class="safe-area no-image">
-    <Button name="LaunchButton" class="icon-button btn-primary audio-btn-big" icon="Ui/Sprites/Design/IconButtonPlay" rectAlignment="UpperRight" offsetXY="-10 -10" onClick="OnPlayButtonClicked();" tooltip="Launch this craft" tooltipPosition="Left" />
     <Button id="toggle-finger-tool-button" class="icon-button" rectAlignment="LowerRight" offsetXY="-110 10" icon="Ui/Sprites/Design/IconButtonFingerTool" onClick="OnToggleFingerToolButtonClicked();" tooltip="Toggle Finger Aid Tool" tooltipPosition="Left" name="ToggleFingerTool" device="mobile" />
     <Button id="group-parts-button" class="icon-button" rectAlignment="LowerRight" offsetXY="-60 10" icon="Ui/Sprites/Design/IconButtonGroupParts" onClick="OnGroupPartsButtonClicked();" tooltip="Group/Ungroup selected parts" tooltipPosition="Above" />
     <Button id="undo-button" class="icon-button" rectAlignment="LowerRight" offsetXY="-10 10" icon="Ui/Sprites/Design/IconButtonUndo" onClick="OnUndoButtonClicked();" tooltip="Undo" tooltipPosition="Left" />
@@ -21,8 +20,8 @@
         <Panel internalId="flyout-menu" class="toggle-button toggle-flyout audio-btn-click" name="ButtonPanel.Menu" tooltip="Menu" onClick="OnToggleFlyoutButtonClicked(this);">
           <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonMenu" />
         </Panel>
-        <Panel internalId="flyout-tools" class="toggle-button toggle-flyout audio-btn-click" name="ButtonPanel.Tools" tooltip="Active Tool" onClick="OnToggleFlyoutButtonClicked(this);">
-          <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonMovePartTool" id="active-tool-icon" />
+        <Panel internalId="flyout-tools" class="toggle-button toggle-button toggle-flyout audio-btn-click" name="ButtonPanel.Tools" tooltip="Active Tool" onClick="OnToggleFlyoutButtonClicked(this);">
+          <Image class="toggle-button-icon toggle-button-icon-white" sprite="Ui/Sprites/Design/IconButtonMovePartTool" id="active-tool-icon" />
         </Panel>
         <Panel internalId="flyout-part-list" class="toggle-button toggle-flyout audio-btn-click" name="ButtonPanel.AddPart" tooltip="Add Part" onClick="OnToggleFlyoutButtonClicked(this);">
           <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonParts" />
@@ -30,11 +29,11 @@
         <Panel internalId="flyout-part-properties" class="toggle-button toggle-flyout audio-btn-click" name="ButtonPanel.PartProperties" tooltip="Part Properties" onClick="OnToggleFlyoutButtonClicked(this);">
           <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonProperties" />
         </Panel>
-        <Panel internalId="flyout-staging" class="toggle-button toggle-flyout audio-btn-click" name="ButtonPanel.StagingEditor" tooltip="Staging Editor" onClick="OnToggleFlyoutButtonClicked(this);">
-          <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonStaging" />
-        </Panel>
         <Panel internalId="flyout-symmetry" class="toggle-button toggle-flyout audio-btn-click" name="ButtonPanel.Symmetry" tooltip="Symmetry Tool" onClick="OnToggleFlyoutButtonClicked(this);">
           <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonSymmetry" />
+        </Panel>
+        <Panel internalId="flyout-preflight" class="toggle-button toggle-flyout audio-btn-click" name="ButtonPanel.Preflight" tooltip="Preflight Configuration" onClick="OnToggleFlyoutButtonClicked(this);">
+          <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonPreflight" />
         </Panel>
         <Panel internalId="flyout-craft-parts" class="toggle-button toggle-flyout audio-btn-click" name="ButtonPanel.CraftParts" tooltip="Search Craft's Parts" onClick="OnToggleFlyoutButtonClicked(this);">
           <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonCraftParts" />
@@ -48,6 +47,20 @@
         <TextMeshPro class="value" offsetXY="0 0" text="Click on 'Part Properties' to customize this part." />
       </Panel>
     </Panel>
+    <VerticalLayout class="panel" childForceExpandHeight="false" contentSizeFitter="vertical" width="50" pivot="1 1" offsetXY="0 -100" rectAlignment="UpperRight">
+      <Panel name="LaunchButton" class="toggle-button tool-button audio-btn-big" onClick="OnPlayButtonClicked();" tooltip="Launch this craft" tooltipPosition="Left">
+        <Image class="toggle-button-icon toggle-button-icon-white" color="Primary" sprite="Ui/Sprites/Design/IconButtonPlay" />
+      </Panel>
+      <Panel id="toggle-performance-button" name="Menu.Performance" class="toggle-button tool-button audio-btn-click" tooltip="Design Info" onClick="OnPerformanceAnalyzerButtonClicked(this);">
+        <Image class="toggle-button-icon toggle-button-icon-white" sprite="Ui/Sprites/Flight/IconToggleFlightInfoPanel" />
+      </Panel>
+      <Panel class="toggle-button tool-button audio-btn-click" tooltip="View and assign the crew to this craft" onClick="OnCrewButtonClicked();">
+        <Image class="toggle-button-icon toggle-button-icon-white" sprite="Ui/Sprites/Design/IconButtonAssignCrew" />
+      </Panel>
+      <Panel class="toggle-button tool-button audio-btn-click" tooltip="Edit Program" onClick="OnEditProgramButtonClicked();">
+        <Image class="toggle-button-icon toggle-button-icon-white" sprite="Ui/Sprites/Design/IconButtonEditProgram" />
+      </Panel>
+    </VerticalLayout>
     <Panel id="flyout-menu" class="panel flyout" width="225" active="false">
       <Panel class="flyout-header">
         <TextMeshPro text="MENU" />
@@ -65,6 +78,16 @@
       </Panel>
       <Panel class="flyout-content no-image">
         <ChildXmlLayout viewPath="Ui/Xml/Design/ToolPanel" controller="Assets.Scripts.Design.Tools.ToolPanelScript" />
+      </Panel>
+    </Panel>
+    <Panel id="flyout-preflight" class="panel flyout" width="425" active="false">
+      <Image rectAlignment="MiddleLeft" width="1" height="100%" color="Border" offsetXY="50 0" />
+      <Panel class="flyout-header">
+        <TextMeshPro text="PREFLIGHT CONFIGURATION" />
+        <Image name="Flyout.Preflight.Close" class="flyout-close-button audio-btn-back" />
+      </Panel>
+      <Panel class="flyout-content no-image">
+        <ChildXmlLayout viewPath="Ui/Xml/Design/PreflightPanel" controller="Assets.Scripts.Design.PreflightPanelScript" />
       </Panel>
     </Panel>
     <Panel id="flyout-part-list" class="panel flyout" width="258" active="false">
@@ -95,31 +118,13 @@
         <ChildXmlLayout viewPath="Ui/Xml/Design/PartPropertiesPanel" controller="Assets.Scripts.Design.PartProperties.PartPropertiesFlyoutScript" />
       </Panel>
     </Panel>
-    <Panel id="flyout-staging" class="panel flyout" width="320" active="false">
+    <Panel id="flyout-xml-edit" class="panel flyout" width="450" active="false">
       <Panel class="flyout-header">
-        <TextMeshPro text="STAGING" />
-        <Image name="Flyout.Staging.Close" class="flyout-close-button audio-btn-back" />
-      </Panel>
-      <Panel class="flyout-content no-image">
-        <ChildXmlLayout viewPath="Ui/Xml/Design/StagingEditorPanel" controller="Assets.Scripts.Design.Staging.StagingEditorPanelScript" />
-      </Panel>
-    </Panel>
-    <Panel id="flyout-activation-groups" class="panel flyout" width="320" active="false">
-      <Panel class="flyout-header">
-        <TextMeshPro text="ACTIVATION GROUPS" />
+        <TextMeshPro text="Hidden Properties" />
         <Image class="flyout-close-button audio-btn-back" />
       </Panel>
       <Panel class="flyout-content no-image">
-        <ChildXmlLayout viewPath="Ui/Xml/Design/ActivationGroupsPanel" controller="Assets.Scripts.Design.ActivationGroupsPanelScript" />
-      </Panel>
-    </Panel>
-    <Panel id="flyout-part-connections" class="panel flyout" width="320" active="false">
-      <Panel class="flyout-header">
-        <TextMeshPro text="PART CONNECTIONS" />
-        <Image class="flyout-close-button audio-btn-back" />
-      </Panel>
-      <Panel class="flyout-content no-image">
-        <ChildXmlLayout viewPath="Ui/Xml/Design/PartConnectionsPanel" controller="Assets.Scripts.Design.PartConnectionsPanelScript" />
+        <ChildXmlLayout viewPath="Ui/Xml/Design/XMLEditPanel" controller="Assets.Scripts.Design.XMLEditPanelScript" />
       </Panel>
     </Panel>
     <Panel id="flyout-symmetry" class="panel flyout" width="280" active="false">
@@ -148,10 +153,6 @@
       <Panel class="flyout-content no-image">
         <ChildXmlLayout viewPath="Ui/Xml/Design/ViewOptionsPanel" controller="Assets.Scripts.Design.ViewOptionsPanelScript" />
       </Panel>
-    </Panel>
-    <Panel class="panel panel-angled border-angled" width="350" height="32" rectAlignment="LowerCenter" offsetXY="0 -6">
-      <TextMeshPro id="craft-mass-text" color="ValueText" text="25kg" height="30" rectAlignment="MiddleLeft" width="50%" offsetXY="25 0" tooltip="The current mass of your craft." raycastTarget="true" tooltipPosition="Above" />
-      <TextMeshPro id="craft-price-text" color="ValueText" text="$23k" height="30" rectAlignment="MiddleRight" width="50%" offsetXY="-25 0" tooltip="The current price of your craft. Money doesn't matter.....yet." raycastTarget="true" tooltipPosition="Above" />
     </Panel>
   </Panel>
   <TextMeshPro id="message-text" class="message-text" rectAlignment="UpperCenter" alignment="Top" height="50" width="50%" showAnimation="None" hideAnimation="FadeOut" animationDuration="0.5" />

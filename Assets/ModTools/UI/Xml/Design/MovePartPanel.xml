@@ -14,7 +14,7 @@
       </Spinner>
     </Panel>
     <Panel class="spinner row">
-      <TextMeshPro class="label tooltip" text="Angle Snap" tooltip="Attach parts to fuselages at discrete angles" />
+      <TextMeshPro class="label tooltip" text="Attachment Angle" tooltip="Attach parts to fuselages at discrete angles" />
       <Spinner id="spinner-angle-snap" numericFormat="0.##" onNumericValueChanged="OnAngleSnapChanged();" stepSize="5.0" minValue="0" maxValue="180">
         <TextMeshProInputField>
           <TMP_Text />
@@ -34,11 +34,12 @@
       <Toggle id="show-attach-points" rectAlignment="MiddleRight" onValueChanged="OnShowAttachPointsChanged();" />
     </Panel>
     <Panel class="row">
+      <TextMeshPro class="label tooltip" text="Attach To Surfaces" rectAlignment="MiddleLeft" tooltip="Allow some of the parts to be attached directly to surfaces." />
+      <Toggle id="enable-surface-attachments" rectAlignment="MiddleRight" onValueChanged="OnEnableSurfaceAttachmentsChanged();" />
+    </Panel>
+    <Panel class="row">
       <TextMeshPro class="label tooltip" text="Auto Resize Parts" rectAlignment="MiddleLeft" tooltip="Automatically resize parts to match in size when they are connected." />
       <Toggle id="enable-auto-resize" rectAlignment="MiddleRight" onValueChanged="OnEnableAutoResizeChanged();" />
     </Panel>
-    <Button class="btn btn-primary" rectAlignment="LowerLeft" onClick="OnPartConnectionsButtonClicked();" tooltip="View a part's connections with other parts.">
-      <TextMeshPro text="PART CONNECTIONS" />
-    </Button>
   </VerticalLayout>
 </XmlLayout>

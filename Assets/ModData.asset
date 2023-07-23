@@ -14,35 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _assemblies:
   - Designer Tools.dll
-  _author: Aram - Complex Rockets
-  _description: "Designer Tools will simplify your SimpleRockets building experience
-    with tons of new tools. \nRead the mod page for more information or help.\n\nAdded
-    Tools:\nView Tools\n\t- 0rthographic view\n\t- Reference image selector\n\t-
-    ViewCube\n\nMultiple Part tools\n\t- Multiple part selector (by holding tab)\n\t-
-    Multiple part painter\n\t- Multiple part property edit (not yet released)\n\t-
-    Align Parts (not yet released)\n\t- Distribute Parts (not yet released)\n\nOther
-    Tools\n\t- DeltaV calculator Tool (not yet released)\n\t- Circular / Linear pattern
-    (not yet released)"
+  _author: Aram
+  _description: 'Designer Tools will simplify your SimpleRockets building experience
+    with tons of new tools.
+
+
+    Required Dependency:
+
+    Juno Harmony'
   _loadPriority: 1000
   _name: Designer Tools
   _otherAssets:
+  - {fileID: 2800000, guid: c5310b9b7afcb4b78b81268a7bf9bf39, type: 3}
+  - {fileID: 2100000, guid: 6d874022f5eb84ddbae77197b3ad5919, type: 2}
+  - {fileID: 2100000, guid: 5d9dee5b62fcf48f5a3f64fe310d2aee, type: 2}
   - {fileID: 2100000, guid: e51c9f450fd9b41e0aafde29d5578d91, type: 2}
   - {fileID: 2800000, guid: 2d787068a15f54f6dab4f94fa379bf15, type: 3}
   _prefabs:
-  - {fileID: 7431289796511757761, guid: 22ca36f2fb9154312a3998797af17fbe, type: 3}
+  - {fileID: 7901306008221007172, guid: 031cc6f9adaba4b0ea7f14309dc73ae4, type: 3}
+  - {fileID: 1141059142358219515, guid: 2f046d750061f4e6a931bc040cc59837, type: 3}
+  - {fileID: -927199367670048503, guid: d75ed1838a9014e28ae361f3731fe3aa, type: 3}
   _steamDescription: 
   _steamLanguage: English
   _steamPreviewPath: 
   _steamTags: 
   _steamTitle: 
   _steamVisibility: 0
-  _versionMajor: 0
-  _versionMinor: 41
+  _versionMajor: 1
+  _versionMinor: 0
   _partCategories: []
   _parts: []
   _partStyleExtensions: []
   _partTextureStyles: []
   _persistentObjects:
-  - {fileID: 2204906191568106485, guid: 636e257f5270c4fb4884a71f12aee767, type: 3}
+  - {fileID: 5413580404751725987, guid: 360e8401f5e884882af1403b4b944d4e, type: 3}
   _uiResourceDatabases:
-  - {fileID: 11400000, guid: bcbfd309ef6254553a83b6c1bb98b677, type: 2}
+  - {fileID: 11400000, guid: 10ad6227c15894e82a965f99a1a6a8c5, type: 2}

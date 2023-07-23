@@ -12,7 +12,7 @@
   </Defaults>
   <Panel id="panel" showAnimation="FadeIn" animationDuration="0.1" class="dialog-background">
     <VerticalLayout internalId="dialog-panel" class="panel border dialog-panel" contentSizeFitter="vertical" spacing="10" padding="20">
-      <TextMeshPro id="label-text" class="value" text="Title" minHeight="90" />
+      <TextMeshPro id="label-text" class="value" text="Title" minHeight="90" richText="true" />
       <Panel preferredHeight="50">
         <Button id="cancel-button" class="btn audio-btn-back dialog-button" rectAlignment="LowerLeft">
           <TextMeshPro id="cancel-button-text" text="CANCEL" />

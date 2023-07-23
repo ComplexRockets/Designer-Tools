@@ -498,6 +498,7 @@
     <xs:complexType>
       <xs:attributeGroup ref="xmlLayout:tooltip" />
       <xs:attribute name="device" type="xs:string" />
+      <xs:attribute name="gameMode" type="xs:string" />
     </xs:complexType>
   </xs:element>
   <xs:element name="Button">
@@ -1076,6 +1077,7 @@
     </xs:attribute>
     <xs:attribute name="active" type="xmlLayout:boolean" />
     <xs:attribute name="device" type="xs:string" />
+    <xs:attribute name="gameMode" type="xs:string" />
     <xs:attribute name="internalId" type="xs:string">
       <xs:annotation>
         <xs:documentation>Specified an internal id for this object which can be used to access it later on, via XmlElement.GetElementByInternalId(). This can be used to access child elements of any XmlElement.</xs:documentation>
@@ -1129,7 +1131,9 @@
     <xs:attribute name="borderOffset" type="xmlLayout:floatList" />
     <xs:attribute name="borderSprite" type="xs:string" />
     <xs:attribute name="maxSize" type="xs:string" />
+    <xs:attribute name="raycastPadding" type="xmlLayout:vector4" />
     <xs:attribute name="safeArea" type="xmlLayout:boolean" />
+    <xs:attribute name="translucency" type="xmlLayout:float" />
   </xs:attributeGroup>
   <xs:attributeGroup name="tooltip">
     <xs:attribute name="tooltip" type="xs:string">

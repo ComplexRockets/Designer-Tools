@@ -29,10 +29,11 @@
     <Style id="else-if" color="InstructionBlock" format="else if {0} then" tooltip="Only executes if previous if/else if blocks were false and this condition is true. Must follow an if or else if block." />
     <Style id="else" color="InstructionBlock" format="else" tooltip="Only executes if all previous if/else if blocks were false. Must follow an if or else if block." />
     <Style id="display" color="Instruction" format="display (0)" tooltip="Displays the message at the top of the screen." />
-    <Style id="log" color="Instruction" format="log (0)" tooltip="Logs the message to the output log, which can be viewed by clicking View Log in the part's inspector panel during flight." />
+    <Style id="log" color="Instruction" format="local log (0)" tooltip="Logs the message to the output log in the part running this program, which can be viewed by clicking View Log in the part's inspector panel during flight." />
+    <Style id="flightlog" color="Instruction" format="flight log (0) {1}" tooltip="Logs the message to the flight log. If the second parameter is set to true, it will override the message, if it is false it will write a new one every time." />
     <Style id="break" color="Event" format="break" tooltip="Breaks out of a while or repeat loop." />
     <Style id="comment" color="Instruction" textColor="Comment" format="# (0)" tooltip="This instruction does not execute and can be used to place comments in your program to help explain how it works." />
-    <Style id="comment-text" color="Constant" textColor="Comment" />
+    <Style id="comment-text" color="Constant" textColor="Comment" tooltip="Empty instruction that does not execute so you can place comments in your program." />
     <Style id="play-beep" color="Instruction" format="beep (0:ZeroOrMore) Hz at (1:ZeroToOne) volume for (2:ZeroOrMore) seconds" tooltip="Plays a beep sound with the specified parameters." />
     <Style id="note-frequency" color="Instruction" format="frequency of (0) octave (1:ZeroOrMore)" tooltip="Gets the frequency of the note at the octave." />
     <Style id="op-add" color="Operator" format="(0:Number) + (1:Number)" tooltip="Adds the left and right numbers together and returns the result." />
@@ -59,6 +60,7 @@
     <Style id="vec-op-1" color="Operator" format="(0) [op]" tooltip="Access information from a vector." />
     <Style id="vec-op-2" color="Operator" format="(0) [op] (1)" tooltip="Returns the result of the operation between the two vectors." />
     <Style id="vec-op-color" color="Operator" format="hex color (0)" tooltip="Converts a hexadecimal color (ie #FF0000) into a color vector (ie 1,0,0)." />
+    <Style id="evaluate-expression" color="CraftExpression" richText="true" format="&lt;color=#0f0&gt;f&lt;color=#f0f&gt;U&lt;color=#ff0&gt;N&lt;color=#f00&gt;k (0)" tooltip="Evaluates an input expression in this part's context. Time-based functions may be inaccurate if the input is evaluated at different intervals - for better results you can create an InputController and reference it's value from Vizzy." />
     <Style id="join" color="Operator" format="join " dynamicExpressionsSlots="true" tooltip="Returns the result of joining the two or more strings of text together." />
     <Style id="letter" color="Operator" format="letter (0:OneOrMore) of (1)" tooltip="Returns the letter at the specified location." />
     <Style id="substring" color="Operator" format="letters (0:ZeroOrMore) to (1:ZeroOrMore) of (2)" tooltip="Returns the letters of the text between the start and end locations. If 0 is specified for start/end then the start/end of the text will be used." />
@@ -115,24 +117,28 @@
     <Style id="destroy-all-mfd-widgets" color="WidgetInstruction" format="destroy all widgets" tooltip="Destroys all of the the MFD widgets." />
     <Style id="activation-group" color="CraftExpression" format="activation group (0:OneOrMore)" tooltip="Returns the status of the activation group. True indicates the AG is active." />
     <Style id="planet-to-lat-long-agl" color="CraftInstruction" format="convert (0) to lat/long/AGL" tooltip="Converts the position vector to a (latitude, longitude, AGL) vector." />
+    <Style id="planet-to-lat-long-asl" color="CraftInstruction" format="convert (0) to lat/long/ASL" tooltip="Converts the position vector to a (latitude, longitude, ASL) vector. It is much faster than the AGL counterpart." />
     <Style id="planet-to-position" color="CraftInstruction" format="convert (0) to position" tooltip="Converts the (latitude, longitude, AGL) vector to a position vector." />
+    <Style id="planet-to-position-asl" color="CraftInstruction" format="convert (0) to position over sea" tooltip="Converts the (latitude, longitude, ASL) vector to a position vector. It is much faster than the AGL counterpart." />
     <Style id="planet" color="CraftInstruction" format="planet (0) [x]" tooltip="Gets a property of the specified planet." />
     <Style id="terrain-query" color="CraftInstruction" format="get terrain [x] at lat/long (0)" tooltip="Gets information about the current planet's terrain at the specified (latitude, longitude, 0) vector. The z component of the vector is not used." />
+    <Style id="raycast-query" color="CraftInstruction" format="cast a ray from (0) towards (1)" tooltip="Projects a ray from the indicated position in the indicated direction and returns the position at which the ray touched something, or a zero vector if it didn't touch anything in a 100km radius." />
     <Style id="part" color="CraftInstruction" format="part (0:ZeroOrMore) [x]" tooltip="Gets a property of the part with the specified ID." />
     <Style id="part-id" color="CraftInstruction" format="part ID of (0)" tooltip="The ID of the first part found with the specified name or -1 if none are found." />
     <Style id="part-transform" color="CraftInstruction" format="part (0) [x] (1)" tooltip="Converts the vector between local and PCI coordinates." />
     <Style id="craft" color="CraftInstruction" format="craft (0:ZeroOrMore) [x]" tooltip="Gets a property of the craft with the specified ID." />
-    <Style id="craft-id" color="CraftInstruction" format="craft ID of (0)" tooltip="The ID of the first craft found with the specified name or -1 if none are found. If no name is provided, then the ID of the player's craft is returned." />
-    <Style id="true" color="Operator" format="true" tooltip="" />
-    <Style id="false" color="Operator" format="false" tooltip="" />
+    <Style id="craft-id" color="CraftInstruction" format="craft ID of (0)" tooltip="The ID of the first craft found with the specified name or -1 if none are found. If no name is provided, then the ID of the craft running the program is returned." />
+    <Style id="true" color="Operator" format="true" tooltip="Constant value for true." />
+    <Style id="false" color="Operator" format="false" tooltip="Constant value for false." />
     <Style id="flight-start" color="Event" format="on start" tooltip="Event called when the craft enters the flight scene for the first time." />
     <Style id="part-collision" color="Event" format="on |part| collide with |other| at |velocity| and |impulse|" tooltip="Event called when a part in the craft has collided with something else." />
     <Style id="part-explode" color="Event" format="on |part| exploded" tooltip="Event called when a part in the craft explodes." />
     <Style id="craft-docked" color="Event" format="on |craftA| and |craftB| docked" tooltip="Event called when this craft docks with another craft. NOTE: Part IDs may change after docking with another craft." />
-    <Style id="change-soi" color="Event" format="on enter |planet| SOI" />
+    <Style id="change-soi" color="Event" format="on enter |planet| SOI" tooltip="Event called when the craft enters a planet's sphere of influence." />
     <Style id="receive-msg" color="Event" format="receive (0) with |data|" tooltip="Called when the flight program receives a message, with its data set to the value that was broadcasted." />
     <Style id="broadcast-msg" color="Instruction" format="broadcast (0) with data (1)" tooltip="Sends a message with the specified data to all matching receive message events in this program." />
     <Style id="broadcast-msg-craft" color="Instruction" format="broadcast (0) with data (1) to craft" tooltip="Sends a message with the specified data to all matching receive message events in this craft." />
+    <Style id="broadcast-msg-all-crafts" color="Instruction" format="broadcast (0) with data (1) to nearby crafts" tooltip="Sends a message with the specified data to all matching receive message events in all nearby crafts, consuming some energy based on the size of the message." />
     <Style id="set-variable" color="Instruction" format="set variable (0) to (1)" tooltip="Sets the value of the variable." />
     <Style id="change-variable" color="Instruction" format="change variable (0) by (1)" tooltip="Changes the value of the number variable by the specified amount." />
     <Style id="global-variable" color="GlobalVariable" format="" tooltip="Variable that can change its value." />
@@ -171,7 +177,7 @@
         <Constant number="10" />
       </Repeat>
       <While style="while">
-        <Constant bool="true" />
+        <Constant style="true" bool="true" />
       </While>
       <For style="for">
         <Constant number="1" />
@@ -194,6 +200,10 @@
       <LogMessage style="log">
         <Constant text="text" />
       </LogMessage>
+      <LogFlight style="flightlog">
+        <Constant text="text" />
+        <Constant style="true" bool="true" />
+      </LogFlight>
       <Break style="break" />
       <Comment style="comment">
         <Constant text="Comment Text" style="comment-text" canReplace="false" />
@@ -318,6 +328,9 @@
         <Constant vector="0,0,0" />
         <Constant vector="0,0,0" />
       </VectorOp>
+      <EvaluateExpression style="evaluate-expression">
+        <Constant text="" />
+      </EvaluateExpression>
       <Constant style="true" bool="true" />
       <Constant style="false" bool="false" />
     </Category>
@@ -379,10 +392,20 @@
       <Planet style="planet-to-lat-long-agl" op="toLatLongAgl">
         <Constant vector="0,0,0" />
       </Planet>
+      <Planet style="planet-to-lat-long-asl" op="toLatLongAsl">
+        <Constant vector="0,0,0" />
+      </Planet>
       <Planet style="planet-to-position" op="toPosition">
         <Constant vector="0,0,0" />
       </Planet>
+      <Planet style="planet-to-position-asl" op="toPositionOverSea">
+        <Constant vector="0,0,0" />
+      </Planet>
       <CraftProperty style="terrain-query" property="Terrain.Height">
+        <Constant vector="0,0,0" />
+      </CraftProperty>
+      <CraftProperty style="raycast-query" property="Raycast">
+        <Constant vector="0,0,0" />
         <Constant vector="0,0,0" />
       </CraftProperty>
       <Planet style="planet" op="radius">
@@ -421,6 +444,10 @@
         <Constant number="0" />
       </BroadcastMessage>
       <BroadcastMessage style="broadcast-msg-craft" local="false">
+        <Constant text="message" />
+        <Constant number="0" />
+      </BroadcastMessage>
+      <BroadcastMessage style="broadcast-msg-all-crafts" global="true">
         <Constant text="message" />
         <Constant number="0" />
       </BroadcastMessage>

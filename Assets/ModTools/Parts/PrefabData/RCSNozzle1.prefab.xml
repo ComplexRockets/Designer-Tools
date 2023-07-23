@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <GameObject name="RCSNozzle1" path="Craft/Parts/Prefabs/RCSNozzle1.prefab">
-  <GameObject name="Orientationizer">
-    <GameObject name="Cube">
+  <GameObject name="Scalar">
+    <GameObject name="Collider">
       <Component type="UnityEngine.BoxCollider" />
       <Component type="ModApi.Craft.Parts.PartColliderScript" />
     </GameObject>

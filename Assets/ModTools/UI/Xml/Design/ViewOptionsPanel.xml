@@ -17,9 +17,9 @@
       <Image class="separator" />
     </Panel>
     <Panel class="no-image" preferredHeight="40">
-      <Button id="gizmo-com" class="gizmo-toggle-button" iconColor="CenterOfMass" iconHoverColor="CenterOfMass" offsetXY="-60 0" tooltip="Toggle Center of Mass indicator" />
-      <Button id="gizmo-col" class="gizmo-toggle-button" iconColor="CenterOfLift" iconHoverColor="CenterOfLift" offsetXY="0 0" tooltip="Toggle Center of Lift indicator" />
-      <Button id="gizmo-cot" class="gizmo-toggle-button" iconColor="CenterOfThrust" iconHoverColor="CenterOfThrust" offsetXY="60 0" tooltip="Toggle Center of Thrust indicator. Engine thrust is calculated using the altitude currently set in the Performance Analyzer." />
+      <Button id="gizmo-com" name="ViewOptions.CoM" class="gizmo-toggle-button" iconColor="CenterOfMass" iconHoverColor="CenterOfMass" offsetXY="-60 0" tooltip="Toggle Center of Mass indicator" />
+      <Button id="gizmo-col" name="ViewOptions.CoL" class="gizmo-toggle-button" iconColor="CenterOfLift" iconHoverColor="CenterOfLift" offsetXY="0 0" tooltip="Toggle Center of Lift indicator" />
+      <Button id="gizmo-cot" name="ViewOptions.CoT" class="gizmo-toggle-button" iconColor="CenterOfThrust" iconHoverColor="CenterOfThrust" offsetXY="60 0" tooltip="Toggle Center of Thrust indicator. Engine thrust is calculated using the altitude currently set in the Design Info panel." />
     </Panel>
     <Panel class="spinner row">
       <TextMeshPro class="label tooltip" text="Stage" width="50%" tooltip="View Center indicators with respect to a specific stage" />
@@ -55,6 +55,11 @@
     <Panel class="no-image" preferredHeight="20" id="select-command-pod-panel" active="false">
       <Button class="btn" onClick="OnSelectPartsAssociatedCommandPodClicked(this)" rectAlignment="MiddleRight" tooltip="Selects the command pod associated with the selected part.">
         <TextMeshPro>Select Command Pod</TextMeshPro>
+      </Button>
+    </Panel>
+    <Panel class="no-image" preferredHeight="20" id="select-background-color-panel">
+      <Button class="btn" onClick="OnBackgroundColorClicked();" tooltip="Change the color of the background.">
+        <TextMeshPro text="Background Color" />
       </Button>
     </Panel>
   </VerticalLayout>

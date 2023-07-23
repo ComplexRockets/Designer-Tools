@@ -7,8 +7,8 @@
   <VerticalLayout class="no-image" childForceExpandHeight="false" padding="20" spacing="10" pivot="0 1">
     <VerticalLayout id="content" class="no-image" childForceExpandHeight="false" spacing="10" pivot="0 1">
       <Panel class="spinner row">
-        <TextMeshPro class="label tooltip" text="Angle Snap" tooltip="Changes how many degrees to rotate with each step" />
-        <Spinner id="spinner-snap" numericFormat="0.##" onNumericValueChanged="OnSnapChanged();" stepSize="5.0" minValue="0" maxValue="45">
+        <TextMeshPro class="label tooltip" text="Angle Step" tooltip="Changes how many degrees to rotate with each step" />
+        <Spinner id="spinner-snap" numericFormat="0.##" onNumericValueChanged="OnSnapChanged();" stepSize="5.0" minValue="-1" maxValue="91">
           <TextMeshProInputField>
             <TMP_Text />
           </TextMeshProInputField>
@@ -38,7 +38,7 @@
         <Image class="separator" />
       </Panel>
       <Panel class="spinner row">
-        <TextMeshPro class="label tooltip" text="X-Angle" tooltip="Part's current rotation around the X-axis" />
+        <TextMeshPro class="label tooltip" text="X-Angle" color="#e62e2e" tooltip="Part's current rotation around the X-axis" />
         <Spinner id="spinner-x" class="angle-spinner" onNumericValueChanged="OnAngleChanged();">
           <TextMeshProInputField>
             <TMP_Text />
@@ -46,7 +46,7 @@
         </Spinner>
       </Panel>
       <Panel class="spinner row">
-        <TextMeshPro class="label tooltip" text="Y-Angle" tooltip="Part's current rotation around the Y-axis" />
+        <TextMeshPro class="label tooltip" text="Y-Angle" color="#088f00" tooltip="Part's current rotation around the Y-axis" />
         <Spinner id="spinner-y" class="angle-spinner" onNumericValueChanged="OnAngleChanged();">
           <TextMeshProInputField>
             <TMP_Text />
@@ -54,7 +54,7 @@
         </Spinner>
       </Panel>
       <Panel class="spinner row">
-        <TextMeshPro class="label tooltip" text="Z-Angle" tooltip="Part's current rotation around the Z-axis" />
+        <TextMeshPro class="label tooltip" text="Z-Angle" color="#5670ff" tooltip="Part's current rotation around the Z-axis" />
         <Spinner id="spinner-z" class="angle-spinner" onNumericValueChanged="OnAngleChanged();">
           <TextMeshProInputField>
             <TMP_Text />

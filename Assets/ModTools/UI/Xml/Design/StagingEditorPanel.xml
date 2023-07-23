@@ -7,8 +7,17 @@
     <TextMeshPro class="node-name" rectAlignment="MiddleLeft" alignment="Left" color="ValueText" />
     <TextMeshPro class="node-count" rectAlignment="MiddleRight" alignment="Right" color="LabelText" offsetXY="-10 0" />
     <ContentButton class="node-button" preferredHeight="30" buttonColors="Transparent|ButtonPressed|ButtonHover|Button" navigation="None" onMouseEnter="OnMouseEnterNode(this);" onMouseExit="OnMouseExitNode(this);" />
-    <ContentButton class="stage-node-button" buttonColors="ButtonHover|ButtonPressed|ButtonHover|Button" />--&gt;
-      <VerticalLayout class="stage-node" border="ButtonHover" childForceExpandHeight="false" childAlignment="UpperLeft" pivot="0 1" /><VerticalLayout class="selected" border="Primary" /><Image class="indent-1&gt;@Image" offsetXY="25 0" /><TextMeshPro class="indent-1&gt;@TextMeshPro" offsetMin="55 0" /><Image class="indent-2&gt;@Image" offsetXY="55 0" /><TextMeshPro class="indent-2&gt;@TextMeshPro" offsetMin="85 0" /><TextMeshPro class="stage-info-text" fontSize="12" raycastTarget="true" tooltipPosition="Above" /><Panel class="stat-panel" color="DarkPanel" /><ContentButton class="ready-for-drag" buttonColors="Primary|Primary|Primary|Primary" /></Defaults>
+    <ContentButton class="stage-node-button" buttonColors="ButtonHover|ButtonPressed|ButtonHover|Button" />
+    <VerticalLayout class="stage-node" border="ButtonHover" childForceExpandHeight="false" childAlignment="UpperLeft" pivot="0 1" />
+    <VerticalLayout class="selected" border="Primary" />
+    <Image class="indent-1&gt;@Image" offsetXY="25 0" />
+    <TextMeshPro class="indent-1&gt;@TextMeshPro" offsetMin="55 0" />
+    <Image class="indent-2&gt;@Image" offsetXY="55 0" />
+    <TextMeshPro class="indent-2&gt;@TextMeshPro" offsetMin="85 0" />
+    <TextMeshPro class="stage-info-text" fontSize="12" raycastTarget="true" tooltipPosition="Above" />
+    <Panel class="stat-panel" color="DarkPanel" />
+    <ContentButton class="ready-for-drag" buttonColors="Primary|Primary|Primary|Primary" />
+  </Defaults>
   <HorizontalLayout class="no-image" rectAlignment="UpperCenter" height="55" padding="10 15 10 10" spacing="10">
     <Button name="Staging.AddStage" class="btn btn-primary" onClick="OnAddStageButtonClicked();" preferredWidth="350">
       <TextMeshPro text="ADD STAGE" />
@@ -31,7 +40,7 @@
       <VerticalLayout id="template-stage-node" class="stage-node" active="false" raycastTarget="true" color="Button">
         <ContentButton class="node-button stage-node-button">
           <Image internalId="arrow" class="node-arrow" offsetXY="12 0" />
-          <TextMeshPro internalId="name" class="node-name" offsetXY="30 0" />
+          <TextMeshPro internalId="name" class="node-name" offsetXY="30 0" color="ButtonText" />
           <TextMeshPro internalId="count" class="node-count" text="x2" />
           <Button internalId="delete-button" class="delete-button" colors="Button|Button|Button|Button" rectAlignment="MiddleRight" offsetXY="-10 0" active="false" onClick="OnDeleteStageNodeClicked(this);" />
         </ContentButton>

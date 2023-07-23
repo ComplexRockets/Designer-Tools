@@ -12,7 +12,7 @@
   </Defaults>
   <VerticalLayout id="part-category-panel" class="no-image" childForceExpandHeight="false" width="50" offsetXY="0 0" rectAlignment="UpperLeft">
     <Panel id="template-part-category" active="false" name="" class="toggle-button toggle-category audio-btn-click" tooltip="" data-category-id="" onClick="OnPartCategoryButtonClicked(this);">
-      <Image class="toggle-button-icon" sprite="" />
+      <Image class="toggle-button-icon toggle-button-icon-white" sprite="" />
     </Panel>
   </VerticalLayout>
   <Panel class="no-image" offsetMin="52 0" height="100%">
@@ -51,9 +51,11 @@
       <TextMeshPro internalId="name" color="Primary" text="Mage I Engine" alignment="Center" />
       <TextMeshPro internalId="description" class="label" text="The mage is a powerful engine..." alignment="Center" />
       <Panel preferredHeight="20">
-        <TextMeshPro internalId="price" text="$35k" alignment="Center" anchorMax="0.5 1" />
-        <TextMeshPro internalId="mass" text="3,245kg" alignment="Center" anchorMin="0.5 0" />
-        <TextMeshPro internalId="variable-properties" text="Mass and price vary with size" alignment="Center" active="false" />
+        <TextMeshPro internalId="price" text="$1k" alignment="Center" anchorMax="0.5 1" />
+        <TextMeshPro internalId="mass" text="1kg" alignment="Center" anchorMin="0.5 0" />
+      </Panel>
+      <Panel internalId="variable-properties" active="false" preferredHeight="20">
+        <TextMeshPro text="Mass and price vary with size" alignment="Center" />
       </Panel>
       <VerticalLayout internalId="engine-details" childForceExpandHeight="false" spacing="5">
         <Image preferredHeight="1" color="Border" />

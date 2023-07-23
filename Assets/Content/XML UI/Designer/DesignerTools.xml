@@ -5,78 +5,112 @@
     <Include path="Ui/Xml/Styles.xml" />
     <Include path="Ui/Xml/InspectorPanel.xml" />
 
-    <Defaults>
-    </Defaults>
+    <Defaults></Defaults>
 
-    <Panel id="flyout-DesignerTools" class="panel flyout" width="350" active="false">
+    <Panel id="flyout-DesignerTools" class="panel flyout" width="280" active="false">
         <Panel class="flyout-header">
-            <TextMeshPro text="DESIGNER TOOLS" id="flyout-title"/>
+            <TextMeshPro text="DESIGNER TOOLS" id="flyout-title" />
             <Image name="Flyout.PartProperties.Close" class="flyout-close-button audio-btn-back" />
         </Panel>
         <Panel class="flyout-content no-image">
             <VerticalScrollView class="no-image">
                 <VerticalLayout class="no-image" childForceExpandHeight="false" pivot="0 1" contentSizeFitter="vertical" rectAlignment="UpperCenter" childAlignment="UpperCenter" padding="20 20 20 50" spacing="10">
-                    <!-- View Tools-->
+                    <!-- Reference Images -->
                     <Panel class="header">
-                        <TextMeshPro class="header-text" text="REFERENCE IMAGE TOOLS" />
+                        <TextMeshPro class="header-text" text="REFERENCE IMAGES" />
+                    </Panel>
+                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="3">
+                        <Image height="1" color="#2E353E" />
+                    </Panel>
+                    <Button class="btn" width="150" onClick="OnReferenceImagesButtonClicked();">
+                        <TextMeshPro text="Craft Reference Images" />
+                    </Button>
+                    <!--<Panel class="spinner row">
+                        <TextMeshPro class="label tooltip" text="Grid Size" />
+                        <Spinner id="spinner-grid-size" numericFormat="0.##" onNumericValueChanged="OnGridSizeChanged(value);" stepSize="0.05" minValue="0" maxValue="2">
+                            <TextMeshProInputField>
+                                <TMP_Text />
+                            </TextMeshProInputField>
+                        </Spinner>
+                    </Panel>-->
+                    <!--<Panel class="spinner row">
+                        <TextMeshPro class="label tooltip" text="Direction" tooltip="The orientation to use when moving" />
+                        <Spinner id="spinner-orientation" value="World" values="Local;World" onValueChanged="OnOrientationChanged(selectedValue);">
+                            <TextMeshPro />
+                        </Spinner>
+                    </Panel>-->
+                    <Button class="btn" width="150" onClick="OnManageRefImagesButtonClicked();">
+                        <TextMeshPro text="All Reference Images" />
+                    </Button>
+                    <Button class="btn" width="150" onClick="OnPasteImageDataButtonClicked();">
+                        <TextMeshPro text="Paste Image Data" />
+                    </Button>
+
+                    <!-- View Tools -->
+                    <Panel class="header">
+                        <TextMeshPro class="header-text" text="VIEW TOOLS" />
                     </Panel>
                     <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="3">
                         <Image internalId="image" height="1" color="#2E353E" />
                     </Panel>
-                    <Panel class="property-row row">
-                        <Button class="btn btn-primary" width="200" onClick="OnViewToolButtonClicked();">
-                            <TextMeshPro text="View Tools" />
-                        </Button>
+                    <Panel class="no-image" preferredHeight="20">
+                        <TextMeshPro class="label tooltip" text="Orthographic View" rectAlignment="MiddleLeft" />
+                        <Toggle id="ortho-toggle" class="audio-btn-click" isOn="false" onClick="OnOrthoToggleButtonClicked" rectAlignment="MiddleRight" />
                     </Panel>
+                    <Panel class="no-image" preferredHeight="20">
+                        <TextMeshPro class="label tooltip" text="Xray View" rectAlignment="MiddleLeft" />
+                        <Toggle id="xray-toggle" class="audio-btn-click" isOn="false" onClick="OnXrayToggleButtonClicked" rectAlignment="MiddleRight" />
+                    </Panel>
+
+                    <!--
                     <Panel class="property-row row">
                         <Button class="btn" width="200" onClick="OnSaveRefImagesButtonClicked();">
                             <TextMeshPro text="Save Reference Images" />
                         </Button>
-                    </Panel>
+                    </Panel>-->
 
                     <!-- Align Tools-->
-                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="10"/>
+                    <!--
+                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="10" />
                     <Panel class="header">
                         <TextMeshPro class="header-text" text="ALIGN TOOLS" />
                     </Panel>
                     <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="3">
                         <Image internalId="image" height="1" color="#2E353E" />
                     </Panel>
-                    <!--<Panel class="property-row row">
-                        <TextMeshPro class="label" text="Affect Connected" rectAlignment="MiddleLeft" />
-                        <Toggle rectAlignment="MiddleRight" />
-                    </Panel>-->
-                    <Panel class="property-row row">
-                        <TextMeshPro class="label" text="Align Position" alignment="left"/>
+                    <Panel class="property-row row align">
+                        <TextMeshPro class="label" text="Align Position" alignment="left" />
                         <HorizontalLayout childForceExpandWidth="false" spacing="5" width="340" rectAlignment="MiddleRight" childAlignment="MiddleRight">
-                            <Button class="btn" preferredwidth="30" onClick="OnAlignPositionButtonClicked(X);">
+                            <Button class="btn" preferredwidth="30">
                                 <TextMeshPro text="X" />
                             </Button>
-                            <Button class="btn" preferredwidth="30" onClick="OnAlignPositionButtonClicked(Y);">
+                            <Button class="btn" preferredwidth="30">
                                 <TextMeshPro text="Y" />
                             </Button>
-                            <Button class="btn" preferredwidth="30" onClick="OnAlignPositionButtonClicked(Z);">
+                            <Button class="btn" preferredwidth="30">
                                 <TextMeshPro text="Z" />
                             </Button>
                         </HorizontalLayout>
                     </Panel>
-                    <Panel class="property-row row">
-                        <TextMeshPro class="label" text="Align Rotation" alignment="left"/>
+                    <Panel class="property-row row align">
+                        <TextMeshPro class="label" text="Align Rotation" alignment="left" />
                         <HorizontalLayout childForceExpandWidth="false" spacing="5" width="340" rectAlignment="MiddleRight" childAlignment="MiddleRight">
-                            <Button class="btn" preferredwidth="30" onClick="OnAlignRotationButtonClicked(X);">
+                            <Button class="btn" preferredwidth="30">
                                 <TextMeshPro text="X" />
                             </Button>
-                            <Button class="btn" preferredwidth="30" onClick="OnAlignRotationButtonClicked(Y);">
+                            <Button class="btn" preferredwidth="30">
                                 <TextMeshPro text="Y" />
                             </Button>
-                            <Button class="btn" preferredwidth="30" onClick="OnAlignRotationButtonClicked(Z);">
+                            <Button class="btn" preferredwidth="30">
                                 <TextMeshPro text="Z" />
                             </Button>
                         </HorizontalLayout>
                     </Panel>
+                    -->
 
                     <!-- Multi Part Editing Tools-->
-                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="10"/>
+                    <!--
+                    <Panel class="inspector-panel-row tooltip-row no-image" preferredHeight="10" />
                     <Panel class="header">
                         <TextMeshPro class="header-text" text="MULTI PART EDITING TOOLS" />
                     </Panel>
@@ -86,12 +120,11 @@
                     <Panel class="property-row slider" active="false">
                         <TextMeshPro class="label" text="Resize" />
                         <TextMeshPro class="value" id="Resizeslider-value" text="100%" />
-                        <Slider id="Resizeslider-slider" prefabPath="Ui/Prefabs/XmlLayout/Slider" onValueChanged="ResizeSliderValueChanged(selectedValue);" onMouseExit="ResizeSliderMouseExit();" minValue="0" maxValue="500" value="100" wholeNumbers="true"/>
+                        <Slider id="Resizeslider-slider" prefabPath="Ui/Prefabs/XmlLayout/Slider" onValueChanged="ResizeSliderValueChanged(selectedValue);" onMouseExit="ResizeSliderMouseExit();" minValue="0" maxValue="500" value="100" wholeNumbers="true" />
                     </Panel>
                     <Button class="btn" preferredwidth="200" onClick="OnModifierPanelButtonClicked();">
                         <TextMeshPro text="Open Modifer panel" />
-                    </Button>
-
+                    </Button> -->
                 </VerticalLayout>
             </VerticalScrollView>
         </Panel>

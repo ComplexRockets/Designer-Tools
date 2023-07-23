@@ -1,0 +1,133 @@
+<XmlLayout xmlns="http://www.w3schools.com"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Packages/ThirdParty/XmlLayout/UI/XmlLayout/Configuration/XmlLayout.xsd">
+   <Include path="Ui/Xml/Design/DesignStyles.xml" />
+   <Include path="Ui/Xml/InspectorPanel.xml" />
+   <Include path="Ui/Xml/Styles.xml" />
+
+   <Defaults>
+      <TextMeshProInputField class="dt" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" />
+      <TextMeshPro class="dtText" alignment="center" color="LabelText"/>
+   </Defaults>
+
+   <RectTransform class="safe-area">
+      <!-- View Tools Panel-->
+      <VerticalLayout class="translucent-panel-dark border draggable inspector-panel" translucency="0.15" rectAlignment="LowerRight" width="990" height="245" childForceExpandHeight="false">
+         <!-- Header Panel-->
+         <Panel class="inspector-header" preferredHeight="30">
+            <HorizontalLayout childForceExpandWidth="false" childForceExpandHeight="false" childAlignment="MiddleRight">
+
+               <Panel flexibleWidth="1" />
+
+               <TextMeshPro class="inspector-title" text="CRAFT REFERENCE IMAGES" />
+
+               <Panel flexibleWidth="1" />
+
+               <Image class="inspector-panel-pin" preferredWidth="27" preferredHeight="27" sprite="Ui/Sprites/Common/IconCloseFlyout" onClickSound="Ui/Audio/ButtonClicked" audioMode="OneShot" onClick="Close();" hoverClass="inspector-panel-pin-hover" />
+            </HorizontalLayout>
+         </Panel>
+
+         <HorizontalLayout childForceExpandWidth="false" flexibleHeight="1" padding="5" spacing="5">
+            <!-- View Panel-->
+            <Panel preferredwidth="80">
+               <VerticalLayout>
+
+                  <Button class="btn" id="FrontView" tooltip="View craft from front" onClick="OnViewButtonClicked(Front);">
+                     <TextMeshPro text="FRONT" class="dtText"/>
+                  </Button>
+
+                  <Button class="btn" id="BackView" tooltip="View craft from back" onClick="OnViewButtonClicked(Back);">
+                     <TextMeshPro text="BACK" class="dtText"/>
+                  </Button>
+
+                  <Button class="btn" id="TopView" tooltip="View craft from top" onClick="OnViewButtonClicked(Top);">
+                     <TextMeshPro text="TOP" class="dtText"/>
+                  </Button>
+
+                  <Button class="btn" id="BottomView" tooltip="View craft from bottom" onClick="OnViewButtonClicked(Bottom);">
+                     <TextMeshPro text="BOTTOM" class="dtText"/>
+                  </Button>
+
+                  <Button class="btn" id="LeftView" tooltip="View craft from left" onClick="OnViewButtonClicked(Left);">
+                     <TextMeshPro text="LEFT" class="dtText"/>
+                  </Button>
+
+                  <Button class="btn" id="RightView" tooltip="View craft from right" onClick="OnViewButtonClicked(Right);">
+                     <TextMeshPro text="RIGHT" class="dtText"/>
+                  </Button>
+
+               </VerticalLayout>
+            </Panel>
+
+            <!-- Image Panel-->
+            <Panel preferredwidth="130">
+               <VerticalLayout>
+                  <Button class="btn" id="image-text-template" colors="Button|ButtonHover|ButtonPressed|ButtonDisabled" preferredheight="34" active="false">
+                     <TextMeshPro text="Select Image" color="LabelText"/>
+                  </Button>
+
+                  <HorizontalLayout id="image-edit-template" childForceExpandWidth="false" childForceExpandHeight="false" active="false" color="Button">
+                     <ContentButton internalId="nudge" tooltip="Image translation tool" class="toggle-button audio-btn-click" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover">
+                        <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonNudgeTool" width="25" height="25" />
+                     </ContentButton>
+                     <ContentButton internalId="rotate" tooltip="Image rotation tool" class="toggle-button audio-btn-click" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover">
+                        <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonRotateTool" width="25" height="25" />
+                     </ContentButton>
+                     <ContentButton internalId="scale" tooltip="Image sizing tool" class="toggle-button audio-btn-click" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover">
+                        <Image class="toggle-button-icon" sprite="Ui/Sprites/Design/IconButtonFuselageShapeTool" width="25" height="25" />
+                     </ContentButton>
+                     <Panel flexibleWidth="1" />
+                     <ContentButton internalId="move-up" tooltip="move image up" class="btn audio-btn-click" preferredwidth="18" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover">
+                        <Image sprite="Ui/Sprites/Common/IconArrowUp" width="13" height="18" />
+                     </ContentButton>
+                     <ContentButton internalId="move-down" tooltip="move image down" class="btn audio-btn-click" preferredwidth="18" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover">
+                        <Image sprite="Ui/Sprites/Common/IconArrowUp" width="13" height="18" rotation="0 0 180" />
+                     </ContentButton>
+
+                  </HorizontalLayout>
+               </VerticalLayout>
+            </Panel>
+
+            <!-- Settings Panel-->
+            <Panel flexibleWidth="1">
+               <VerticalLayout spacing="5">
+                  <TextMeshPro id="no-image-text-template" text="No Image Selected" preferredheight="34" color="#a3aabf" active="false" />
+                  <HorizontalLayout id="image-settings-template" spacing="5" childForceExpandWidth="false" childForceExpandHeight="false" active="false">
+                     <TextMeshPro text="Offset" color="#a3aabf" preferredwidth="55" preferredheight="34" alignment="right" />
+                     <TextMeshProInputField class="dt" internalId="OffsetX">
+                        <TMP_Text />
+                     </TextMeshProInputField>
+                     <TextMeshProInputField class="dt" internalId="OffsetY">
+                        <TMP_Text />
+                     </TextMeshProInputField>
+                     <TextMeshProInputField class="dt" internalId="OffsetZ">
+                        <TMP_Text />
+                     </TextMeshProInputField>
+
+                     <TextMeshPro text="Rotation" color="#a3aabf" preferredwidth="80" preferredheight="34" alignment="right" />
+                     <TextMeshProInputField class="dt" internalId="Rotation">
+                        <TMP_Text />
+                     </TextMeshProInputField>
+
+                     <TextMeshPro text="Scale" color="#a3aabf" preferredwidth="80" preferredheight="34" alignment="right" />
+                     <TextMeshProInputField class="dt" internalId="Scale">
+                        <TMP_Text />
+                     </TextMeshProInputField>
+
+                     <TextMeshPro text="Opacity" color="#a3aabf" preferredwidth="80" preferredheight="34" alignment="right" />
+                     <TextMeshProInputField class="dt" internalId="Opacity">
+                        <TMP_Text />
+                     </TextMeshProInputField>
+
+                     <Panel flexibleWidth="1"/>
+
+                     <Button internalId="toggle" tooltip="Toggle image" class="icon-button audio-btn-click" icon="DesignerTools/Sprites/IconToggle" preferredwidth="34" preferredheight="34" />
+                     <Image class="delete-button audio-btn-click" tooltip="Delete image" internalId="delete" preferredwidth="34" preferredheight="34" Colors="Button|ButtonHover|ButtonHover|ButtonHover">
+                        <Image class="delete-button-icon" Colors="ButtonHover|ButtonPressed|White|Button" />
+                     </Image>
+                  </HorizontalLayout>
+               </VerticalLayout>
+            </Panel>
+         </HorizontalLayout>
+      </VerticalLayout>
+   </RectTransform>
+</XmlLayout>
