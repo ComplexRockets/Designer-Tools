@@ -108,9 +108,9 @@
                 <TextMeshPro internalId="value" class="value" text="312km" alignment="MidlineRight" anchorMin="0.5 0" />
               </Panel>
               <Panel id="details-property-pair" class="detail-property no-image" device="desktop">
-                <TextMeshPro internalId="label-left" class="label" text="Lat" alignment="MidlineLeft" anchorMax="0.2 1" />
-                <TextMeshPro internalId="value-left" class="value" text="0" alignment="MidlineRight" anchorMin="0.2 0" anchorMax="0.4 1" />
-                <TextMeshPro internalId="label-right" class="label" text="Lon" alignment="MidlineLeft" anchorMin="0.45 0" anchorMax="0.62 1" />
+                <TextMeshPro internalId="label-left" class="label" text="Lat" alignment="MidlineLeft" anchorMax="0.14 1" />
+                <TextMeshPro internalId="value-left" class="value" text="0" alignment="MidlineRight" anchorMin="0.14 0" anchorMax="0.43 1" />
+                <TextMeshPro internalId="label-right" class="label" text="Lon" alignment="MidlineLeft" anchorMin="0.48 0" anchorMax="0.62 1" />
                 <TextMeshPro internalId="value-right" class="value" text="0" alignment="MidlineRight" anchorMin="0.62 0" />
               </Panel>
               <Panel id="details-property-pair" class="detail-property no-image" preferredHeight="46" device="mobile">

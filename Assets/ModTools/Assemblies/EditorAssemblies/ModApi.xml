@@ -12788,7 +12788,7 @@
         </member>
         <member name="P:ModApi.Craft.Parts.IConfigData.SupportsActivation">
             <summary>
-            Gets a value indicating whether this part can be activated.
+            Gets or sets a value indicating whether this part can be activated.
             </summary>
             <value>
               <c>true</c> if the part can be activated; otherwise, <c>false</c>.
@@ -13712,22 +13712,6 @@
             <c>true</c> if the part is visible; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="P:ModApi.Craft.Parts.IPartMaterialScript.MaterialIndexPrimary">
-            <summary>
-            Gets the primary material index.
-            </summary>
-            <value>
-            The primary material index.
-            </value>
-        </member>
-        <member name="P:ModApi.Craft.Parts.IPartMaterialScript.MaterialIndexSecondary">
-            <summary>
-            Gets the secondary material index.
-            </summary>
-            <value>
-            The secondary material index.
-            </value>
-        </member>
         <member name="P:ModApi.Craft.Parts.IPartMaterialScript.OverrideMaterials">
             <summary>
             Gets or sets the override materials.
@@ -13767,6 +13751,13 @@
             </summary>
             <param name="level">The level for which to get the part material.</param>
             <returns>The part material for the specified level.</returns>
+        </member>
+        <member name="M:ModApi.Craft.Parts.IPartMaterialScript.GetPartMaterialIndex(System.Int32)">
+            <summary>
+            Gets the part material index for the specified material level.
+            </summary>
+            <param name="level">The level for which to get the part material index.</param>
+            <returns>The part material index for the specified level.</returns>
         </member>
         <member name="M:ModApi.Craft.Parts.IPartMaterialScript.OnMaterialsChanged">
             <summary>
@@ -15176,7 +15167,7 @@
         </member>
         <member name="P:ModApi.Craft.Parts.Modifiers.ConfigData.SupportsActivation">
             <summary>
-            Gets a value indicating whether this part can be activated.
+            Gets or sets a value indicating whether this part can be activated.
             </summary>
             <value>
             <c>true</c> if the part can be activated; otherwise, <c>false</c>.
@@ -24407,6 +24398,12 @@
               <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
             </returns>
         </member>
+        <member name="M:ModApi.Craft.Program.ExpressionListItem.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
         <member name="M:ModApi.Craft.Program.ExpressionListItem.ToString">
             <summary>
             Converts to string.
@@ -29047,26 +29044,74 @@
         </member>
         <member name="P:ModApi.Craft.Propulsion.FuelType.ExhaustColor">
             <summary>
-            Gets the color of the exhaust.
+            Gets the main color of the exhaust.
             </summary>
             <value>
             The color of the exhaust.
             </value>
         </member>
-        <member name="P:ModApi.Craft.Propulsion.FuelType.ExhaustDetailIntensity">
+        <member name="P:ModApi.Craft.Propulsion.FuelType.ExhaustColorTip">
             <summary>
-            Gets the exhaust detail intensity.
+            Gets the tip color of the exhaust.
             </summary>
             <value>
-            The exhaust detail intensity.
+            The color of the exhaust tip.
             </value>
         </member>
-        <member name="P:ModApi.Craft.Propulsion.FuelType.ExhaustIntensity">
+        <member name="P:ModApi.Craft.Propulsion.FuelType.ExhaustColorShock">
+            <summary>
+            Gets the shock diamond color of the exhaust.
+            </summary>
+            <value>
+            The color of the exhaust shock diamond.
+            </value>
+        </member>
+        <member name="P:ModApi.Craft.Propulsion.FuelType.ExhaustColorFlame">
+            <summary>
+            Gets the flameout color of the exhaust.
+            </summary>
+            <value>
+            The color of the exhaust soot.
+            </value>
+        </member>
+        <member name="P:ModApi.Craft.Propulsion.FuelType.ExhaustColorSoot">
+            <summary>
+            Gets the soot color of the exhaust.
+            </summary>
+            <value>
+            The color of the exhaust.
+            </value>
+        </member>
+        <member name="P:ModApi.Craft.Propulsion.FuelType.ExhaustColorSmoke">
+            <summary>
+            Gets the smoke color of the exhaust.
+            </summary>
+            <value>
+            The color of the exhaust smoke.
+            </value>
+        </member>
+        <member name="P:ModApi.Craft.Propulsion.FuelType.GlobalIntensity">
             <summary>
             Gets the exhaust intensity.
             </summary>
             <value>
             The exhaust intensity.
+            </value>
+        </member>
+        <member name="P:ModApi.Craft.Propulsion.FuelType.ShockIntensity">
+            <summary>
+            Gets the exhaust shock intensity.
+            </summary>
+            <value>
+            The exhaust shock intensity.
+            </value>
+        </member>
+        <member name="P:ModApi.Craft.Propulsion.FuelType.RimShade">
+            <summary>
+            Gets the exhaust rim shade intensity.
+            </summary>
+            <value>
+            The exhaust rim shade intensity.
             </value>
         </member>
         <member name="P:ModApi.Craft.Propulsion.FuelType.ExplosivePower">
@@ -29131,14 +29176,6 @@
             </summary>
             <value>
             The price per kilogram.
-            </value>
-        </member>
-        <member name="P:ModApi.Craft.Propulsion.FuelType.SmokeIntensity">
-            <summary>
-            Gets the smoke intensity.
-            </summary>
-            <value>
-            The smoke intensity.
             </value>
         </member>
         <member name="P:ModApi.Craft.Propulsion.FuelType.StorageOverhead">
@@ -29544,11 +29581,6 @@
             The thickness of the nozzle used for mass calculation.
             </summary>
         </member>
-        <member name="F:ModApi.Craft.Propulsion.RocketNozzleType._overexpansionDamageThreshold">
-            <summary>
-            The threshold below which the engine starts taking damage from its overexpansion.
-            </summary>
-        </member>
         <member name="M:ModApi.Craft.Propulsion.RocketNozzleType.#ctor(System.Xml.Linq.XElement,Jundroo.ModTools.ILoadedMod)">
             <summary>
             Initializes a new instance of the <see cref="T:ModApi.Craft.Propulsion.RocketNozzleType"/> class.
@@ -29558,10 +29590,26 @@
         </member>
         <member name="P:ModApi.Craft.Propulsion.RocketNozzleType.Efficiency">
             <summary>
-            The efficiency of the nozzle
+            Gets the efficiency of the nozzle
             </summary>
             <value>
             The efficiency.
+            </value>
+        </member>
+        <member name="P:ModApi.Craft.Propulsion.RocketNozzleType.ExhaustBend">
+            <summary>
+            Gets the exhaust bend.
+            </summary>
+            <value>
+            The exhaust bend.
+            </value>
+        </member>
+        <member name="P:ModApi.Craft.Propulsion.RocketNozzleType.ShockDirection">
+            <summary>
+            Gets the exhaust diamond shock direction.
+            </summary>
+            <value>
+            The exhaust diamond shock direction.
             </value>
         </member>
         <member name="P:ModApi.Craft.Propulsion.RocketNozzleType.ExhaustRadiusScale">
@@ -42879,6 +42927,14 @@
             The toggle map view input.
             </value>
         </member>
+        <member name="P:ModApi.Input.IGameInputs.ToggleMouseJoystick">
+            <summary>
+            Gets the toggle mouse control input.
+            </summary>
+            <value>
+            The toggle mouse control input.
+            </value>
+        </member>
         <member name="P:ModApi.Input.IGameInputs.ToggleMusic">
             <summary>
             Gets the toggle music input.
@@ -46648,6 +46704,22 @@
             Gets or sets the initial rotation of the celestial body.
             </summary>
             <value>The initial rotation of the celestial body.</value>
+        </member>
+        <member name="P:ModApi.Planet.CelestialBodyPlanetarySystemDefinedData.NavballBottomColorOverride">
+            <summary>
+            Gets or sets the navball color override.
+            </summary>
+            <value>
+            The navball color override.
+            </value>
+        </member>
+        <member name="P:ModApi.Planet.CelestialBodyPlanetarySystemDefinedData.NavballTopColorOverride">
+            <summary>
+            Gets or sets the navball color override.
+            </summary>
+            <value>
+            The navball color override.
+            </value>
         </member>
         <member name="P:ModApi.Planet.CelestialBodyPlanetarySystemDefinedData.Orbit">
             <summary>
@@ -60195,7 +60267,7 @@
             </summary>
             <param name="planet">The planet data for which to create cubemaps.</param>
         </member>
-        <member name="M:ModApi.Planet.PlanetCubemapUtility.CreateCubemaps(ModApi.Planet.IPlanetData,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:ModApi.Planet.PlanetCubemapUtility.CreateCubemaps(ModApi.Planet.IPlanetData,System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Creates the cubemaps for the specified planet with the specified parameters.
             </summary>
@@ -60203,6 +60275,7 @@
             <param name="size">The number of pixels along one edge of a cube face.</param>
             <param name="downsampleIterations">The downsample iterations.</param>
             <param name="normalMaps">if set to <c>true</c> then generate normal maps too.</param>
+            <param name="cliffs">if set to <c>true</c> then generate cliff colors too.</param>
         </member>
         <member name="M:ModApi.Planet.PlanetCubemapUtility.CreateEquirectangularMap(ModApi.Planet.IPlanetData,System.Single)">
             <summary>
@@ -60307,6 +60380,29 @@
             <param name="hasWater">A value indicating if the planet has water.</param>
             <param name="waterSmoothness">The smoothness value to use for the water (if applicable).</param>
         </member>
+        <member name="M:ModApi.Planet.PlanetCubemapUtility.GenerateCubemapFaceCliffedData(System.Int32,System.Int32,Unity.Collections.NativeArray{Unity.Mathematics.float4},Unity.Collections.NativeArray{Unity.Mathematics.float4},ModApi.Planet.ITerrainGenerator,System.Boolean,System.Single)">
+            <summary>
+            Generates the color and height data for a single face in a cubemap.
+            </summary>
+            <param name="faceIndex">Index of the face.</param>
+            <param name="size">The size of the cubemap face.</param>
+            <param name="colorData">The texture data in which to store the color data.</param>
+            <param name="colorMax">The max color value per row.</param>
+            <param name="terrainGenerator">The terrain generator.</param>
+            <param name="hasWater">A value indicating if the planet has water.</param>
+            <param name="waterSmoothness">The smoothness value to use for the water (if applicable).</param>
+        </member>
+        <member name="M:ModApi.Planet.PlanetCubemapUtility.GenerateCubemapFaceHeightData(System.Int32,System.Int32,Unity.Collections.NativeArray{Unity.Mathematics.double3},ModApi.Common.MinMaxValue[],ModApi.Planet.ITerrainGenerator,System.Boolean)">
+            <summary>
+            Generates the height data for a single face in a cubemap.
+            </summary>
+            <param name="faceIndex">Index of the face.</param>
+            <param name="size">The size of the cubemap face.</param>
+            <param name="heightSamples">The height samples.</param>
+            <param name="heightRanges">The height ranges (representing min/max per row).</param>
+            <param name="terrainGenerator">The terrain generator.</param>
+            <param name="hasWater">A value indicating if the planet has water.</param>
+        </member>
         <member name="M:ModApi.Planet.PlanetCubemapUtility.GenerateCubemapsSegment(System.Int32,System.Int32,System.Int32,UnityEngine.CubemapFace,ModApi.Planet.ITerrainGenerator,System.Double,System.Boolean,System.Single,Unity.Collections.NativeArray{Unity.Mathematics.double3},ModApi.Common.MinMaxValue[],Unity.Collections.NativeArray{Unity.Mathematics.float4},Unity.Collections.NativeArray{Unity.Mathematics.float4})">
             <summary>
             Generates one segment of the cubemaps.
@@ -60324,6 +60420,36 @@
             <param name="heightRanges">The height ranges (representing min/max per row).</param>
             <param name="colors">The texture data in which to store the color data.</param>
             <param name="colorMax">The max color value per row.</param>
+        </member>
+        <member name="M:ModApi.Planet.PlanetCubemapUtility.GenerateCubemapsCliffedSegment(System.Int32,System.Int32,System.Int32,UnityEngine.CubemapFace,ModApi.Planet.ITerrainGenerator,System.Boolean,System.Single,Unity.Collections.NativeArray{Unity.Mathematics.float4},Unity.Collections.NativeArray{Unity.Mathematics.float4})">
+            <summary>
+            Generates one segment of the cubemaps.
+            This is intended to be used to divide cubemap generation work over multiple threads.
+            </summary>
+            <param name="yStart">The Y pixel start position.</param>
+            <param name="yEnd">The Y pixel end position.</param>
+            <param name="size">The size of the cubemaps in pixels ('256', '512', etc).</param>
+            <param name="face">The face of the cubemap.</param>
+            <param name="terrainGenerator">The terrain generator used to generate the cubemap.</param>
+            <param name="hasWater">A value indicating if the planet has water.</param>
+            <param name="waterSmoothness">The smoothness value to use for the water (if applicable).</param>
+            <param name="colors">The texture data in which to store the color data.</param>
+            <param name="colorMax">The max color value per row.</param>
+        </member>
+        <member name="M:ModApi.Planet.PlanetCubemapUtility.GenerateCubemapsHeightSegment(System.Int32,System.Int32,System.Int32,UnityEngine.CubemapFace,ModApi.Planet.ITerrainGenerator,System.Double,System.Boolean,Unity.Collections.NativeArray{Unity.Mathematics.double3},ModApi.Common.MinMaxValue[])">
+            <summary>
+            Generates one segment of the cubemaps.
+            This is intended to be used to divide cubemap generation work over multiple threads.
+            </summary>
+            <param name="yStart">The Y pixel start position.</param>
+            <param name="yEnd">The Y pixel end position.</param>
+            <param name="size">The size of the cubemaps in pixels ('256', '512', etc).</param>
+            <param name="face">The face of the cubemap.</param>
+            <param name="terrainGenerator">The terrain generator used to generate the cubemap.</param>
+            <param name="radius">The radius of the planet.</param>
+            <param name="hasWater">A value indicating if the planet has water.</param>
+            <param name="heightSamples">The samples set used to store height data results.</param>
+            <param name="heightRanges">The height ranges (representing min/max per row).</param>
         </member>
         <member name="M:ModApi.Planet.PlanetCubemapUtility.GetWrappedIndex(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -60624,14 +60750,6 @@
             </summary>
             <value>
             The name of the planet.
-            </value>
-        </member>
-        <member name="P:ModApi.Planet.IPlanetData.NavballColorOverride">
-            <summary>
-            Gets the navball color override.
-            </summary>
-            <value>
-            The navball color override.
             </value>
         </member>
         <member name="P:ModApi.Planet.IPlanetData.OrbitData">
@@ -60959,11 +61077,6 @@
             The name of the planet.
             </summary>
         </member>
-        <member name="F:ModApi.Planet.PlanetDataScript._navballColor">
-            <summary>
-            The navball color override.
-            </summary>
-        </member>
         <member name="F:ModApi.Planet.PlanetDataScript._parentAncestryId">
             <summary>
             The parent ancestry identifier.
@@ -61226,14 +61339,6 @@
             </summary>
             <value>
             The name of the planet.
-            </value>
-        </member>
-        <member name="P:ModApi.Planet.PlanetDataScript.NavballColorOverride">
-            <summary>
-            Gets the navball color override.
-            </summary>
-            <value>
-            The navball color override.
             </value>
         </member>
         <member name="P:ModApi.Planet.PlanetDataScript.OrbitData">
@@ -71344,6 +71449,91 @@
             High quality re-entry rendering.
             </summary>
         </member>
+        <member name="T:ModApi.Settings.ImageEffectsQualitySettings.ToneMap">
+            <summary>
+            An enumeration defining the tonemapping options.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.None">
+            <summary>
+            No tonemapping applied.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.OldVideo">
+            <summary>
+            Old Video tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.OldPhoto">
+            <summary>
+            Old Photo tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.OldCamera">
+            <summary>
+            Old Camera tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Faded">
+            <summary>
+            Faded tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Dream">
+            <summary>
+            Dream tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Western">
+            <summary>
+            Western tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Fantasy">
+            <summary>
+            Fantasy tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Dystopian">
+            <summary>
+            Dystopian tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Gray">
+            <summary>
+            Gray Scale tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Red">
+            <summary>
+            Just Red tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Green">
+            <summary>
+            Just Green tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Blue">
+            <summary>
+            Just Blue tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Cartoon">
+            <summary>
+            Cartoon tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Retro">
+            <summary>
+            Retro tonemapping.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.ImageEffectsQualitySettings.ToneMap.Alien">
+            <summary>
+            Alien tonemapping.
+            </summary>
+        </member>
         <member name="P:ModApi.Settings.ImageEffectsQualitySettings.AmbientOcclusion">
             <summary>
             Gets the ambient occlusion setting.
@@ -71385,6 +71575,14 @@
             </value>
         </member>
         <member name="P:ModApi.Settings.ImageEffectsQualitySettings.ReEntry">
+            <summary>
+            Gets the re-entry effects quality.
+            </summary>
+            <value>
+            The re-entry effects quality.
+            </value>
+        </member>
+        <member name="P:ModApi.Settings.ImageEffectsQualitySettings.Tonemapping">
             <summary>
             Gets the re-entry effects quality.
             </summary>
@@ -71906,6 +72104,30 @@
             Gets the focus camera on part alt input setting.
             </summary>
             <value>The focus camera on part alt input setting.</value>
+        </member>
+        <member name="P:ModApi.Settings.MouseInputSettingsFlight.MouseJoystickDeadzonePitch">
+            <summary>
+            Gets the mouse joystick pitch deadzone setting.
+            </summary>
+            <value>
+            The mouse joystick pitch deadzone setting.
+            </value>
+        </member>
+        <member name="P:ModApi.Settings.MouseInputSettingsFlight.MouseJoystickDeadzoneRoll">
+            <summary>
+            Gets the mouse joystick roll deadzone setting.
+            </summary>
+            <value>
+            The mouse joystick roll deadzone setting.
+            </value>
+        </member>
+        <member name="P:ModApi.Settings.MouseInputSettingsFlight.MouseJoystickInvertPitch">
+            <summary>
+            Gets the mouse joystick invert pitch setting.
+            </summary>
+            <value>
+            The mouse joystick invert pitch setting.
+            </value>
         </member>
         <member name="P:ModApi.Settings.MouseInputSettingsFlight.Order">
             <summary>
@@ -72479,6 +72701,14 @@
             The shadow distance quality setting.
             </value>
         </member>
+        <member name="P:ModApi.Settings.ShadowQualitySettings.ShadowLerp">
+            <summary>
+            Gets the shadow distance quality setting.
+            </summary>
+            <value>
+            The shadow distance quality setting.
+            </value>
+        </member>
         <member name="P:ModApi.Settings.ShadowQualitySettings.SoftShadows">
             <summary>
             Gets a setting indicating whether soft shadows are enabled.
@@ -72861,6 +73091,12 @@
             </summary>
             <value><c>true</c> if normals cubemaps are enabled; otherwise, <c>false</c>.</value>
         </member>
+        <member name="P:ModApi.Settings.TerrainQualitySettings.CubemapQualitySettings.NormalCliffColorEnabled">
+            <summary>
+            Gets a value indicating whether normals based cliff colors are enabled.
+            </summary>
+            <value><c>true</c> if normals based cliff colors are enabled; otherwise, <c>false</c>.</value>
+        </member>
         <member name="P:ModApi.Settings.TerrainQualitySettings.CubemapQualitySettings.ScaledSpaceHighDetailSize">
             <summary>
             Gets the size of the scaled space high detail cubemaps.
@@ -73140,6 +73376,11 @@
         <member name="F:ModApi.Settings.VisualEffectsQualitySettings.AtmosphereQuality.High">
             <summary>
             High quality atmosphere rendering effects are applied.
+            </summary>
+        </member>
+        <member name="F:ModApi.Settings.VisualEffectsQualitySettings.AtmosphereQuality.Ultra">
+            <summary>
+            Super high subdivisions to make the atmosphere edge smooth.
             </summary>
         </member>
         <member name="T:ModApi.Settings.VisualEffectsQualitySettings.ExplosionQuality">
@@ -75157,6 +75398,14 @@
             </summary>
             <value>
             The maximum height of the launch in meters.
+            </value>
+        </member>
+        <member name="P:ModApi.State.LaunchLocation.MaxCraftMass">
+            <summary>
+            Gets the maximum mass of the launch in kg, or 0 if there is no limit.
+            </summary>
+            <value>
+            The maximum mass of the launch in kg.
             </value>
         </member>
         <member name="P:ModApi.State.LaunchLocation.Name">
@@ -84253,6 +84502,26 @@
         <member name="F:UnityFS.Aerofoil.CM">
             <summary>
             The cm
+            </summary>
+        </member>
+        <member name="F:UnityFS.Aerofoil.ThicknessDelta">
+            <summary>
+            The delta between the leading and trailing edges
+            </summary>
+        </member>
+        <member name="F:UnityFS.Aerofoil.ThicknessOffset">
+            <summary>
+            The offset of the trailing edge vertically
+            </summary>
+        </member>
+        <member name="F:UnityFS.Aerofoil.LeadingBulge">
+            <summary>
+            The buldge of the leading edge
+            </summary>
+        </member>
+        <member name="T:UnitySourceGeneratedAssemblyMonoScriptTypes_v1.MonoScriptData">
+            <summary>
+            Data is UTF-8 encoded strings
             </summary>
         </member>
     </members>

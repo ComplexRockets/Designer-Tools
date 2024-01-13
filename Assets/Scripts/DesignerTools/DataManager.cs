@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using Assets.Scripts;
 using Assets.Scripts.DesignerTools.ReferenceImages;
 using ModApi.Ui;
 using UnityEngine;
@@ -15,43 +11,43 @@ namespace Assets.Scripts.DesignerTools
 {
     public class DataManager
     {
-        private Mod _mod => Mod.Instance;
+        private Mod Mod => Mod.Instance;
         private XmlSerializer _xmlSerializer;
         private FileStream _fileStream;
         public CraftImagesDataBase imageDB;
         public CraftImagesData copiedImageData;
 
-        public void initialise()
+        public void Initialise()
         {
-            string path = _mod.refImagePath + "/ReferenceImagesData.xml";
+            string path = Mod.refImagePath + "ReferenceImagesData.xml";
             _xmlSerializer = new XmlSerializer(typeof(CraftImagesDataBase));
 
             if (!File.Exists(path)) SaveXml();
 
-            using (StringReader reader = new StringReader(File.ReadAllText(path)))
+            using (StringReader reader = new(File.ReadAllText(path)))
             {
-                imageDB = (_xmlSerializer.Deserialize(reader)) as CraftImagesDataBase;
+                imageDB = _xmlSerializer.Deserialize(reader) as CraftImagesDataBase;
             }
-            if (imageDB == null) imageDB = new CraftImagesDataBase();
+            imageDB ??= new CraftImagesDataBase();
         }
 
         public void SaveImages(string craftName, ReferenceImage[] images)
         {
-            List<ReferenceImageData> _ImageList = new List<ReferenceImageData>();
+            List<ReferenceImageData> _ImageList = new();
             foreach (ReferenceImage image in images)
             {
-                if (image.hasImage || image.missingImage)
+                if (image.HasImage || image.missingImage)
                 {
                     _ImageList.Add(new ReferenceImageData()
                     {
 
                         View = image.view,
-                        Rotation = image.rotation,
-                        OffsetX = image.offsetX,
-                        OffsetY = image.offsetY,
-                        OffsetZ = image.offsetZ,
-                        Scale = image.scale,
-                        Opacity = image.opacity,
+                        Rotation = image.Rotation,
+                        OffsetX = image.OffsetX,
+                        OffsetY = image.OffsetY,
+                        OffsetZ = image.OffsetZ,
+                        Scale = image.Scale,
+                        Opacity = image.Opacity,
                         Active = image.active,
                         ImageName = image.imageName
                     });
@@ -73,15 +69,15 @@ namespace Assets.Scripts.DesignerTools
         {
             if (copiedImageData == null)
             {
-                _mod.designer.DesignerUi.ShowMessage("No reference image data was copied!");
+                Mod.Designer.DesignerUi.ShowMessage("No reference image data was copied!");
                 return;
             }
 
-            string craftName = _mod.designer.CraftScript.Data.Name;
+            string craftName = Mod.Designer.CraftScript.Data.Name;
 
-            if (!_mod.CraftValidForRefImg())
+            if (!Mod.CraftValidForRefImg())
             {
-                _mod.designer.DesignerUi.ShowMessage(_mod.errorColor + "'" + craftName + "' can't have reference images");
+                Mod.Designer.DesignerUi.ShowMessage(Mod.errorColor + "'" + craftName + "' can't have reference images");
                 return;
             }
 
@@ -102,15 +98,15 @@ namespace Assets.Scripts.DesignerTools
 
         private void Paste()
         {
-            string craftName = _mod.designer.CraftScript.Data.Name;
+            string craftName = Mod.Designer.CraftScript.Data.Name;
             DeleteImageData(craftName);
             imageDB.CraftImagesList.Add(new CraftImagesData()
             {
                 CraftName = craftName,
                 ImageList = copiedImageData.ImageList
             });
-            _mod.designer.DesignerUi.ShowMessage("Pasted images from '" + copiedImageData.CraftName + "'");
-            _mod.RefreshReferenceImages();
+            Mod.Designer.DesignerUi.ShowMessage("Pasted images from '" + copiedImageData.CraftName + "'");
+            Mod.RefreshReferenceImages();
         }
 
         public CraftImagesData GetImages(string craftID)
@@ -128,16 +124,16 @@ namespace Assets.Scripts.DesignerTools
         public ReferenceImage[] LoadImages(string craftID)
         {
             CraftImagesData images = GetImages(craftID);
-            ReferenceImage[] referenceImages = Mod.emptyRefImages();
+            ReferenceImage[] referenceImages = Mod.EmptyRefImages();
             if (images != null)
             {
                 foreach (ReferenceImageData img in images.ImageList)
                 {
                     ReferenceImage image;
-                    if (File.Exists(_mod.refImagePath + img.ImageName))
+                    if (File.Exists(Mod.refImagePath + img.ImageName))
                     {
-                        Texture2D RefImage = new Texture2D(0, 0);
-                        RefImage.LoadImage(File.ReadAllBytes(_mod.refImagePath + img.ImageName));
+                        Texture2D RefImage = new(0, 0);
+                        RefImage.LoadImage(File.ReadAllBytes(Mod.refImagePath + img.ImageName));
                         RefImage.name = img.ImageName;
 
                         image = new GameObject().AddComponent<ReferenceImage>().Initialise(img.View, RefImage);
@@ -166,7 +162,7 @@ namespace Assets.Scripts.DesignerTools
 
         public void SaveXml()
         {
-            _fileStream = new FileStream(_mod.refImagePath + "/ReferenceImagesData.xml", FileMode.Create);
+            _fileStream = new FileStream(Mod.refImagePath + "ReferenceImagesData.xml", FileMode.Create);
             _xmlSerializer.Serialize(_fileStream, imageDB);
             _fileStream.Close();
             //Debug.Log ("XmlSaved");
@@ -175,8 +171,8 @@ namespace Assets.Scripts.DesignerTools
 
     public class CraftImagesDataBase
     {
-        [XmlArrayAttribute("Crafts")]
-        public List<CraftImagesData> CraftImagesList = new List<CraftImagesData>();
+        [XmlArray("Crafts")]
+        public List<CraftImagesData> CraftImagesList = new();
     }
 
     public class CraftImagesData
@@ -184,7 +180,7 @@ namespace Assets.Scripts.DesignerTools
         [XmlAttribute]
         public string CraftName;
         [XmlArray("ReferenceImages")]
-        public List<ReferenceImageData> ImageList = new List<ReferenceImageData>();
+        public List<ReferenceImageData> ImageList = new();
     }
 
     public class ReferenceImageData

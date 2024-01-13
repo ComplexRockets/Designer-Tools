@@ -4,12 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Assets.Scripts.Menu.ListView;
-using Assets.Scripts.State;
-using ModApi.Craft;
-using ModApi.Math;
-using ModApi.State;
 using ModApi.Ui;
-using UI.Xml;
 using UnityEngine;
 
 namespace Assets.Scripts.DesignerTools.ReferenceImages
@@ -35,6 +30,7 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
             listView.CanDelete = true;
             listView.PrimaryButtonText = "COPY DATA";
             listView.DisplayType = ListViewScript.ListViewDisplayType.SmallDialog;
+
             this.NoItemsFoundMessage = ("No reference images saved");
         }
 
@@ -72,19 +68,13 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
 
         public override void OnPrimaryButtonClicked(ListViewItemScript selectedItem)
         {
-            // if (missingImages)   
-            // {
-            //     _mod.designer.DesignerUi.ShowMessage(_mod.errorColor + "Data can't be copied because some images are missing");
-            //     return;
-            // }
-
             CraftImagesData data = selectedItem.ItemModel as CraftImagesData;
             _mod.dataManager.copiedImageData = data;
-            _mod.designer.DesignerUi.ShowMessage("Copied images from '" + data.CraftName + "'");
+            _mod.Designer.DesignerUi.ShowMessage("Copied images from '" + data.CraftName + "'");
         }
 
         public override void OnDeleteButtonClicked(ListViewItemScript selectedItem)
-        {
+        {   
             CraftImagesData imageData = selectedItem.ItemModel as CraftImagesData;
             MessageDialogScript messageDialogScript = Game.Instance.UserInterface.CreateMessageDialog(MessageDialogType.OkayCancel);
             messageDialogScript.OkayButtonText = "DELETE";

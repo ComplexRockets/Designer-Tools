@@ -2886,5 +2886,10 @@
             <exception cref="T:System.InvalidOperationException">Unable to save the prefab because the specified game object is not part of a prefab stage.</exception>
             <exception cref="T:System.Exception">An error occurred saving the prefab.</exception>
         </member>
+        <member name="T:UnitySourceGeneratedAssemblyMonoScriptTypes_v1.MonoScriptData">
+            <summary>
+            Data is UTF-8 encoded strings
+            </summary>
+        </member>
     </members>
 </doc>

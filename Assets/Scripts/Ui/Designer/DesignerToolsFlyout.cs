@@ -25,7 +25,7 @@ namespace Assets.Scripts.Ui.Designer
             flyout.Initialize(xmlLayout.GetElementById("flyout-DesignerTools"));
             flyout.Open();
 
-            xmlLayout.GetElementById<Toggle>("ortho-toggle").SetIsOnWithoutNotify(_mod.orthoOn);
+            xmlLayout.GetElementById<Toggle>("ortho-toggle").SetIsOnWithoutNotify(_mod.OrthoOn);
             xmlLayout.GetElementById<Toggle>("xray-toggle").SetIsOnWithoutNotify(ViewToolsUtilities.viewMode == ViewModes.Xray);
             //xmlLayout.GetElementById<SpinnerScript>("spinner-orientation").Value = Mod.Instance.imageGizmoIsLocalOrientation ? "Local" : "World";
             //xmlLayout.GetElementById<SpinnerScript>("spinner-grid-size").SetNumericValue(Game.Instance.Settings.Game.Designer.GridSize.Value);
@@ -79,7 +79,7 @@ namespace Assets.Scripts.Ui.Designer
 
         private void OnOrientationChanged(string value)
         {
-            _mod.imageGizmoIsLocalOrientation = value == "Local";
+            _mod.ImageGizmoIsLocalOrientation = value == "Local";
         }
 
         public void OnFlyoutCloseButtonClicked() => DesignerToolsUI.CloseFlyout();

@@ -3205,5 +3205,10 @@
             <param name="stringValue">The value to parse.</param>
             <returns>The parse result or <c>null</c> if the parsing failed.</returns>
         </member>
+        <member name="T:UnitySourceGeneratedAssemblyMonoScriptTypes_v1.MonoScriptData">
+            <summary>
+            Data is UTF-8 encoded strings
+            </summary>
+        </member>
     </members>
 </doc>

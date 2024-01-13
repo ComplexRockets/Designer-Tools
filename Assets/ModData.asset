@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ModData
   m_EditorClassIdentifier: 
   _assemblies:
+  - Unity.AI.Navigation.dll
   - Designer Tools.dll
   _author: Aram
   _description: 'Designer Tools will simplify your SimpleRockets building experience

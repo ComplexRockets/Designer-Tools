@@ -75,6 +75,7 @@ namespace Assets.Scripts.Ui.Designer
         public static void CloseFlyout()
         {
             designerToolsFlyout.Close();
+            if ((object) _designer.DesignerUi.SelectedFlyout == designerToolsFlyout.flyout) _designer.DesignerUi.SelectedFlyout = null;
             designerToolsFlyout = null;
             _flyoutButton.RemoveClass("toggle-button-toggled");
         }

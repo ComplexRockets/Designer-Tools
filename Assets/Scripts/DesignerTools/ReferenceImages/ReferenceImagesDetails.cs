@@ -1,9 +1,5 @@
-using System;
 using System.IO;
 using Assets.Scripts.Menu.ListView;
-using ModApi.Math;
-using ModApi.State;
-using UnityEngine;
 
 namespace Assets.Scripts.DesignerTools.ReferenceImages
 {
@@ -15,9 +11,11 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         private DetailsPropertyPairScript[] _rotationScaleTexts;
         private DetailsPropertyPairScript[] _opacityVisibilityTexts;
         private DetailsSpacerScript[] _spacers;
+        private ListViewDetailsScript _listViewDetails;
 
         public ReferenceImagesDetails(ListViewDetailsScript listViewDetails)
         {
+            _listViewDetails = listViewDetails;
             views = new DetailsWidgetGroup[6];
             viewsText = new DetailsTextScript[6];
             _offsetTexts = new DetailsPropertyPairScript[6];

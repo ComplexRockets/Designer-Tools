@@ -55,7 +55,7 @@
       <Panel class="simple-glass-button sandbox-mode" device="desktop" pivot="1 1" rectAlignment="UpperRight">
         <ContentButton class="simple-glass-button audio-btn-big" onClick="OnModsButtonClicked();">
           <Image internalId="target" class="translucent flipped-x glass-button-simple" />
-          <TextMeshPro class="modern" text="MODIFICATIONS" fontSize="24" />
+          <TextMeshPro class="modern" text="MOD MANAGER" fontSize="24" />
         </ContentButton>
       </Panel>
       <Panel class="center-panel">
@@ -192,7 +192,7 @@
             <ContentButton class="glass-button audio-btn-big" onClick="OnModsButtonClicked();" device="desktop">
               <Image internalId="target" class="translucent flipped-x glass-button" />
               <Image class="flipped-x glass-button-edge" color="Primary" />
-              <TextMeshPro class="modern menu-row-text-right" text="MODIFICATIONS" alignment="Center" fontSize="36" />
+              <TextMeshPro class="modern menu-row-text-right" text="MOD MANAGER" alignment="Center" fontSize="36" />
             </ContentButton>
           </HorizontalLayout>
           <HorizontalLayout class="menu-row-small">

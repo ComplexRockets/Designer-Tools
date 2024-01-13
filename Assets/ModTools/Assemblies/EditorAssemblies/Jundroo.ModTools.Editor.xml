@@ -1270,5 +1270,10 @@
             </summary>
             <returns>The installed module check function.</returns>
         </member>
+        <member name="T:UnitySourceGeneratedAssemblyMonoScriptTypes_v1.MonoScriptData">
+            <summary>
+            Data is UTF-8 encoded strings
+            </summary>
+        </member>
     </members>
 </doc>

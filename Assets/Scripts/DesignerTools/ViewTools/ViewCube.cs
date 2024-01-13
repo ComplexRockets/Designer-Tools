@@ -6,47 +6,49 @@ namespace Assets.Scripts.DesignerTools.ViewTools
 {
     public class ViewCube : MonoBehaviour
     {
-        public Vector2 cubeScreenPosition => new Vector2(x, y);
-        public Vector3 cubeWorldPosition => Mod.Instance.viewCubeCamera.ScreenToWorldPoint(new Vector3(x, y, screenDistance));
-        private float screenDistance = 0.5f;
-        private float x => (((_openedFlyout != null && !flyoutHidden) ? _openedFlyout.Width * 2 : 150) * Game.UiScale + 1.65f * _scale) * screenWidth / 3200;
-        private float y => screenHeight - (1.6f * _scale) * screenHeight / 1800;
-        private float _scale => ModSettings.Instance.viewCubeScale;
-        private float screenHeight => Game.Instance.Settings.Quality.Display.Resolution.Value.height;
-        private float screenWidth => Game.Instance.Settings.Quality.Display.Resolution.Value.width;
-        private GameObject _viewCube;
-        private Renderer _viewCubeRenderer;
+        public Vector2 CubeScreenPosition => new(X, Y);
+        public Vector3 CubeWorldPosition => Mod.Instance.viewCubeCamera.ScreenToWorldPoint(new Vector3(X, Y, screenDistance));
+        private const float screenDistance = 0.5f;
+        private float X => (((OpenedFlyout != null && !flyoutHidden) ? OpenedFlyout.Width * 2 : 150) * Game.UiScale + 1.65f * Scale) * ScreenWidth / 3200;
+        private float Y => ScreenHeight - 1.6f * Scale * ScreenHeight / 1800;
+        private float Scale => ModSettings.Instance.viewCubeScale;
+        private float ScreenHeight => Game.Instance.Settings.Quality.Display.Resolution.Value.height;
+        private float ScreenWidth => Game.Instance.Settings.Quality.Display.Resolution.Value.width;
+        private GameObject viewCubeObj;
+        private Renderer viewCubeRenderer;
         private Renderer _highlighted;
         private Renderer _prevHighlighted;
         public DesignerScript designer;
-        private IFlyout _openedFlyout => designer.DesignerUi.SelectedFlyout;
-        private Color _orangeHighlightedColor = new Color(1f, 0.4f, 0f, 0.5f);
-        private Color _hiddenColor = new Color(1f, 0.4f, 0f, 0f);
-        private Color _defaultColor = new Color(1f, 1f, 1f, 0.2f), _hoveredColor = new Color(1f, 1f, 1f, 1f);
+        private IFlyout OpenedFlyout => designer.DesignerUi.SelectedFlyout;
+        private Color _orangeHighlightedColor = new(1f, 0.4f, 0f, 0.5f);
+        private Color _hiddenColor = new(1f, 0.4f, 0f, 0f);
+        private Color _defaultColor = new(1f, 1f, 1f, 0.2f), _hoveredColor = new(1f, 1f, 1f, 1f);
         private bool _hovered = false;
         public bool flyoutHidden = false;
 
-        public ViewCube(DesignerScript designer)
+        public static ViewCube Create(DesignerScript designer)
         {
-            this.designer = designer;
-            _viewCube = Instantiate(Mod.Instance.ResourceLoader.LoadAsset<GameObject>("Assets/Resources/ViewCube/ViewCube.prefab"));
-            _viewCube.transform.parent = Mod.Instance.viewCubeCamera.transform;
-            _viewCubeRenderer = _viewCube.GetComponentInChildren<Renderer>();
-            //updateScale();
+            GameObject viewCubeObj = Instantiate(Mod.Instance.ResourceLoader.LoadAsset<GameObject>("Assets/Resources/ViewCube/ViewCube.prefab"));
+            ViewCube viewCube = viewCubeObj.AddComponent<ViewCube>();
+            viewCube.viewCubeObj = viewCubeObj;
+            viewCube.designer = designer;
+            viewCubeObj.transform.parent = Mod.Instance.viewCubeCamera.transform;
+            viewCube.viewCubeRenderer = viewCubeObj.GetComponentInChildren<Renderer>();
+            return viewCube;
         }
 
-        public void Update()
+        public void UpdateViewCube()
         {
-            _viewCube.transform.position = cubeWorldPosition;
-            _viewCube.transform.rotation = Quaternion.identity;
-            float scale = 2.5f * _scale / 100;
-            _viewCube.transform.localScale = new Vector3(scale, scale, scale);
+            viewCubeObj.transform.position = CubeWorldPosition;
+            viewCubeObj.transform.rotation = Quaternion.identity;
+            float scale = 2.5f * Scale / 100;
+            viewCubeObj.transform.localScale = new Vector3(scale, scale, scale);
 
-            float distance = Vector2.Distance(cubeScreenPosition, UnityEngine.Input.mousePosition);
-            if (distance < 2 * _scale)
+            float distance = Vector2.Distance(CubeScreenPosition, UnityEngine.Input.mousePosition);
+            if (distance < 2 * Scale)
             {
                 _hovered = true;
-                OnMouseClose(distance);
+                OnMouseClose();
             }
             else if (_hovered == true)
             {
@@ -55,25 +57,18 @@ namespace Assets.Scripts.DesignerTools.ViewTools
             }
         }
 
-        // public void updateScale()
-        // {
-        //     float scale = 2.5f * _scale / 100;
-        //     _viewCube.transform.localScale = new Vector3(scale, scale, scale);
-        // }
-
         public void Toggle(bool active)
         {
-            _viewCube.SetActive(active);
+            viewCubeObj.SetActive(active);
         }
 
-        private void OnMouseClose(float distance)
+        private void OnMouseClose()
         {
             Ray ray = Mod.Instance.viewCubeCamera.ScreenPointToRay(UnityEngine.Input.mousePosition);
-            RaycastHit hit;
             bool cubeHit = false;
             _highlighted = null;
 
-            if (Physics.Raycast(ray, out hit, 10, 1 << 20))
+            if (Physics.Raycast(ray, out RaycastHit hit, 10, 1 << 20))
             {
                 if (hit.transform.parent?.name == "ViewCube(Clone)" || hit.transform.parent?.parent?.name == "ViewCube(Clone)")
                 {
@@ -83,7 +78,7 @@ namespace Assets.Scripts.DesignerTools.ViewTools
             }
             UpdateHighlight();
 
-            _viewCubeRenderer.material.color = cubeHit ? _hoveredColor : _defaultColor;
+            viewCubeRenderer.material.color = cubeHit ? _hoveredColor : _defaultColor;
         }
 
         private void OnExit()
@@ -91,7 +86,7 @@ namespace Assets.Scripts.DesignerTools.ViewTools
             _highlighted = null;
             UpdateHighlight();
 
-            _viewCubeRenderer.material.color = _defaultColor;
+            viewCubeRenderer.material.color = _defaultColor;
         }
 
         private void UpdateHighlight()
@@ -106,9 +101,9 @@ namespace Assets.Scripts.DesignerTools.ViewTools
 
         public void Destroy()
         {
-            foreach (Transform child in _viewCube.gameObject.GetComponentsInChildren<Transform>())
+            foreach (Transform child in viewCubeObj.gameObject.GetComponentsInChildren<Transform>())
             {
-                GameObject.Destroy(child.gameObject);
+                Destroy(child.gameObject);
             }
         }
     }

@@ -1,9 +1,7 @@
-using System;
 using System.IO;
 using Assets.Scripts.Menu.ListView;
-using ModApi.Math;
-using ModApi.State;
 using UnityEngine;
+
 
 namespace Assets.Scripts.DesignerTools.ReferenceImages
 {

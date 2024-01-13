@@ -2,43 +2,43 @@
 <Propulsion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Content/Craft/Parts/Propulsion.xsd">
    <Fuels>
       <Fuel id="Battery" name="Battery" gamma="0" density="0" molecularWeight="0" combustionTemperature="0" price="30.00" explosivePower="0.01" fuelTransferRate="1000" description="Battery is used to power many components of a craft, and unlike fuel, it can be regenerated.">
-         <Visual exhaustIntensity="0.5" exhaustDetailIntensity="0.5" exhaustColor="#FFFF00" smokeIntensity="1" />
+         <Visual exhaustColor="#ffff00ff" exhaustColorTip="#ffff0000" exhaustColorShock="#ffffffff" exhaustColorFlame="#ffff0000" exhaustColorSoot="#000000ff" exhaustColorSmoke="#000000ff" globalIntensity ="20" shockIntensity="0.5" rimShade="0.2" />
       </Fuel>
       <Fuel id="Jet" name="Jet Fuel" gamma="1.22" density="0.80" molecularWeight="21.6" combustionTemperature="3000" price="1.23" explosivePower="15" description="Special kerosene for use in jet engines. Note: Jet engines don't need to be directly connected to fuel tanks with jet fuel. As long as your craft has some, they will work.">
-         <Visual exhaustIntensity="1.0" exhaustDetailIntensity="3.0" exhaustColor="#FFA851FF" smokeIntensity="0.25" />
+         <Visual exhaustColor="#ffa21ea0" exhaustColorTip="#ff4700ff" exhaustColorShock="#ff6800ff" exhaustColorFlame="#ff4700ff" exhaustColorSoot="#000000ff" exhaustColorSmoke="#30303008" globalIntensity ="5" shockIntensity="2" rimShade="0.2" />
       </Fuel>
       <Fuel id="LOX/RP1" name="Kerolox" gamma="1.22" density="1.02" molecularWeight="21.6" combustionTemperature="3526" price="1.14" explosivePower="30" description="Liquid oxygen and kerosene for use in rocket engines. It's cheap and only moderately cryogenic so it's safer and easier to work with. The downside is that it's not as efficient as some of the other fuels.">
-         <Visual exhaustIntensity="1.0" exhaustDetailIntensity="3.0" exhaustColor="#FFA851FF" smokeIntensity="0.25" />
+         <Visual exhaustColor="#ffa14580" exhaustColorTip="#ff4c4c80" exhaustColorShock="#ff663380" exhaustColorFlame="#ff4700ff" exhaustColorSoot="#1b0100ff" exhaustColorSmoke="#30303008" globalIntensity ="15" shockIntensity="0.2" rimShade="0.5" />
       </Fuel>
       <Fuel id="LOX/LH2" name="Hydrolox" gamma="1.21" density="0.32" molecularWeight="11.8" combustionTemperature="3304" price="3.50" enginePriceScale="1.10" explosivePower="60" description="Liquid oxygen and Liquid hydrogen for use in rocket engines. Hydrolox is very efficient, but it has extremely low density and therefore requires larger fuel tanks.">
-         <Visual exhaustIntensity="0.125" exhaustDetailIntensity="0.0625" exhaustColor="#FFFFFFFF" smokeIntensity="0.10" />
+         <Visual exhaustColor="#ef883b20" exhaustColorTip="#f5005fa0" exhaustColorShock="#50a0ff60" exhaustColorFlame="#f5205fff" exhaustColorSoot="#0079bda0" exhaustColorSmoke="#ffffff00" globalIntensity ="5" shockIntensity="3" rimShade="0.95" />
       </Fuel>
       <Fuel id="LOX/CH4" name="Methalox" gamma="1.21" density="0.79" molecularWeight="19.6" combustionTemperature="3379" price="1.35" enginePriceScale="1.05" explosivePower="45" description="Liquid oxygen and liquid methane for use in rocket engines. Somewhat more efficient than kerolox, but easier to work with than hydrolox.">
-         <Visual exhaustIntensity="0.5" exhaustDetailIntensity="2" exhaustColor="#77AFFFFF" smokeIntensity="0.10" />
+         <Visual exhaustColor="#47a7ffa0" exhaustColorTip="#ff8915a0" exhaustColorShock="#5177ffa0" exhaustColorFlame="#ff8915ff" exhaustColorSoot="#7effff20" exhaustColorSmoke="#ffffff05" globalIntensity ="5" shockIntensity="2" rimShade="0.7" />
       </Fuel>
       <Fuel id="LH2" name="Liquid Hydrogen" gamma="1.21" density="0.071" molecularWeight="2.016" combustionTemperature="2700" price="1.35" enginePriceScale="1.10" explosivePower="20" description="Liquid hydrogen for use in rocket engines. Without the oxidizer the liquid hydrogen is even more efficient, but it can only be used in nuclear rocket engines.">
-         <Visual exhaustIntensity="0.125" exhaustDetailIntensity="0.0625" exhaustColor="#FFFFFFFF" smokeIntensity="0.10" />
+         <Visual exhaustColor="#ffffff60" exhaustColorTip="#ffaaff40" exhaustColorShock="#ffaaff60" exhaustColorFlame="#ffffffff" exhaustColorSoot="#ffffffff" exhaustColorSmoke="#ffffff00" globalIntensity ="1" shockIntensity="1" rimShade="0.95" />
       </Fuel>
       <Fuel id="H2O" name="Water" gamma="1.21" density="1.0" molecularWeight="11.8" combustionTemperature="3304" price="0.01" explosivePower="0" description="Now that's what I call high-quality H2O.">
-         <Visual exhaustIntensity="0.125" exhaustDetailIntensity="0.0625" exhaustColor="#FFFFFFFF" smokeIntensity="0.10" />
+         <Visual exhaustColor="#ffffff60" exhaustColorTip="#aaffff40" exhaustColorShock="#aaffff60" exhaustColorFlame="#ffffffff" exhaustColorSoot="#ffffffff" exhaustColorSmoke="#ffffff00" globalIntensity ="1" shockIntensity="1" rimShade="0.95" />
       </Fuel>
-      <Fuel id="Monopropellant" name="Monopropellant" gamma="1.19" density="1.021" molecularWeight="16.0225" combustionTemperature="1570" price="176.00" explosivePower="100" description="Monopropellant is used by RCS nozzles for attitude control. If you smell ammonia, run.">
-         <Visual exhaustIntensity="0.125" exhaustDetailIntensity="0.0625" exhaustColor="#FFFFFFFF" smokeIntensity="0" />
+      <Fuel id="Monopropellant" name="Monopropellant" gamma="1.19" density="1.021" molecularWeight="16.0225" combustionTemperature="1570" price="176.00" explosivePower="100" description="Toxic? Maybe. But its flexibility is perfect for RCS and simple engines. If you smell ammonia, run.">
+         <Visual exhaustColor="#ffffff10" exhaustColorTip="#ffffff60" exhaustColorShock="#ffffff60" exhaustColorFlame="#ffffff60" exhaustColorSoot="#ffffffff" exhaustColorSmoke="#ffffff00" globalIntensity ="2" shockIntensity="1" rimShade="1" />
       </Fuel>
       <Fuel id="Solid" name="Solid" gamma="1.26" density="1.7" storageOverhead="0.6" molecularWeight="25.7" combustionTemperature="3450" price="5.00" explosivePower="50" fuelTransferRate="0" description="Solid fuel for use in rocket engines. It packs a lot of impulse into a small space, but it is heavy and expensive.">
-         <Visual exhaustIntensity="1.25" exhaustDetailIntensity="3.25" exhaustColor="#FFA851FF" smokeIntensity="1" />
+         <Visual exhaustColor="#ffc181ff" exhaustColorTip="#ffb64da0" exhaustColorShock="#ffc74cff" exhaustColorFlame="#ff6a00ff" exhaustColorSoot="#3d0000ff" exhaustColorSmoke="#ffffffff" globalIntensity ="10" shockIntensity="0.1" rimShade="0" />
       </Fuel>
       <Fuel id="Xenon" name="Xenon" gamma="0" density="1.80" molecularWeight="131.293" combustionTemperature="0" price="850.00" explosivePower="0" description="Xenon is used by ion engines. It's an inert gas, so it won't cause huge explosions. Depending on what you're going for that might be a good thing or a bad thing.">
-         <Visual exhaustIntensity="0" exhaustDetailIntensity="0" exhaustColor="#FFFFFF" smokeIntensity="0" />
+         <Visual exhaustColor="#8000ff10" exhaustColorTip="#8000ffff" exhaustColorShock="#8000ffff" exhaustColorFlame="#8000ffff" exhaustColorSoot="#8000ff10" exhaustColorSmoke="#ffffff00" globalIntensity ="1" shockIntensity="1" rimShade="1" />
       </Fuel>
       <Fuel id="Jetpack" name="Jetpack" gamma="1.22" density="1.021" molecularWeight="21.6" combustionTemperature="3000" price="176.00" explosivePower="0" description="It's for jetpacks...also this shouldn't be showing up anywhere." displayInDesigner="false">
-         <Visual exhaustIntensity="1.0" exhaustDetailIntensity="3.0" exhaustColor="#FFA851FF" smokeIntensity="0.25" />
+         <Visual exhaustColor="#ffffff50" exhaustColorTip="#ffffff50" exhaustColorShock="#ffffffa0" exhaustColorFlame="#ffffffff" exhaustColorSoot="#ffffffff" exhaustColorSmoke="#ffffff80" globalIntensity ="1" shockIntensity="1" rimShade="0.2" />
       </Fuel>
       <Fuel id="PETN" name="Penthrite" gamma="1.2" density="1.77" molecularWeight="316" combustionTemperature="270" price="1000.00" explosivePower="500" description="Only for those who dare to play with fire, watch for your fingers." displayInDesigner="false">
-         <Visual exhaustIntensity="0" exhaustDetailIntensity="0" exhaustColor="#FFFFFF" smokeIntensity="0" />
+         <Visual exhaustColor="#ffff00ff" exhaustColorTip="#ffff0000" exhaustColorShock="#ffffffff" exhaustColorFlame="#ffff0000" exhaustColorSoot="#000000ff" exhaustColorSmoke="#ffffffff" globalIntensity ="1" shockIntensity="1" rimShade="0" />
       </Fuel>
       <Fuel id="None" name="None" gamma="0" density="0" molecularWeight="0" combustionTemperature="0" price="0" explosivePower="0" description="Zero, zilch, zip, nada, nothing.">
-         <Visual exhaustIntensity="0" exhaustDetailIntensity="0" exhaustColor="#FFFFFFFF" smokeIntensity="0" />
+         <Visual exhaustColor="#00000000" exhaustColorTip="#00000000" exhaustColorShock="#00000000" exhaustColorFlame="#00000000" exhaustColorSoot="#00000000" exhaustColorSmoke="#ffffff00" globalIntensity ="0" shockIntensity="0" rimShade="1" />
       </Fuel>
    </Fuels>
    <RocketEngines>
@@ -64,10 +64,10 @@
       <RocketNozzle id="Bell" name="Bell" efficiency="1.02" prefabId="Base" extensionPrefabId="Bell" extensionRadius="0.30" priceScale="1" nozzleRadius="0.5" extensionMin="0.5" extensionMax="4.5" extensionOverlap="0.01" throatRadius="0.5" nozzleLength="1" density="400" exhaustRadiusScale="0.95" overexpansionDamageThreshold="0.65" textureStyleIds="RocketEngine_Nozzle" extensionTextureStyleIds="RocketEngine_Extension,RocketEngine_Extension2,RocketEngine_Extension3,RocketEngine_Extension4" />
       <RocketNozzle id="Bravo" name="Bravo" efficiency="1.05" throatRadius="0.50" nozzleRadius="1.5" nozzleLength="4.749401" priceScale="1.5" overexpansionDamageThreshold="0.65" textureStyleIds="RocketEngine_Nozzle"/>
       <RocketNozzle id="Delta" name="Delta" efficiency="1.05" throatRadius="0.50" nozzleRadius="1.108" nozzleLength="4.749401" priceScale="1.5" extensionPrefabId="Delta" extensionRadius="0.26" extensionMin="0.1" extensionMax="2.5" exhaustRadiusScale="0.95" overexpansionDamageThreshold="0.65" textureStyleIds="RocketEngine_Nozzle" extensionTextureStyleIds="RocketEngine_Extension,RocketEngine_Extension2,RocketEngine_Extension3,RocketEngine_Extension4"/>
-      <RocketNozzle id="Alpha" name="Alpha" efficiency="1.1" throatRadius="0.50" nozzleRadius="1.85" nozzleLength="3.813335" priceScale="2" overexpansionDamageThreshold="0.6" textureStyleIds="RocketEngine_Nozzle" />
+      <RocketNozzle id="Alpha" name="Alpha" efficiency="1.1" throatRadius="0.50" nozzleRadius="1.85" nozzleLength="3.813335" priceScale="2" overexpansionDamageThreshold="0.6" shockDirection="-1" textureStyleIds="RocketEngine_Nozzle" />
       <RocketNozzle id="Omega" name="Omega" efficiency="1.1" throatRadius="0.65" nozzleRadius="2.5" nozzleLength="5.458097" priceScale="2" overexpansionDamageThreshold="0.6" textureStyleIds="RocketEngine_Nozzle" />
       <RocketNozzle id="Echo" name="Echo" efficiency="1.1" throatRadius="0.55" nozzleRadius="1.066" nozzleLength="2.456163" priceScale="2" overexpansionDamageThreshold="0.5" density="600" textureStyleIds="RocketEngine_Nozzle" />
-      <RocketNozzle id="Aerospike" name="Aerospike" throatRadius="0.45" nozzleRadius="0.0" nozzleLength="0.8133829" extensionMin="0.5" extensionMax="1.5" extensionRadius="0" extensionPrefabId="Aerospike" extensionOverlap="0.375" altitudeCompensation="0.990" altitudeCompensationScale="0.004" density="800" thickness="1" priceScale="20" overexpansionDamageThreshold="0" textureStyleIds="RocketEngine_Nozzle" />
+      <RocketNozzle id="Aerospike" name="Aerospike" throatRadius="0.45" nozzleRadius="0.0" nozzleLength="0.8133829" extensionMin="0.5" extensionMax="1.5" extensionRadius="0" shockDirection="-1.5" extensionPrefabId="Aerospike" extensionOverlap="0.375" altitudeCompensation="0.990" altitudeCompensationScale="0.004" density="800" thickness="1" priceScale="200" overexpansionDamageThreshold="0" textureStyleIds="RocketEngine_Nozzle" exhaustBend="1" />
       <RocketNozzle id="Plug" name="Graphite" throatRadius="0.4" nozzleRadius="0.9" nozzleLength="1.633" priceScale="0.5" overexpansionDamageThreshold="0" density="50000" textureStyleIds="RocketEngine_Nozzle" />
    </RocketNozzles>
    <Grains>

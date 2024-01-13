@@ -5,7 +5,7 @@
    <Include path="Ui/Xml/Styles.xml" />
 
    <Defaults>
-      <TextMeshProInputField class="dt" preferredwidth="84" preferredheight="34" contentType="DecimalNumber" />
+      <TextMeshProInputField class="dt" preferredWidth="84" preferredHeight="34" contentType="DecimalNumber" />
       <TextMeshPro class="dtText" alignment="center" color="LabelText"/>
    </Defaults>
 
@@ -94,28 +94,28 @@
                   <HorizontalLayout id="image-settings-template" spacing="5" childForceExpandWidth="false" childForceExpandHeight="false" active="false">
                      <TextMeshPro text="Offset" color="#a3aabf" preferredwidth="55" preferredheight="34" alignment="right" />
                      <TextMeshProInputField class="dt" internalId="OffsetX">
-                        <TMP_Text />
+                        <TMP_Text alignment="Right"/>
                      </TextMeshProInputField>
                      <TextMeshProInputField class="dt" internalId="OffsetY">
-                        <TMP_Text />
+                        <TMP_Text alignment="Right"/>
                      </TextMeshProInputField>
                      <TextMeshProInputField class="dt" internalId="OffsetZ">
-                        <TMP_Text />
+                        <TMP_Text alignment="Right"/>
                      </TextMeshProInputField>
 
                      <TextMeshPro text="Rotation" color="#a3aabf" preferredwidth="80" preferredheight="34" alignment="right" />
                      <TextMeshProInputField class="dt" internalId="Rotation">
-                        <TMP_Text />
+                        <TMP_Text alignment="Right"/>
                      </TextMeshProInputField>
 
                      <TextMeshPro text="Scale" color="#a3aabf" preferredwidth="80" preferredheight="34" alignment="right" />
                      <TextMeshProInputField class="dt" internalId="Scale">
-                        <TMP_Text />
+                        <TMP_Text alignment="Right"/>
                      </TextMeshProInputField>
 
                      <TextMeshPro text="Opacity" color="#a3aabf" preferredwidth="80" preferredheight="34" alignment="right" />
                      <TextMeshProInputField class="dt" internalId="Opacity">
-                        <TMP_Text />
+                        <TMP_Text alignment="Right"/>
                      </TextMeshProInputField>
 
                      <Panel flexibleWidth="1"/>

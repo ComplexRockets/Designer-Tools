@@ -6,14 +6,12 @@ using ModApi.Ui;
 using TMPro;
 using UI.Xml;
 using UnityEngine;
-using Assets.Scripts.Ui.Designer;
 using UnityEngine.UI;
 using ModApi.Design;
 using Assets.Scripts.Design.Tools;
 using System.Collections.Generic;
 using HarmonyLib;
 using Assets.Scripts.DesignerTools.ViewTools;
-using ModApi.Craft;
 
 namespace Assets.Scripts.DesignerTools.ReferenceImages
 {
@@ -22,8 +20,8 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
     public class ReferenceImage : MonoBehaviour
     {
         public Views view;
-        public IUIResourceDatabase resourceDatabase => XmlLayoutResourceDatabase.instance;
-        public DesignerScript designer => (DesignerScript)Game.Instance.Designer;
+        public IUIResourceDatabase ResourceDatabase => XmlLayoutResourceDatabase.instance;
+        public DesignerScript Designer => (DesignerScript)Game.Instance.Designer;
         public ReferenceImagesPanel refImgsPanel;
         public Texture2D image;
         private GameObject _parentGameObject, _imageGameObject, _image;
@@ -31,14 +29,13 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         private XmlElement _selectImageButton, _edit, _settings, _noImage, _nudge, _rotate, _scale;
         private ImageHighlighter imageHighlighter;
         private ReferenceImageGizmos _gizmos;
-        private DesignerTool[] tools;
         private static Material _defaultMaterial;
         private AutoScaler autoScaler;
-        public bool translateModeOn => gizmosCreated && _gizmos.translateGizmo.GizmosCreated;
-        public bool rotateModeOn => gizmosCreated && _gizmos.rotateGizmo.GizmosCreated;
-        public bool scaleModeOn => autoScaler != null;
-        private bool gizmosCreated => _gizmos != null;
-        public static Dictionary<Views, Quaternion> rotations = new Dictionary<Views, Quaternion>(){
+        public bool TranslateModeOn => GizmosCreated && _gizmos.translateGizmo.GizmosCreated;
+        public bool RotateModeOn => GizmosCreated && _gizmos.rotateGizmo.GizmosCreated;
+        public bool ScaleModeOn => autoScaler != null;
+        private bool GizmosCreated => _gizmos != null;
+        public static Dictionary<Views, Quaternion> rotations = new(){
             {Views.Front, Quaternion.Euler(90f, -90f, -90f)},
             {Views.Back, Quaternion.Euler(90f, 270f, 90f)},
             {Views.Top, Quaternion.Euler(0f, -90f, 0f)},
@@ -46,15 +43,15 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
             {Views.Left, Quaternion.Euler(90f, 0f, 90f)},
             {Views.Right, Quaternion.Euler(90f, 0f, -90f)}};
         public string imageName = "No Image";
-        public float rotation { get; private set; } = 0f;
-        public float offsetX { get; private set; } = 0f;
-        public float offsetY { get; private set; } = 0f;
-        public float offsetZ { get; private set; } = 0f;
-        public float scale { get; private set; } = 1f;
-        public float opacity { get; private set; } = 0.3f;
-        public bool visible => active && !hidden;
+        public float Rotation { get; private set; } = 0f;
+        public float OffsetX { get; private set; } = 0f;
+        public float OffsetY { get; private set; } = 0f;
+        public float OffsetZ { get; private set; } = 0f;
+        public float Scale { get; private set; } = 1f;
+        public float Opacity { get; private set; } = 0.3f;
+        public bool Visible => active && !hidden;
         public bool active = true, hidden = false;
-        public bool hasImage => _imageGameObject != null;
+        public bool HasImage => _imageGameObject != null;
         private bool _uiActive = false;
         public bool missingImage = false;
         public const string deleteSprite = "Ui/Sprites/Design/IconButtonDeleteItem";
@@ -88,9 +85,9 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
 
         public void ResetSettings()
         {
-            rotation = offsetX = offsetY = offsetZ = 0;
-            scale = 1;
-            opacity = 0.3f;
+            Rotation = OffsetX = OffsetY = OffsetZ = 0;
+            Scale = 1;
+            Opacity = 0.3f;
             active = true;
         }
 
@@ -116,17 +113,17 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
 
         public void UpdateImage(Texture2D image)
         {
-            if (!hasImage) SetImage(image);
+            if (!HasImage) SetImage(image);
             else
             {
                 this.image = image;
-                if (_defaultMaterial == null) _defaultMaterial = resourceDatabase.GetResource<Material>("DesignerTools/RefImageMaterial");
+                if (_defaultMaterial == null) _defaultMaterial = ResourceDatabase.GetResource<Material>("DesignerTools/RefImageMaterial");
 
                 try
                 {
                     _renderer.material = new Material(_defaultMaterial)
                     {
-                        color = new Color(1f, 1f, 1f, opacity),
+                        color = new Color(1f, 1f, 1f, Opacity),
                         mainTexture = this.image
                     };
                 }
@@ -176,36 +173,36 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         {
             if (_gizmos == null)
             {
-                _gizmos = new ReferenceImageGizmos(designer);
+                _gizmos = new ReferenceImageGizmos(Designer);
                 _gizmos.ToolAdjustmentOccurred += OnGizmoAdjusted;
             }
 
-            if (translateModeOn) ToggleTranslateTool(false);
-            else if (hasImage && active) ToggleTranslateTool(true, true);
+            if (TranslateModeOn) ToggleTranslateTool(false);
+            else if (HasImage && active) ToggleTranslateTool(true, true);
         }
 
         private void OnRotateImage()
         {
             if (_gizmos == null)
             {
-                _gizmos = new ReferenceImageGizmos(designer);
+                _gizmos = new ReferenceImageGizmos(Designer);
                 _gizmos.ToolAdjustmentOccurred += OnGizmoAdjusted;
             }
 
-            if (rotateModeOn) ToggleRotateTool(false);
-            else if (hasImage && active) ToggleRotateTool(true);
+            if (RotateModeOn) ToggleRotateTool(false);
+            else if (HasImage && active) ToggleRotateTool(true);
         }
 
         private void OnScaleImage()
         {
 
-            if (scaleModeOn) ToggleScaleTool(false);
-            else if (hasImage && active) ToggleScaleTool(true);
+            if (ScaleModeOn) ToggleScaleTool(false);
+            else if (HasImage && active) ToggleScaleTool(true);
         }
 
         private void OnSetScale(float s)
         {
-            UpdateValue("Scale", Mathf.Round(s * scale * 1000f) / 1000f);
+            UpdateValue("Scale", Mathf.Round(s * Scale * 1000f) / 1000f);
             ToggleScaleTool(false);
         }
 
@@ -214,22 +211,22 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
             if (imageHighlighter == null) imageHighlighter = Instantiate(Mod.Instance.ResourceLoader.LoadAsset<GameObject>("Assets/Resources/ImageHighlighter/ImageHighlighter.prefab")).GetComponent<ImageHighlighter>();
             imageHighlighter.Toggle(true);
             ApplyChanges();
-            designer.DeselectPart();
-            designer.AllowPartSelection = false;
+            Designer.DeselectPart();
+            Designer.AllowPartSelection = false;
 
-            if (gizmosCreated)
+            if (GizmosCreated)
             {
                 DeleteUnecessaryGizmos();
-                designer.SelectTool(_gizmos);
+                Designer.SelectTool(_gizmos);
                 GizmoIsLocalOrientationChanged();
             }
         }
 
         private void DeselectImage()
         {
-            if (imageHighlighter != null) imageHighlighter.Toggle(false);
-            if (gizmosCreated) designer.DeselectTool(_gizmos);
-            designer.AllowPartSelection = true;
+            imageHighlighter?.Toggle(false);
+            if (GizmosCreated) Designer.DeselectTool(_gizmos);
+            Designer.AllowPartSelection = true;
         }
 
         public void ToggleTranslateTool(bool active, bool changeSprite = false)
@@ -241,7 +238,7 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
                 _nudge.GetChildElementsWithClass("toggle-button-icon").First().GetComponent<Image>().sprite = deleteSprite.ToSprite(reportError: false);
                 SelectImage();
             }
-            else if (translateModeOn)
+            else if (TranslateModeOn)
             {
                 _gizmos?.translateGizmo.SetAdjustmentTransform(null, true);
                 _nudge.GetChildElementsWithClass("toggle-button-icon").First().GetComponent<Image>().sprite = nugdeSprite.ToSprite(reportError: false); ;
@@ -258,7 +255,7 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
                 _rotate.GetChildElementsWithClass("toggle-button-icon").First().GetComponent<Image>().sprite = deleteSprite.ToSprite(reportError: false);
                 SelectImage();
             }
-            else if (rotateModeOn)
+            else if (RotateModeOn)
             {
                 _gizmos?.rotateGizmo.SetAdjustmentTransform(null, true);
                 _rotate.GetChildElementsWithClass("toggle-button-icon").First().GetComponent<Image>().sprite = rotateSprite.ToSprite(reportError: false);
@@ -277,7 +274,7 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
                 ViewToolsUtilities.IsolateRefImages(new List<ReferenceImage>() { this });
                 SelectImage();
             }
-            else if (scaleModeOn)
+            else if (ScaleModeOn)
             {
                 autoScaler.DestroyPointers();
                 GameObject.DestroyImmediate(autoScaler.gameObject);
@@ -292,7 +289,7 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         {
             foreach (ReferenceImage img in Mod.Instance.referenceImages)
             {
-                if (img.hasImage)
+                if (img.HasImage)
                 {
                     img.ToggleRotateTool(false);
                     img.ToggleTranslateTool(false);
@@ -303,27 +300,27 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
 
         private void OnGizmoAdjusted(MovementTool source)
         {
-            offsetX = Mathf.Round(_imageGameObject.transform.localPosition.x * 1000f) / 1000f;
-            offsetY = Mathf.Round(_imageGameObject.transform.localPosition.z * 1000f) / 1000f;
-            offsetZ = Mathf.Round(_imageGameObject.transform.localPosition.y * 1000f) / 1000f;
-            rotation = Mathf.Round(_imageGameObject.transform.localRotation.eulerAngles.y * 1000f) / 1000f;
+            OffsetX = Mathf.Round(_imageGameObject.transform.localPosition.x * 1000f) / 1000f;
+            OffsetY = Mathf.Round(_imageGameObject.transform.localPosition.z * 1000f) / 1000f;
+            OffsetZ = Mathf.Round(_imageGameObject.transform.localPosition.y * 1000f) / 1000f;
+            Rotation = Mathf.Round(_imageGameObject.transform.localRotation.eulerAngles.y * 1000f) / 1000f;
 
             ApplyChanges();
         }
 
         public void GizmoIsLocalOrientationChanged()
         {
-            if (gizmosCreated)
+            if (GizmosCreated)
             {
-                if (_gizmos.translateGizmo.GizmosActive) _gizmos.translateGizmo.IsLocalOrientation = Mod.Instance.imageGizmoIsLocalOrientation;
-                if (_gizmos.rotateGizmo.GizmosActive) _gizmos.rotateGizmo.IsLocalOrientation = Mod.Instance.imageGizmoIsLocalOrientation;
+                if (_gizmos.translateGizmo.GizmosActive) _gizmos.translateGizmo.IsLocalOrientation = Mod.Instance.ImageGizmoIsLocalOrientation;
+                if (_gizmos.rotateGizmo.GizmosActive) _gizmos.rotateGizmo.IsLocalOrientation = Mod.Instance.ImageGizmoIsLocalOrientation;
                 DeleteUnecessaryGizmos();
             }
         }
 
         private void DeleteUnecessaryGizmos()
         {
-            if (gizmosCreated)
+            if (GizmosCreated)
             {
                 if (_gizmos.rotateGizmo.GizmosActive)
                 {
@@ -339,7 +336,7 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         {
             if (!Mod.Instance.CraftValidForRefImg())
             {
-                designer.DesignerUi.ShowMessage(Mod.Instance.errorColor + "Remember to save your craft, '" + designer.CraftScript.Data.Name + "' can't have reference images, switch feature is disabled");
+                Designer.DesignerUi.ShowMessage(Mod.Instance.errorColor + "Remember to save your craft, '" + Designer.CraftScript.Data.Name + "' can't have reference images, switch feature is disabled");
                 return;
             }
 
@@ -348,7 +345,6 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
             while (newView < 0) newView += 6;
 
             GetReferenceImage((Views)newView).view = view;
-            Views olddView = view;
             view = (Views)newView;
             Mod.Instance.OnReferenceImageChanged();
             Mod.Instance.RefreshReferenceImages();
@@ -364,12 +360,12 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         {
             if (_uiActive)
             {
-                if (visible) _settings.GetElementByInternalId("toggle").SetAndApplyAttribute("color", "White");
+                if (Visible) _settings.GetElementByInternalId("toggle").SetAndApplyAttribute("color", "White");
                 else _settings.GetElementByInternalId("toggle").SetAndApplyAttribute("color", "Button");
 
-                _noImage.SetActive(!hasImage);
+                _noImage.SetActive(!HasImage);
                 _noImage.SetText(missingImage ? Mod.Instance.errorColor + "Missing Image" : "No Image Selected");
-                _settings.SetActive(hasImage);
+                _settings.SetActive(HasImage);
 
                 UpdateUIButton();
                 UpdateUIValues();
@@ -380,10 +376,10 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         {
             if (_uiActive)
             {
-                _selectImageButton.SetActive(!hasImage);
-                _edit.SetActive(hasImage);
+                _selectImageButton.SetActive(!HasImage);
+                _edit.SetActive(HasImage);
 
-                if (hasImage) _selectImageButton.GetComponentInChildren<TextMeshProUGUI>().SetText("Edit Image");
+                if (HasImage) _selectImageButton.GetComponentInChildren<TextMeshProUGUI>().SetText("Edit Image");
                 else _selectImageButton.GetComponentInChildren<TextMeshProUGUI>().SetText("Select Image");
             }
         }
@@ -392,12 +388,12 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         {
             if (_uiActive)
             {
-                _settings.GetElementByInternalId<TMP_InputField>("OffsetX")?.SetTextWithoutNotify(offsetX.ToString());
-                _settings.GetElementByInternalId<TMP_InputField>("OffsetY")?.SetTextWithoutNotify(offsetY.ToString());
-                _settings.GetElementByInternalId<TMP_InputField>("OffsetZ")?.SetTextWithoutNotify(offsetZ.ToString());
-                _settings.GetElementByInternalId<TMP_InputField>("Rotation")?.SetTextWithoutNotify(rotation.ToString());
-                _settings.GetElementByInternalId<TMP_InputField>("Scale")?.SetTextWithoutNotify(scale.ToString());
-                _settings.GetElementByInternalId<TMP_InputField>("Opacity")?.SetTextWithoutNotify(opacity.ToString());
+                _settings.GetElementByInternalId<TMP_InputField>("OffsetX")?.SetTextWithoutNotify(OffsetX.ToString());
+                _settings.GetElementByInternalId<TMP_InputField>("OffsetY")?.SetTextWithoutNotify(OffsetY.ToString());
+                _settings.GetElementByInternalId<TMP_InputField>("OffsetZ")?.SetTextWithoutNotify(OffsetZ.ToString());
+                _settings.GetElementByInternalId<TMP_InputField>("Rotation")?.SetTextWithoutNotify(Rotation.ToString());
+                _settings.GetElementByInternalId<TMP_InputField>("Scale")?.SetTextWithoutNotify(Scale.ToString());
+                _settings.GetElementByInternalId<TMP_InputField>("Opacity")?.SetTextWithoutNotify(Opacity.ToString());
             }
             Mod.Instance.OnReferenceImageChanged();
         }
@@ -406,12 +402,12 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         {
             if (setting == null) { Debug.LogError("Setting null error in UpdateValue"); return; }
 
-            if (setting == "OffsetX") offsetX = value;
-            else if (setting == "OffsetY") offsetY = value;
-            else if (setting == "OffsetZ") offsetZ = value;
-            else if (setting == "Rotation") rotation = value;
-            else if (setting == "Scale") scale = value;
-            else if (setting == "Opacity") opacity = value;
+            if (setting == "OffsetX") OffsetX = value;
+            else if (setting == "OffsetY") OffsetY = value;
+            else if (setting == "OffsetZ") OffsetZ = value;
+            else if (setting == "Rotation") Rotation = value;
+            else if (setting == "Scale") Scale = value;
+            else if (setting == "Opacity") Opacity = value;
             else Debug.LogError("setting name not recognised : " + setting);
 
             ApplyChanges();
@@ -419,23 +415,23 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
 
         public void ApplyChanges()
         {
-            if (hasImage)
+            if (HasImage)
             {
                 Quaternion temp = _imageGameObject.transform.localRotation;
 
-                _image.transform.localScale = new Vector3(scale * (image.width / 1000f), 1f, scale * (image.height / 1000f));
-                _imageGameObject.transform.localRotation = Quaternion.Euler(temp.eulerAngles.x, rotation, temp.eulerAngles.z);
-                _imageGameObject.transform.localPosition = new Vector3(offsetX, offsetZ, offsetY);
+                _image.transform.localScale = new Vector3(Scale * (image.width / 1000f), 1f, Scale * (image.height / 1000f));
+                _imageGameObject.transform.localRotation = Quaternion.Euler(temp.eulerAngles.x, Rotation, temp.eulerAngles.z);
+                _imageGameObject.transform.localPosition = new Vector3(OffsetX, OffsetZ, OffsetY);
                 _image.transform.localPosition = new Vector3();
-                _renderer.material.color = new Color(1f, 1f, 1f, opacity);
+                _renderer.material.color = new Color(1f, 1f, 1f, Opacity);
                 UpdateUIValues();
 
-                if (gizmosCreated)
+                if (GizmosCreated)
                 {
                     _gizmos.SetWorldPosition(_imageGameObject.transform.position);
-                    if (_gizmos.translateGizmo.GizmosActive || _gizmos.rotateGizmo.GizmosActive) imageHighlighter?.UpdateHighlighter(_imageGameObject.transform, image.width, image.height, scale);
+                    if (_gizmos.translateGizmo.GizmosActive || _gizmos.rotateGizmo.GizmosActive) imageHighlighter?.UpdateHighlighter(_imageGameObject.transform, image.width, image.height, Scale);
                 }
-                if (scaleModeOn) imageHighlighter?.UpdateHighlighter(_imageGameObject.transform, image.width, image.height, scale);
+                if (ScaleModeOn) imageHighlighter?.UpdateHighlighter(_imageGameObject.transform, image.width, image.height, Scale);
             }
         }
 
@@ -443,7 +439,7 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         public void Toggle(bool active)
         {
             this.active = active;
-            if (hasImage) _imageGameObject.SetActive(visible);
+            if (HasImage) _imageGameObject.SetActive(Visible);
             UpdateUI();
 
             _gizmos?.OnClose();
@@ -459,9 +455,9 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         {
             ToggleAllToolOff();
             _gizmos?.OnClose();
-            GameObject.DestroyImmediate(imageHighlighter);
+            DestroyImmediate(imageHighlighter);
             imageHighlighter = null;
-            this.refImgsPanel = null;
+            refImgsPanel = null;
             _uiActive = false;
         }
 
@@ -469,16 +465,16 @@ namespace Assets.Scripts.DesignerTools.ReferenceImages
         {
             ToggleAllToolOff();
             _gizmos?.OnClose();
-            GameObject.DestroyImmediate(imageHighlighter);
+            DestroyImmediate(imageHighlighter);
             imageHighlighter = null;
-            if (hasImage)
+            if (HasImage)
             {
-                UnityEngine.Object.DestroyImmediate(_parentGameObject);
+                DestroyImmediate(_parentGameObject);
                 _parentGameObject = null;
                 _imageGameObject = null;
                 UpdateUI();
             }
-            GameObject.Destroy(this);
+            Destroy(this);
         }
     }
 }
